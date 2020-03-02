@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AccountInfos>
+  <AccountInfo>
+    <account>123</account>
+    <password>123</password>
+    <popHost>123</popHost>
+    <smtpHost>123</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>23231</account>
+    <password>1231</password>
+    <popHost>1231</popHost>
+    <smtpHost>12312</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>1741603127@qq.com</account>
+    <password>1234567</password>
+    <popHost>pop.qq.com</popHost>
+    <smtpHost>smtp.qq.com</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>caixu.cx@qq.com</account>
+    <password>123456</password>
+    <popHost>pop.qq.com</popHost>
+    <smtpHost>smtp.qq.com</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>test@test.com</account>
+    <password>123456</password>
+    <popHost>123456</popHost>
+    <smtpHost>123456</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>test1@test.com</account>
+    <password>123456</password>
+    <popHost>12345</popHost>
+    <smtpHost>12345</smtpHost>
+  </AccountInfo>
+  <AccountInfo>
+    <account>123456</account>
+    <password>123124</password>
+    <popHost>124213</popHost>
+    <smtpHost>123124</smtpHost>
+  </AccountInfo>
+</AccountInfos>

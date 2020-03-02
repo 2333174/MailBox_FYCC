@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="MailBox.Views.WelcomeController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MailBox.Views"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="450" d:DesignWidth="900" Width="Auto" Height="Auto" MinHeight="600" MinWidth="1000">
+    <Grid Background="#FF673AB7">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.7*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <materialDesign:DialogHost Grid.ColumnSpan="3" Grid.RowSpan="4" x:Name="loginDialog"/>
+        <Border
+            Grid.Row="2" Grid.Column="1"
+            BorderThickness="1"
+            BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+            ClipToBounds="True" Panel.ZIndex="-1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone
+                    Mode="PrimaryMid"
+                    Grid.Row="0"
+                    Effect="{DynamicResource MaterialDesignShadowDepth5}" Background="#FFEDECEE" Foreground="#DD000000">
+                    <TextBlock
+                        Margin="10
+                        " HorizontalAlignment="Center" FontSize="15">
+                        邮箱账户
+                    </TextBlock>
+                </materialDesign:ColorZone>
+                <ListBox Grid.Row="1" ItemsSource="{Binding AccountInfos}" SelectedIndex="{Binding AccountSelectedIndex}"
+                    x:Name="AccountListBox" Foreground="#F8000000" BorderBrush="#00000000" FontSize="14" Background="White">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="domain:AccountInfo">
+                            <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <!--</ListBoxItem>
+                    <ListBoxItem>
+                        caixu.cx@qq.com
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        2017302580241@whu.edu.cn
+                    </ListBoxItem>-->
+                </ListBox>
+                <Border
+                    Grid.Row="2"
+                    BorderThickness="0,0,0,0"
+                    BorderBrush="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
+                    ClipToBounds="True" Background="#FFEDECEE">
+                    <materialDesign:ColorZone
+                    Mode="PrimaryMid"
+                    Grid.Row="2"
+                    Effect="{DynamicResource MaterialDesignShadowDepth5}" Background="White" BorderThickness="0" VerticalAlignment="Center">
+                        <!--<TextBlock
+                        Margin="10" Foreground="#FF588BD4" HorizontalAlignment="Center" FontSize="15" >
+                        转到收件箱
+                        </TextBlock>-->
+                        <Button Grid.Column="1" Grid.Row="2"
+                                Height="35"
+                                Command="{Binding enterMailBoxCommand }"
+                                IsEnabled="{Binding IsAble}"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Background="White" BorderBrush="White" Foreground="#FF512DA8">
+                                            进入收件箱 >>
+                                        </Button>
+                    </materialDesign:ColorZone>
+                </Border>
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Grid.Row="1"
+                    Command="{Binding openLoginCommand}"
+                    Margin="0 0 28 -20">
+                    <materialDesign:PackIcon
+                      Kind="Plus"
+                      Height="22"
+                      Width="22" />
+                </Button>
+            </Grid>
+        </Border>
+        <materialDesign:PackIcon Kind="Email" Grid.Row="1" Grid.Column="1" Margin="108,20,108,0" Foreground="#FDFFFFFF" Height="185" Width="184" VerticalAlignment="Top" HorizontalAlignment="Center" />
+        <Label Content="欢迎使用FYCC邮件" Grid.Column="1"  Margin="102,179,102,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FDFFFFFF" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+    </Grid>
+</UserControl>
