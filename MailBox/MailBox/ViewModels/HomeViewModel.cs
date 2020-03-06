@@ -84,13 +84,13 @@ namespace MailBox.ViewModels
 
 		private void NewMail(object parameter)
 		{
+			if (Title == "写信") return;
 			Title = "写信";
 			Visibility = System.Windows.Visibility.Hidden;
 			Content = new Frame
 			{
-				Content = new WriteMailController()
+				Content = new WriteMailController(AccountInfos[AccountSelectedIndex])
 			};
-			AccountSelectedIndex = -1;
 		}
 
 		public DelegateCommand ReceiveMailCommand { get; set; }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MailBox.Views"
       xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900" Width="Auto" Height="Auto" MinHeight="600" MinWidth="1000"
+      Width="Auto" Height="Auto" MinHeight="600" MinWidth="1000"
       Title="HomePage">
 
     <Grid>
@@ -21,48 +21,49 @@
                                         HorizontalAlignment="Right" Margin="16"
                                         IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
                     <Grid Width="300" Height="auto">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50px"></RowDefinition>
-                                <RowDefinition Height="50px"></RowDefinition>
-                                <RowDefinition Height="auto"></RowDefinition>
-                            </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50px"></RowDefinition>
+                            <RowDefinition Height="50px"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50px"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <materialDesign:PackIcon Kind="Add" Grid.Row="0" Grid.Column="0" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
-                        <TextBlock
+                        <Grid Grid.Row="0" Grid.ColumnSpan="2"  PreviewMouseLeftButtonDown="newEmailClick" Cursor="Hand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50px"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="Add" Grid.Row="0" Grid.Column="0" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
+                            <TextBlock
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,12,0,12"
                                 Text="新邮件"
-                                FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7" PreviewMouseLeftButtonDown="newEmailClick" Cursor="Hand">
-                        </TextBlock>
+                                FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7" >
+                            </TextBlock>
+                        </Grid>
+
                         <materialDesign:PackIcon Grid.Row="1" Kind="AccountSupervisor" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
-                            <TextBlock
+                        <TextBlock
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,12,0,12"
                                 HorizontalAlignment="Left"
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7">
                                 账户
-                            </TextBlock>
-                            <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
+                        </TextBlock>
+                        <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
                                      PreviewMouseLeftButtonUp="ChangeAccount"
                                      ItemsSource="{Binding AccountInfos}" SelectedIndex="{Binding AccountSelectedIndex}">
-                                <ListBox.ItemTemplate >
-                                    <DataTemplate DataType="domain:AccountInfo">
-                                        <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
+                            <ListBox.ItemTemplate >
+                                <DataTemplate DataType="domain:AccountInfo">
+                                    <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
-                        </Grid>
-
-                        <!--<ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>-->
+                    </Grid>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
@@ -78,7 +79,7 @@
                       Margin="0 0 0 0"
                       Command="{Binding FreshComand}"
                       materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsFresh}"
-                      materialDesign:ButtonProgressAssist.Value="{Binding SaveProgress}" Width="40" Height="40">
+                      materialDesign:ButtonProgressAssist.Value="{Binding FreshProgress}" Width="40" Height="40">
                         <!-- simple example of toggling/animating pack icon with a data trigger-->
                         <materialDesign:PackIcon
                                         Height="20"

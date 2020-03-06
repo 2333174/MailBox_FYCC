@@ -10,6 +10,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailBox"
         mc:Ignorable="d"
-        Title="MailBox FYCC" Height="600" Width="1000" MinWidth="1000" MinHeight="600">
+        Title="MailBox FYCC" Height="600" Width="1000" MinWidth="1050" MinHeight="650">
     <ContentControl x:Name="contentPage" IsTabStop="False"></ContentControl>
 </Window>

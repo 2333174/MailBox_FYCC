@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailBox.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MailBox.ViewModels;
 
 namespace MailBox.Views
 {
@@ -20,9 +22,11 @@ namespace MailBox.Views
     /// </summary>
     public partial class WriteMailController : UserControl
     {
-        public WriteMailController()
+        public WriteMailController(AccountInfo accountInfo)
         {
             InitializeComponent();
+            this.DataContext = new WriteMailViewModel(accountInfo);
+            Console.WriteLine(accountInfo.Account);
         }
     }
 }
