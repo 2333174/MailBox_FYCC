@@ -87,6 +87,9 @@
     <Compile Include="Views\WelcomeController.xaml.cs">
       <DependentUpon>WelcomeController.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WriteMailController.xaml.cs">
+      <DependentUpon>WriteMailController.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WelcomeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WriteMailController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

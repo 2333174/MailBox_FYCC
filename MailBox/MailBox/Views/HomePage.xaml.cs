@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailBox.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,7 @@ namespace MailBox.Views
         public HomePage()
         {
             InitializeComponent();
-            //this.homeMain.Content = new Frame
-            //{
-            //    Content = new ReceiveMailController()
-            //};
+            this.DataContext = new HomeViewModel();
         }
 
         private void CloseMenu(object sender, MouseButtonEventArgs e)
@@ -42,6 +40,8 @@ namespace MailBox.Views
         private void newEmailClick(object sender, MouseButtonEventArgs e)
         {
             MenuToggleButton.IsChecked = false;
+            var vm = this.DataContext as HomeViewModel;
+            vm.NewMailCommand.Execute(null);
         }
     }
 }

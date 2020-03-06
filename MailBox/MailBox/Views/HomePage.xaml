@@ -35,8 +35,8 @@
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,12,0,12"
+                                Text="新邮件"
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7" PreviewMouseLeftButtonDown="newEmailClick" Cursor="Hand">
-                                新邮件
                         </TextBlock>
                         <materialDesign:PackIcon Grid.Row="1" Kind="AccountSupervisor" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
                             <TextBlock
@@ -75,6 +75,7 @@
                   Padding="16">
                     <DockPanel>
                     <Button
+                        Visibility="{Binding Visibility}"
                         DockPanel.Dock="Right"
                       Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                       Margin="0 0 0 0"
@@ -122,14 +123,15 @@
                         x:Name="MenuToggleButton"
                         IsChecked="False"
                         Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0">收件箱</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding Title}"></TextBlock>
                         <materialDesign:ColorZone
-                        Mode="Standard"
-                        Padding="8 4 8 4"
-                        CornerRadius="2"
-                        Panel.ZIndex="1"
-                        Margin="16 0 0 0"
-                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                            Visibility="{Binding Visibility}"
+                            Mode="Standard"
+                            Padding="8 4 8 4"
+                            CornerRadius="2"
+                            Panel.ZIndex="1"
+                            Margin="16 0 0 0"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition
@@ -139,7 +141,7 @@
                                     <ColumnDefinition
                                     Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Button
+                                <Button                                
                                 Style="{DynamicResource MaterialDesignToolButton}">
                                     <materialDesign:PackIcon
                                   Kind="Magnify"
@@ -164,6 +166,7 @@
                             </Grid>
                         </materialDesign:ColorZone>
                         <Button
+                        Visibility="{Binding Visibility}"
                         Style="{DynamicResource MaterialDesignToolForegroundButton}"
                         Margin="8 0 0 0"
                         Panel.ZIndex="0">
@@ -174,7 +177,7 @@
                 </materialDesign:ColorZone>
                 <Grid>
                     <ScrollViewer>
-                        <ContentControl x:Name="homeMain" />
+                        <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
                     </ScrollViewer>
                 </Grid>
             </DockPanel>
