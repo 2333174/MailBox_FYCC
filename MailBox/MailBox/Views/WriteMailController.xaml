@@ -14,6 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button
+            Command="{Binding SendCommand}"
             Grid.Row="0"
             Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Margin="18,8,0,10" HorizontalAlignment="Left" Width="115">
@@ -24,6 +25,7 @@
         </Button>
         <Button
             Grid.Row="0"
+            Command="{Binding ClearCommand}"
             Margin="154,8,0,10" Background="White" BorderBrush="White" Foreground="#FF673AB7" HorizontalAlignment="Left" Width="100">
             重置
         </Button>
@@ -36,7 +38,7 @@
                 <ToolBar
                     Style="{DynamicResource MaterialDesignToolBar}"
                     ClipToBounds="False" Margin="10,0,-10,0">
-                    <Button
+                    <!--<Button
                       ToolTip="Follow me on Twitter"
                       >
                         <materialDesign:PackIcon
@@ -47,63 +49,40 @@
                         <materialDesign:PackIcon
                             Kind="ContentSave" />
                     </Button>
-                    <Separator />
+                    <Separator />-->
                     <Button
                       Command="Cut"
-                      ToolTip="Cut"
+                      ToolTip="剪切"
                       ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon
                             Kind="ContentCut" />
                     </Button>
                     <Button
                       Command="Copy"
-                      ToolTip="Copy that stuff"
+                      ToolTip="复制"
                       ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon
                             Kind="ContentCopy" />
                     </Button>
-                    <Separator />
                     <Button
                       Command="Paste"
-                      ToolTip="Paste some stuff"
+                      ToolTip="粘贴"
                       ToolBar.OverflowMode="AsNeeded">
                         <materialDesign:PackIcon
                             Kind="ContentPaste" />
                     </Button>
                     <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and 
                        manually apply the button style -->
-                    <materialDesign:Badged
-                      ToolBar.OverflowMode="AsNeeded"
-                      Badge="{materialDesign:PackIcon Alert}">
-                        <Button
-                            ToolTip="Badge it up!"
-                            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                            <materialDesign:PackIcon
-                                Kind="AirplaneTakeoff" />
-                        </Button>
-                    </materialDesign:Badged>
                     <Separator />
-                    <ListBox>
-                        <ListBoxItem
-                            ToolTip="This is a lonley toggle with TextBlock instead of icon">
-                            <TextBlock>
-                                W
-                            </TextBlock>
-                        </ListBoxItem>
-                    </ListBox>
+                    <Button
+                      Command="Paste"
+                      ToolTip="上传附件"
+                      ToolBar.OverflowMode="AsNeeded">
+                        <materialDesign:PackIcon Kind="Paperclip" />
+                    </Button>
                     <Separator />
                     <ListBox
                         SelectedIndex="0">
-                        <ListBox.ToolTip>
-                            <StackPanel>
-                                <TextBlock
-                                    Text="MaterialDesignToolToggleFlatListBox" />
-                                <TextBlock
-                                    Text="Exclusive selection" />
-                                <TextBlock
-                                    Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
-                            </StackPanel>
-                        </ListBox.ToolTip>
                         <ListBoxItem>
                             <materialDesign:PackIcon
                                 Kind="FormatAlignLeft" />
@@ -163,7 +142,7 @@
                         <ComboBoxItem
                             Content="16" />
                     </ComboBox>
-                    <CheckBox>
+                    <!--<CheckBox>
                         Check
                     </CheckBox>
                     <Button
@@ -178,7 +157,7 @@
                     <RadioButton
                         GroupName="XXX"
                         Content="Ga Ga" />
-                    <ToggleButton />
+                    <ToggleButton />-->
                 </ToolBar>
             </ToolBarTray>
             <Grid Grid.Row="0">
@@ -191,10 +170,10 @@
                 <materialDesign:Chip Grid.Row="0" VerticalAlignment="Center" Margin="80,18,0,0" HorizontalAlignment="Left" Content="{Binding AccountInfo.Account}">
                 </materialDesign:Chip>
                 <Label Content="发到" Grid.Row="1" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="15" Margin="18,14,0,4" RenderTransformOrigin="0.404,1.148"/>
-                <TextBox Grid.Row="1"  materialDesign:HintAssist.Hint="请输入收件邮箱"
+                <TextBox Grid.Row="1"  materialDesign:HintAssist.Hint="请输入收件邮箱" Text="{Binding ReceiveMail}"
                   x:Name="SendTextBox" Margin="80,16,33,10" VerticalAlignment="Center" Height="24" />
                 <Label Content="主题" Grid.Row="2" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="15" Margin="17.9,0,0,0"/>
-                <TextBox Grid.Row="2"  materialDesign:HintAssist.Hint="请输入邮件主题"
+                <TextBox Grid.Row="2"  materialDesign:HintAssist.Hint="请输入邮件主题" Text="{Binding Subject}"
                     x:Name="ThemeTextBox" Margin="80,16,33,10" VerticalAlignment="Center" Height="24" />
             </Grid>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"

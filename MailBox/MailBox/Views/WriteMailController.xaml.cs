@@ -28,5 +28,20 @@ namespace MailBox.Views
             this.DataContext = new WriteMailViewModel(accountInfo);
             Console.WriteLine(accountInfo.Account);
         }
+
+        private void OnCopy(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter is string stringValue)
+            {
+                try
+                {
+                    Clipboard.SetDataObject(stringValue);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
     }
 }
