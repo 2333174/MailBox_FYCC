@@ -9,7 +9,7 @@ namespace MailBox.Models
 	/**
 	 * 存储账户信息
 	 */
-    class AccountInfo
+    public class AccountInfo
     {
 
 		private string account;

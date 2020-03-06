@@ -1,6 +1,8 @@
-﻿using MailBox.ViewModels;
+﻿using MailBox.Models;
+using MailBox.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +23,10 @@ namespace MailBox.Views
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage()
+        public HomePage(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
         {
             InitializeComponent();
-            this.DataContext = new HomeViewModel();
+            this.DataContext = new HomeViewModel(accountInfos, selectIndex);
         }
 
         private void CloseMenu(object sender, MouseButtonEventArgs e)
@@ -42,6 +44,13 @@ namespace MailBox.Views
             MenuToggleButton.IsChecked = false;
             var vm = this.DataContext as HomeViewModel;
             vm.NewMailCommand.Execute(null);
+        }
+
+        private void ChangeAccount(object sender, MouseButtonEventArgs e)
+        {
+            MenuToggleButton.IsChecked = false;
+            var vm = this.DataContext as HomeViewModel;
+            vm.ReceiveMailCommand.Execute(null);
         }
     }
 }

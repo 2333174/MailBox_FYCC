@@ -47,18 +47,15 @@
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7">
                                 账户
                             </TextBlock>
-                            <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox" SelectedIndex="0"                         
-                                     PreviewMouseLeftButtonUp="CloseMenu">
-                                <ListBoxItem>
-                                    1741603127@qq.com
-                                </ListBoxItem>
-                                <ListBoxItem>
-                                    caixu.cx@qq.com
-                                </ListBoxItem>
-                                <ListBoxItem>
-                                    2017302580241@whu.edu.cn
-                                </ListBoxItem>
-                            </ListBox>
+                            <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
+                                     PreviewMouseLeftButtonUp="ChangeAccount"
+                                     ItemsSource="{Binding AccountInfos}" SelectedIndex="{Binding AccountSelectedIndex}">
+                                <ListBox.ItemTemplate >
+                                    <DataTemplate DataType="domain:AccountInfo">
+                                        <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                        </ListBox>
                         </Grid>
 
                         <!--<ListBox.ItemTemplate>
@@ -176,9 +173,9 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
-                    <ScrollViewer>
+                   
                         <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
-                    </ScrollViewer>
+
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
