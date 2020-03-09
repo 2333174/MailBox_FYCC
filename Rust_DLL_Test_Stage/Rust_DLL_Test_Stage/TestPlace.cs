@@ -18,7 +18,7 @@ namespace Rust_DLL_Test_Stage
 
         public static void Main(string[] args)
         {
-            if(validate_account_smtp("ale_li_pona@163.com","ybg19970203ybg","smtp.163.com:25"))
+            if(validate_account_smtp("alertdoll@163.com","ybgiscute","smtp.163.com:25"))
             {
                 Console.WriteLine("Succ");
             }

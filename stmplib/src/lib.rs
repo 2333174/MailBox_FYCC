@@ -33,6 +33,7 @@ fn get_response(socket: &mut TcpStream) -> String{
 
     let _ = socket.read(&mut buf);
     let response = str::from_utf8(&buf).unwrap();
+    println!("{}", response);
     String::from(response)
 }
 
