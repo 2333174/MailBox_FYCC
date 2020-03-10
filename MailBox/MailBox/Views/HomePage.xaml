@@ -173,10 +173,9 @@
                     </StackPanel>
                     </DockPanel>
                 </materialDesign:ColorZone>
+                <!--Mail inbox View here-->
                 <Grid>
-                   
-                        <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
-
+                    <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

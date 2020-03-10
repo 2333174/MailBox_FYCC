@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MailBox.Models;
+using MailBox.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace MailBox.Views
     /// </summary>
     public partial class ReceiveMailController : UserControl
     {
-        public ReceiveMailController()
+        public ReceiveMailController(AccountInfo account)
         {
             InitializeComponent();
+            DataContext = new ReceiveMailViewModel(account);
         }
+        public ReceiveMailController() { }
     }
 }
