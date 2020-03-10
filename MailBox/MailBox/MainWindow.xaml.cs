@@ -32,6 +32,8 @@ namespace MailBox
                 /*Content = new WelcomeController()*/
                 Content = new WelcomeController(contentPage)
             };
+
+            Console.WriteLine("Current file path:" + Environment.CurrentDirectory);
         }
     }
 }

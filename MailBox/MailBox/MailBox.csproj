@@ -168,6 +168,22 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\test_eml\Artllene-163.eml" />
+    <None Include="Resources\test_eml\EML Test-to-163.eml" />
+    <None Include="Resources\test_eml\EML Test-to-g.eml" />
+    <None Include="Resources\test_eml\EML Test-to-qq.eml" />
+    <None Include="Resources\test_eml\github_1-ms.eml" />
+    <None Include="Resources\test_eml\github_key-ms.eml" />
+    <None Include="Resources\test_eml\Issue-163.eml" />
+    <None Include="Resources\test_eml\Multipart-163.eml" />
+    <None Include="Resources\test_eml\NVIDIA-ms.eml" />
+    <None Include="Resources\test_eml\Pin 图-g.eml" />
+    <None Include="Resources\test_eml\Test Multipart Format of sending attachment.eml" />
+    <None Include="Resources\test_eml\vgold-163.eml" />
+    <None Include="Resources\test_eml\YouTube-g.eml" />
+    <None Include="Resources\test_eml\《服务条款》-g.eml" />
+    <None Include="Resources\test_eml\微信-qq.eml" />
+    <None Include="Resources\test_eml\翻译官-qq.eml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -216,6 +232,10 @@
     <Resource Include="Resources\Logos\x.png" />
     <Resource Include="Resources\Logos\y.png" />
     <Resource Include="Resources\Logos\z.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\test_eml\io.html" />
+    <Content Include="Resources\test_eml\Working.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets')" />

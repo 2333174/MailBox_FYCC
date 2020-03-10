@@ -14,15 +14,14 @@ namespace MailBox.ViewModels
         public ReceiveMailViewModel(AccountInfo account)
         {
             // TODO: Get info mails from account info 
-            string directory = "D:\\File\\Projects\\Socket-SMTP-POP3-IMAP\\eml\\";
-            string i1 = "Issue-163.eml";
-            string i2 = "github_1-ms.eml";
-            string i3 = "EML Test-to-163.eml";
+            string directory = Environment.CurrentDirectory.Replace("\\bin\\Debug", "\\Resources\\test_eml");
             MailItems = new ObservableCollection<MailItem>();
             string[] email_paths = { "Issue-163.eml", "github_1-ms.eml", "EML Test-to-163.eml", "Multipart-163.eml" };
             foreach (string path in email_paths)
             {
-                mailItems.Add(new MailItem(Path.Combine(directory, path), 0));
+                string ab_path = Path.Combine(directory, path);
+                if(File.Exists(ab_path))
+                    mailItems.Add(new MailItem(ab_path, 0));
             }
         }
 

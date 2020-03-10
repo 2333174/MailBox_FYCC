@@ -1,0 +1,954 @@
+Received: from mtaout-122-ewr.sendlabs.com (unknown [216.146.33.122])
+	by mx10 (Coremail) with SMTP id PMCowADHD3vQ+ehdIR4NSA--.13112S5;
+	Thu, 05 Dec 2019 20:36:43 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=wdd; d=webdesignerdepot.com;
+ h=sender:To:Subject:Content-ID:Date:From:Reply-To:Content-Type:MIME-Version:
+ Message-Id:List-Unsubscribe; i=no-reply@webdesignerdepot.com;
+ bh=QyNkh4MqiTMGTq49KLMqkgMylYnO3KIprbi44iPQedc=;
+ b=Sg5TDyy4Lo49sOjz1XtAyF8mBQTQ277O5veLFDFXoR14eFJilWlfATAV4ouKyFIIJ3oQX+iVOK2p
+   AY95p4Ox2MZ5buR4l2Q3ly00+QrFRlQLABgCvhiNAV3620vpi7XbIITNWgw5525kaIRhITdp12yR
+   9o0nF0WjUO1MvCUABdA=
+sender: bounces+15927480231=163.com@bounce.mightydeals.com
+To: 15927480231@163.com
+Subject: =?UTF-8?Q?=F0=9F=93=9D=20Issue=20#411:=20The=20State=20of=20UX=20?=
+ =?UTF-8?Q?in=202020,=20Designer=20Gift=20Guide=202019,=20Essential=20?=
+ =?UTF-8?Q?Design=20Trends,=202019=20Design=20Tools=20Survey,=20and=20more...?=
+Content-ID: oJScoTyhMl4mYwVmAl5bnJqvnaxhZKD2qzZho3EbMKWmYwD3AUD2Yz96ZF5bLzHhAD==
+X-CONTENT-ID: oJScoTyhMl4mYwVmAl5bnJqvnaxhZKD2qzZho3EbMKWmYwD3AUD2Yz96ZF5bLzHhAD==
+X-UNSUB-ID: YvY3rS96YJjaKyGfmSxcAS9iAvMfYO0iXFMfYTj8rM%3D%3Dj
+Date: Thu, 05 Dec 2019 12:35:25 +0000
+From: Webdesigner Depot <no-reply@webdesignerdepot.com>
+Reply-To: Webdesigner Depot <no-reply@webdesignerdepot.com>
+Content-Type: multipart/alternative;
+ boundary="=_c2f53f17cca90da7c88d81477ee020ed"
+MIME-Version: 1.0
+Message-Id: <20191205123525.1BB42C3E8D@mail6-35-usnbn1.prod.dc.dynback.net>
+X-DynectEmail-Msg-Hash: gAbOqugG6RL57LdZ7j7aiZyCR1WgojimQOekio/pifQLKQC/eiinc9u82DnrdmScBxPfqhGa6SWqnAWVZhkDxrk/DrdHYaEk6TMW2ULlPBvGX/LSjKtvBQ==
+X-DynEmail-Meta: p6eBYNtoOZZSOulhI4BfeFD9W5BxzBxRPScTgXTU3GJOIgsRssJDA6ag8Y4
+ 6YfCI9A1DIakBT8vF5NRwELECZI6WTrubeQ+281OfzAXWqqCRpkKFGDh2GyM3HP5H7rIq1XvpmV
+ hACI/HOWfVGcNyh4ZpmEJ3sMAMui0iUvG5yr1gni5RvVmcR1rajadOc1CrM792LYVwdh+Po2rMm
+ LN8+L64/F0ma53sPvDKJ+I9X1qYobayuMOKsocoqFwCpJaBUSK/1dq5feJwkOpDo9MVOgzxAUgK
+ ASgqvJpnEaE6tXDVMZBpxP1/x6Z2LKc4jAuwNQo5lgNNAFner3KY5XVBC+7PIqNm8NCVVlnMGii
+ NZf7+Y7/fWboc54Fs2hfDLgqH
+X-DynectEmail-Msg-Key: 20191205123633.000000638cc9@mail6-35-usnbn1
+X-DynectEmail-X-Headers: MXwxMDc5OTc1Oll2WTNyUzk2WUpqYUt5R2ZtU3hjQVM5aUF2TWZZTzBpWEZNZllUajhyTSUyNTNEJTI1M0RqOzJ8MTA3OTk3NjpvSlNjb1R5aE1sNG1Zd1ZtQWw1Ym5KcXZuYXhoWktEMnF6WmhvM0ViTUtXbVl3RDNBVUQyWXo5NlpGNWJMekhoQUQlM0QlM0Q7
+X-Feedback-ID: V2ViZGVzaWduZXJOZXdzVk1UQXM=:490899:425834:dyn06
+List-Unsubscribe: <http://unsub.email.dynect.net/unsub?h=gAbOqugG6RL57LdZ7j7aiZyCR1WgojimQOekio%2FpifQLKQC%2Feiinc9u82DnrdmScBxPfqhGa6SWqnAWVZhkDxrk%2FDrdHYaEk6TMW2ULlPBvGX%2FLSjKtvBQ%3D%3D&i=20191205123633.000000638cc9%40mail6-35-usnbn1>, <mailto:unsubscribe@dynect-email.com?subject=gAbOqugG6RL57LdZ7j7aiZyCR1WgojimQOekio%2FpifQLKQC%2Feiinc9u82DnrdmScBxPfqhGa6SWqnAWVZhkDxrk%2FDrdHYaEk6TMW2ULlPBvGX%2FLSjKtvBQ%3D%3D&message_id=20191205123633.000000638cc9%40mail6-35-usnbn1>
+X-CM-TRANSID:PMCowADHD3vQ+ehdIR4NSA--.13112S5
+Authentication-Results: mx10; spf=pass smtp.mail=bounces+15927480231=1
+	63.com@bounce.mightydeals.com; dkim=pass header.i=@webdesignerdepot.co
+	m
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAryrtryfuFW5Gr13KF4kWFg_yoW5uF1kpF
+	W5K3yjkrWkJrn7C3srJw1xJa4F9rZ5Jr45K39xK3s2ywn8G3WSqry7tryY9FZ8JrWIqw1a
+	v398Z3W5uws5taDanT9S1TB71UUU1_UqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jVbyZUUUUU=
+
+--=_c2f53f17cca90da7c88d81477ee020ed
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+NEWSLETTER ISSUE 411 - DECEMBER 5, 2019=0A=0AView this newsletter online=
+:=0Ahttp://news.webdesignerdepot.com/?xtl=3Dnso73jgw3hisnr9o2nm3qh9m7b5v=
+8qk07iyspvakankmniteqm7nc9phsrh3wnd2905cs2cs0if3tg2emvhwkjgtc8dmev2pook6=
+unlmgq3055a405xvanzh7rxeo8w8kxkaaa2i7by2wjv7teql4pzhjriexqf0fx&eih=3Dc3t=
+d6ckslxsdbuwwexax4yhmwa2k15=0A=0A=0AThe State of UX in 2020:=0AFabricio=
+ Teixeira and Caio Braga present their vision of the changing face of us=
+er experience design, focusing on nine trends they see dominating the in=
+dustry in the next twelve months. This interesting, and detailed overvie=
+w wraps up with a nice little summary of 2019 as well. http://news.webde=
+signerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85vwvqyfwy2ktp29u6ndhica=
+xowsazpqy1xgv2nz682ydulzwfe0bupqp6lkn7mohajkz22izbwvcwv9fnpov9xxqeyvxbsc=
+9bkd40ap2&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0A=0AFluidtype:=0AFluidty=
+pe is a small, trending CSS library that aims to side-step responsive de=
+sign techniques in favor of pure fluidity. It=E2=80=99s recommended for=
+ simple text-based sites, from blogs to documentation. If you=E2=80=99d=
+ like to try out this very different approach you can download the libra=
+ry from GitHub. http://news.webdesignerdepot.com/?xtl=3Dlpzzl71oduuzzkne=
+qt9g1l78tawza5afzmbz712bpl463or58byt5lhbpxsaon3rg0udqgtyhilsqentkka9g5cb=
+2qvc90zk0zq4ayw8z4unap7kng2h36yipb4&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=
+=0A=0A3 Essential Design Trends, December 2019:=0AEvery month we roundup=
+ three trends that we=E2=80=99ve seen gaining traction on the web in the=
+ previous four weeks. In our final roundup for 2019 we look at sites emp=
+loying whimsical illustrations, the return of black and blue color schem=
+es, and anything-but-flat scrolling transitions. Enjoy! http://news.webd=
+esignerdepot.com/?xtl=3D7nq2vsn0mlqid50w7r8at7qxs6ngzrmxaq0ltxjq4u97exsc=
+flfuj8t1wxfz1apvmlr7m85w5fdq7h3b8t1i8bek8hh7njj737qq4zx4gy30ejpjrtjwkryr=
+1g3zln8u44d5x1s848xdktvfbhwn6akb8m9xmwv55qrkkp89inmu0ugdxkfzkh2hq0divs3x=
+p2qcy1ia6rkyip0&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0A=0A2019 Design To=
+ols Survey:=0AThe annual Design Tools Survey is a free roundup of the al=
+l the best tools being used by designers across the industry. For 2019=
+=E2=80=99s edition, over 3,000 designers shared their preferred toolkits=
+, resulting in a comprehensive survey of the apps, tools, and utilities=
+ you=E2=80=99ll find most useful. http://news.webdesignerdepot.com/?xtl=
+=3D1jf11qxpkigtfwzwbiulvevte85vwvr9bklh59g5w7gqyjnqcz7p4arhu47phecs1sn6z=
+c6odenr3ggoj60bpue2odqy3wucwc5t7aqmsbir88qs9lvj9iu5qbfh9n14pu&eih=3Dc3td=
+6ckslxsdbuwwexax4yhmwa2k15=0A=0AMaking a Better Custom Select Element:=
+=0AThe web industry=E2=80=99s advent calendar 24 Ways, is back for 2019.=
+ Each year, 24 experts deliver a great article on a variety of different=
+ subjects from design to code. In the first article this year, Julie Gru=
+ndy discusses an age-old problem for web designers: making better custom=
+ select elements. http://news.webdesignerdepot.com/?xtl=3D1cygoixqdu374c=
+2caxta1y4ldxa32xo9elxqbczc0s9kdu2vzs16cajs279m7byhie9v1qk6183wobp0jupute=
+l2rix2m3c5u00vtikmxjfix1byx6go8q9g57dqcg3e5jdjglsa1u2mvl26bbfoqa76pp3sx6=
+743y97lm14om0vgvub9l&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0A=0ADesigner=
+ Gift Guide 2019:=0AIs there a designer in your life that you=E2=80=99re=
+ struggling to find a Christmas present for? Perhaps you=E2=80=99re cons=
+tantly being asked what you=E2=80=99d like, and aren=E2=80=99t sure what=
+ to opt for. To help you out, Dribbble presents a roundup of some of the=
+ best gift ideas for designers this holiday season. http://news.webdesig=
+nerdepot.com/?xtl=3D2rlmajjwhikbbk0q67pqdsnkmrndm0s94j6gimfpbyu6y068e67g=
+bp1o56for6duscp6xic8fqoli5al77f8ahzv6ualvyal4pljp789tgf7jcj2uq687f7h2sqe=
+rdfsfbrumcsljflg9c78jy0wn7eoa09ps1w4sw9cegol98bjclspfk7tj&eih=3Dc3td6cks=
+lxsdbuwwexax4yhmwa2k15=0A=0AGooFonts:=0AGooFonts is an incredibly useful=
+ site that catalogues over 950 Google fonts, and arranges them based on=
+ keywords, variants, and subsets. Select the variants (weight and type),=
+ pick any subsets you need such as Cyrillic support, then tap the keywor=
+ds to find the matching fonts. http://news.webdesignerdepot.com/?xtl=3Do=
+dvinqxmyjp310m1bv3uftq8j73w6v18dhoq44j1pqr0apa7w1fs2r9u4jh66oz3fp5q8aisf=
+j7w58wrlf2j6dnocis06775z8fy1y2kgdwsjmrep9&eih=3Dc3td6ckslxsdbuwwexax4yhm=
+wa2k15=0A=0AHow DNS Works:=0AAre you a web designer who doesn=E2=80=99t=
+ know how DNS works? This cute guide will explain exactly what happens b=
+ehind the scenes when you type a web address into your browser. It=E2=80=
+=99s a brilliant explanation, simplifying a complex process, and is a mu=
+st-read for anyone working on the web. http://news.webdesignerdepot.com/=
+?xtl=3Dodvinqxmyjp310m1bv3uftq8j73w6v2msaqp3t4x5mj3vs8q7z2s2dux3ig037yaw=
+p8isua37prmcft1u083r1e8ns37ybq47n913xbydz9mel9y53&eih=3Dc3td6ckslxsdbuww=
+exax4yhmwa2k15=0A=0AHappy Hues:=0AHappy Hues is a helpful project by Mac=
+kenzie Child, that not only gives you the chance to select different col=
+or palettes, but also shows you how to apply them to a site. It=E2=80=99=
+s a great color-101 guide for anyone struggling to break free from minim=
+alist Material Design palettes. http://news.webdesignerdepot.com/?xtl=3D=
+b6cs1frl4kzipj9s3g85fxbjrvtjhmdzpzn0vhn7jhm0jvu9obefl2o7dvzgbxfqqscgm6x9=
+4tyekl1e54x3q3qc40fe1m46ozmuvtp97dmhlqmei4znf65a&eih=3Dc3td6ckslxsdbuwwe=
+xax4yhmwa2k15=0A=0A=0A=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D  =0AGo to WebdesignerDepot.com: http://ne=
+ws.webdesignerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85vwvyrosej9a6rz=
+cymunt9bsidc8w12x5nlucw5mhv22bjfwnm17qnwqes9q5y69ru9etd713qu2sqsrg5seqkb=
+no9zld9pg16vzlafl&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0AAbout: http://n=
+ews.webdesignerdepot.com/?xtl=3D127e5i3os9ubogreowu72hjhn7jyvozqu268fam7=
+m0nic0ihlo6ekjiqrfdw60vcvzxx2l6tkso6a3ogan13zi06nb5i9sg4dgt92ygr8zii82f9=
+6x0n4aczws667w8ux5dv3jciy92xa&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0ADis=
+claimer: http://news.webdesignerdepot.com/?xtl=3D1cygoixqdu374c2caxta1y4=
+ldxa32xp9dsehwjc89z17zwv5sq5squjbs1p3atrzmce5fnsxnr1zeglez788pueiai18u07=
+vzbklru9m3e0tawn7xts2kglrfcvz5uawcbzjck7c97bl2oxi3rn7jp4tfkh1f7uutif78qn=
+2gwzs12l59i&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0AAdvertising: advertis=
+ing@webdesignerdepot.com=0ADeals: http://news.webdesignerdepot.com/?xtl=
+=3D15m3s9smx07dfmjdz0sznfwj3evfj974y0jta4sag02stiiomkqpf0k10kze8uhh7enmg=
+dhtsy1nsc1d3jnc9jxb2pdj2sl6otv8cguf8rpfsf0mfklbs2bft4kxb8vod3k1dfz7wo4lr=
+dyjw4ek6whmtihmxe&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0AContact: info@w=
+ebdesignerdepot.com=0A=0ASent to 15927480231@163.com=0A=0Aunsubscribe fr=
+om this list=0Ahttp://news.webdesignerdepot.com/?xul=3Dh2gofupk5hdusx60c=
+act0bvfos8nszwbwi12hluzr86kbbsguaej4vg0i4ou9g4okx4qy5l09uhin8jur1hxhoq77=
+pbuwh8r9zyfml5cvpt58v1r&eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15=0A=0AFreest=
+yle Networks Inc. =D0=92=C2=B7 3381 Cambie Street =D0=92=C2=B7 Suite 314=
+ =D0=92=C2=B7 Vancouver, BC V5Z 4R3 =D0=92=C2=B7 Canada=D0=92=C2=A0
+
+--=_c2f53f17cca90da7c88d81477ee020ed
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html><head><title></title><meta content=3D"text/html; chars=
+et=3Dutf-8" http-equiv=3D"Content-Type"><meta name=3D"x-apple-disable-messa=
+ge-reformatting"><meta content=3D"width=3Ddevice-width,initial-scale=3D1" n=
+ame=3D"viewport"><style type=3D"text/css">@import url("https://use.typekit.=
+net/khu5dcw.css");
+
+            .reverse-row .text-wrap {
+                float: right;
+                width: 512px;
+            }
+
+            .reverse-row .img-wrap {
+                float: left !important;
+                margin-left: 0 !important;
+                margin-right: 30px;
+            }
+
+            .reverse-row .pcont-text {
+                margin-right: 0 !important;
+            }
+
+            @media screen and (max-width: 730px) {
+                table {
+                    max-width: 100% !important;
+                    display: table-row-group;
+                }
+            }
+
+            @media screen and (max-width: 480px),
+            only screen and (device-aspect-ratio: 40/71),
+            only screen and (device-aspect-ratio: 2/3) {
+                .nl-top-cell-with-bg {
+                    background-position: -300px center;
+                }
+
+                .prev-logo-cell {
+                    padding-left: 20px;
+                }
+
+                #wdhd-table {
+                    margin-bottom: 20px;
+                    margin-top: 0;
+                }
+
+                .img-wrap {
+                    float: none !important;
+                    margin: 0 0 10px !important;
+                    text-align: center;
+                    display: block;
+                }
+
+                .img-wrap a {
+                    display: inline-block;
+                    width: 100%;
+                }
+
+                .gap-cell {
+                    width: 14px !important;
+                }
+
+                .post-cell {
+                    background: #fff;
+                    padding: 19px 19px 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    -webkit-border-radius: 6px;
+                    display: block;
+                    clear: both;
+                }
+
+                .post-cell h1 {
+                    font-size: 20px !important;
+                    line-height: 25px !important;
+                }
+
+                .post-cell p {
+                    font-size: 14px;
+                    line-height: 21px;
+                }
+
+                .post-cell img {
+                    width: 100%;
+                    max-width: 100%;
+                    height: auto;
+                }
+
+                .pcont-text {
+                    margin-right: 0px !important;
+                }
+
+                .top-unsub-txt,
+                .hhh-cell,
+                .shd-row,
+                .shd-cell,
+                .sep-row {
+                    display: none;
+                }
+
+                .hhs-block {
+                    width: 100% !important;
+                }
+
+                .nl-issue-row table,
+                .nl-issue-row td {
+                    width: 100% !important;
+                    background: inherit;
+                }
+
+                .issue-cell span {
+                    font-weight: bold;
+                    font-size: 14px !important;
+                    padding-right: 10px;
+                }
+
+                .hh-table,
+                .content-table {
+                    width: 100% !important;
+                    max-width: 100%;
+                }
+
+                .content-table {
+                    background: #dfdfdf;
+                }
+
+                .art-img-row {
+                    display: none;
+                }
+
+                .art-img-row td {
+                    height: auto;
+                }
+
+                .art-img-row img {
+                    width: 100% !important;
+                    height: auto !important;
+                }
+
+                .mid-row {
+                    height: 14px !important;
+                }
+
+                .fb-img-lnk img,
+                .rss-img-lnk img,
+                .tw-img-lnk img {
+                    display: none;
+                }
+
+                .footer-row br {
+                    display: none;
+                }
+
+                .footer-row * {
+                    font-weight: normal !important;
+                }
+
+                .footer-row *,
+                .footer-row td {
+                    font-size: 4px !important;
+                }
+
+                .text-chunk-hide {
+                    display: none;
+                }
+
+                .view-online-row {
+                    display: none;
+                }
+
+                .hc-table {
+                    margin-top: 20px;
+                }
+
+                .footer-support-row {
+                    display: none;
+                }
+
+                table {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+=09</style></head><body style=3D"padding:0; margin:0;">
+<table bgcolor=3D"#dfdfdf" style=3D"float:left;background-color:#dfdfdf; fo=
+nt-family:'acumin-pro',sans-serif;" width=3D"100%"><tbody><tr><td align=3D"=
+center">
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr=
+ class=3D"view-online-row"><td>
+=09=09=09=09=09=09<table width=3D"100%"><tbody><tr><td width=3D"100"></td>
+=09=09=09=09=09=09=09=09=09<td align=3D"center" height=3D"60" valign=3D"mid=
+dle"><a data-id=3D"3515595650" href=3D"http://news.webdesignerdepot.com/?xt=
+l=3Dnso73jgw3hisnr9o2nm3qh9m7b5mowqtmteq6yhefskm0zffnxfrwxljl8etza67trwfif9=
+6aexwlgre4xzxo9j1dte2rlnlzc6737odtop300qjpgt9z9rbonz0knzrg0qp840zs9s6jjcfl2=
+vxqudezadx7u3jbh&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"text-de=
+coration:underline; color:#7F7F7F; font-size:12px;" target=3D"_blank">View =
+this newsletter online</a></td>
+=09=09=09=09=09=09=09=09=09<td align=3D"right" height=3D"60" valign=3D"midd=
+le" width=3D"100"><span class=3D"top-unsub-txt"><a data-id=3D"3515595652" h=
+ref=3D"http://news.webdesignerdepot.com/?xul=3Dh2gofupk5hdusx60cact0bvfos8n=
+szwbwi12hluzr86kbbsguaej4vg0i4ou9g4okx4qy5l09uhin8jur1hxhoq77pbuwh8r9zyfml5=
+cvpt58v1r&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"text-decoratio=
+n:underline; color:#7F7F7F; font-size:12px;">Unsubscribe</a></span></td>
+=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09</tr><tr><td class=3D"hh-table" width=3D"730">
+<!-- header-content table -->
+=09=09=09=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" c=
+lass=3D"hh-table hc-table" id=3D"wdhd-table" width=3D"730"><!-- top black -=
+-><tbody><tr><td height=3D"9" style=3D"font-size:0px;" valign=3D"bottom"><i=
+mg alt=3D"WebDesignerDepot" height=3D"9" src=3D"https://webdesignerdepot.s3=
+.amazonaws.com/nl/logo/top-pattern.png" width=3D"100%"></td>
+=09=09=09=09=09=09=09=09</tr><tr class=3D"nl-img-row"><td bgcolor=3D"191c1d=
+ " class=3D"nl-top-cell-with-bg" height=3D"120" style=3D"background:#191c1d=
+" valign=3D"middle">
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" valig=
+n=3D"middle" width=3D"100%"><tbody><tr><td colspan=3D"6" height=3D"10"></td=
+>
+=09=09=09=09=09=09=09=09=09=09=09</tr><tr><td class=3D"hhh-cell" width=3D"2=
+9"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"hhh-cell" s=
+tyle=3D"white-space:nowrap;font-size:13px; font-weight:bold;
+                color:#ffffff; " width=3D"290"><b><span>NEWSLETTER ISSUE #4=
+11</span></b></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td width=3D"10"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"left" class=3D"prev-logo-c=
+ell" height=3D"60" valign=3D"center" width=3D"210"><a data-id=3D"3515595653=
+" href=3D"http://news.webdesignerdepot.com/?xtl=3D6lx4mum1ydzaamo3fkkfjc2ns=
+pcxt68fbqy0zb04dmwjwa75cfn86l529jv80i2ib5x7lv96yolzcmec4pdyihn0vzxr28m5uqrn=
+9vzu7ew6zvdg0o61w6khwdvt6&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=
+=3D" display:inline-block; position: relative;top: 0px;" target=3D"_blank">=
+<img alt=3D"" border=3D"0" src=3D"https://webdesignerdepot.s3.amazonaws.com=
+/nl/logo/logo.png" width=3D"110"></a></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"right" class=3D"issue-cell=
+" style=3D"color:#ffffff; white-space:nowrap; font-size:13px; font-weight:b=
+old;
+                "><strong>DECEMBER 5, 2019</strong></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr></tbody></table><!-- content -table --><table =
+bgcolor=3D"#ffffff" cellpadding=3D"0" cellspacing=3D"0" class=3D"content-ta=
+ble" width=3D"730"><tbody><tr class=3D"pre-row"><td height=3D"10"></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595654" href=3D"http://news.web=
+designerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2q2im3nwr53eezhm6fhs3e=
+xkmo71dcdf2cxx0ib5ucg501s6so909q1d2ymc0zwzd0bhm6ralg2rpb7bk5rxaieg9afq2bjg6=
+rygxt&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img alig=
+n=3D"right" alt=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesi=
+gnerdepot.com/cdn-origin/uploads/2019/12/001.png" style=3D"margin-top:4px;"=
+ width=3D"125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595655" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2q3206j0sg82=
+yommix844n2ytwbr81271ccjrsyxy0a3rc3146prxue5lq9awj45q29g0purclf6aprlg0dvbii=
+hpcjylis4d194p7&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:=
+block;text-decoration:none;font-family:&quot;tablet-gothic-condensed&quot;,=
+sans-serif;color:#201f1f; font-size:25px; font-weight:bold; line-height:28p=
+x; margin:0px 0 10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-d=
+ecoration:none;">The State of UX in 2020</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">Fabricio Teixeira and Caio Braga <a data-id=3D"3515595656" href=
+=3D"http://news.webdesignerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2q3=
+7cmusuvoos0bnyowe4fvmaf7eanox0ci9g0w1bmu1hqbhe0tgjzuwi68z56zz13fecwx6u5vjl1=
+a9bi3tcj0itf1hj2krnyhq5e&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D=
+"color:#DD4D42; text-decoration:none; font-weight:bold;" target=3D"_blank">=
+present their vision</a> of the changing face of user experience design, fo=
+cusing on nine trends they see dominating the industry in the next twelve m=
+onths. This interesting, and detailed overview wraps up with a nice little =
+summary of 2019 as well.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595657" href=3D"http://news.web=
+designerdepot.com/?xtl=3Dlpzzl71oduuzzkneqt9g1l78tavi876e7utdv5ra0kpwatujd2=
+m3wr68kwtpkmszz6ru6j96l3dmsuzlt72wiffevpf91muhn39nvbpk7rdsprimyv6ca7nltbo&a=
+mp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"ri=
+ght" alt=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesignerdep=
+ot.com/cdn-origin/uploads/2019/12/002.png" style=3D"margin-top:4px;" width=
+=3D"125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595658" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3Dlpzzl71oduuzzkneqt9g1l78tavi879azjn7bs7x=
+dqq3xhe3lnhwrab5jjqu9r3y8si1ix46b5ig038tm70vy7zirqgg9u0mrcbcj7x6l8cm2bq2uxt=
+2xfxx65b&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;t=
+ext-decoration:none;font-family:&quot;tablet-gothic-condensed&quot;,sans-se=
+rif;color:#201f1f; font-size:25px; font-weight:bold; line-height:28px; marg=
+in:0px 0 10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-decorati=
+on:none;">Fluidtype</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;"><a data-id=3D"3515595659" href=3D"http://news.webdesignerdepot.c=
+om/?xtl=3Dlpzzl71oduuzzkneqt9g1l78tavi87ox4o4zhclvtgqyvm1m7xt1mk82jmnywvcwf=
+doxy8l6r82pvzel36kunxu0nrirtbtbwq66mberd1b3dkhgqzdqvrh6gxz&amp;eih=3Dc3td6c=
+kslxsdbuwwexax4yhmwa2k15" style=3D"color:#DD4D42; text-decoration:none; fon=
+t-weight:bold;" target=3D"_blank">Fluidtype</a> is a small, trending CSS li=
+brary that aims to side-step responsive design techniques in favor of pure =
+fluidity. It=E2=80=99s recommended for simple text-based sites, from blogs =
+to documentation. If you=E2=80=99d like to try out this very different appr=
+oach you can download the library from GitHub.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595660" href=3D"http://news.web=
+designerdepot.com/?xtl=3D7nq2vsn0mlqid50w7r8at7qxs6nal78rrz7erg7ixmn4zaf6jc=
+4zf9lxtpa1adspsf6n4k9rzevf0swy539slgmvuolhe9vur6qum2k31r285wxl5dctdsppww1o4=
+z8g3ijku5qp06n1q3fjljrratndo1wrx4415tqfkmj3vuug9bpymlqx1d18bqs8r30q1dhmfjfa=
+5krx9bl&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img al=
+ign=3D"right" alt=3D"" border=3D"0" height=3D"125" src=3D"https://www.webde=
+signerdepot.com/cdn-origin/uploads/2019/12/003.png" style=3D"margin-top:4px=
+;" width=3D"125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595661" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3D7nq2vsn0mlqid50w7r8at7qxs6nal7911mwtk8g4=
+bnhm3ggby0y1csfv3nk03eiot33xoz76tb6gdb6zzzwissefzrcfyjuldde6vefjq9qr0l714bj=
+zncxzhf6c92rxss4h8rg91cyfy9sctqtpdxaszoqpp8237bwnpjqp7xlt8zo1ywtq9dl990o8dh=
+c0wsz3eteypc4ck5x&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"displa=
+y:block;text-decoration:none;font-family:&quot;tablet-gothic-condensed&quot=
+;,sans-serif;color:#201f1f; font-size:25px; font-weight:bold; line-height:2=
+8px; margin:0px 0 10px; padding:0px;"><font color=3D"#201f1f" style=3D"text=
+-decoration:none;">3 Essential Design Trends, December 2019</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">Every month we roundup three trends that we=E2=80=99ve seen gain=
+ing traction on the web in the previous four weeks. In <a data-id=3D"351559=
+5662" href=3D"http://news.webdesignerdepot.com/?xtl=3D7nq2vsn0mlqid50w7r8at=
+7qxs6nal79yyjj7szsofprrw0i8mn3rzzzsbm7kugontp0hwo4jnxfiujeb67inj3n3eutdtxut=
+4p5gfubdd3cxipe33a4ei0fk72o4ptyoelndkcm53mkxgr3ukhvngc15kz8n5o059jbefvhyhbs=
+47xmsk5w7tej9ey894arz35qid1dwxtfiyxd&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k=
+15" style=3D"color:#DD4D42; text-decoration:none; font-weight:bold;" target=
+=3D"_blank">our final roundup for 2019</a> we look at sites employing whims=
+ical illustrations, the return of black and blue color schemes, and anythin=
+g-but-flat scrolling transitions. Enjoy!</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595663" href=3D"http://news.web=
+designerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2qj412u9pbzzrv5256c6f8=
+xeomj20qxdkdhey5xqsu9r5v08b4s8szotgou2bflsjlnkmf1fls57bevgtcm9w2phkjw66ewp4=
+nbf9w&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img alig=
+n=3D"right" alt=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesi=
+gnerdepot.com/cdn-origin/uploads/2019/12/004.png" style=3D"margin-top:4px;"=
+ width=3D"125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595664" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2qj9d63brqdj=
+97w2gk2gfd2svvrrsai5je150bugve3px7z3okwzee2id4t1m3ukx0hj104wcxhl0se4pxy7x2t=
+j2lar3l2zajo31t&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:=
+block;text-decoration:none;font-family:&quot;tablet-gothic-condensed&quot;,=
+sans-serif;color:#201f1f; font-size:25px; font-weight:bold; line-height:28p=
+x; margin:0px 0 10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-d=
+ecoration:none;">2019 Design Tools Survey</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">The annual <a data-id=3D"3515595666" href=3D"http://news.webdesi=
+gnerdepot.com/?xtl=3D1jf11qxpkigtfwzwbiulvevte85u2qjx7pmxuf0siwq4mse6gdlek0=
+s6p9sjhenfffpccndmswieayfut1vcwaqkqyxjh3lgtqm28jptxf8a5om3z2bln3iiko38g4wyx=
+m&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"color:#DD4D42; text-de=
+coration:none; font-weight:bold;" target=3D"_blank">Design Tools Survey</a>=
+ is a free roundup of the all the best tools being used by designers across=
+ the industry. For 2019=E2=80=99s edition, over 3,000 designers shared thei=
+r preferred toolkits, resulting in a comprehensive survey of the apps, tool=
+s, and utilities you=E2=80=99ll find most useful.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595667" href=3D"http://news.web=
+designerdepot.com/?xtl=3D1cygoixqdu374c2caxta1y4ldxa1c0hbvyb2a7kvptcqma34jx=
+rr0rooi1pw5xqv3bmh2tpts44on1aesfxiwg8q9mmblaabwis4u40q1c8zbhyn1gr09jvp2akh5=
+7o1sg6rexsgvhcf1o4wp600kcdyet1xn8qlagnulx9l36u7g69sff&amp;eih=3Dc3td6ckslxs=
+dbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"right" alt=3D"" border=
+=3D"0" height=3D"125" src=3D"https://www.webdesignerdepot.com/cdn-origin/up=
+loads/2019/12/005.png" style=3D"margin-top:4px;" width=3D"125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595668" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3D1cygoixqdu374c2caxta1y4ldxa1c0hgaw0rp8ki=
+9zgmsds06wef13x3xc3w4nayv8kti1j4sod52nfk54mh7fqs6lcd2hqgd6325l5ihozywohqioc=
+9q36pas3yxmy1lk1yfklyvu2ugrck9eiztdio1co4g51rw7henaubmee4rgsdjc&amp;eih=3Dc=
+3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;text-decoration:none;=
+font-family:&quot;tablet-gothic-condensed&quot;,sans-serif;color:#201f1f; f=
+ont-size:25px; font-weight:bold; line-height:28px; margin:0px 0 10px; paddi=
+ng:0px;"><font color=3D"#201f1f" style=3D"text-decoration:none;">Making a B=
+etter Custom Select Element</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">The web industry=E2=80=99s advent calendar <a data-id=3D"3515595=
+669" href=3D"http://news.webdesignerdepot.com/?xtl=3D1cygoixqdu374c2caxta1y=
+4ldxa1c0hlftne29l95fk6ygehrw671dfgnqfw31kbkey4bysdsxpjfxl3fqlfgewu4b6e624lj=
+rblfgnral2xqg4uch1uu8fqm78q1pi2v1ifhouqv4q8zvpo6rfm0f11mlyap1zhrxs1zddrur21=
+1ua314&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"color:#DD4D42; te=
+xt-decoration:none; font-weight:bold;" target=3D"_blank">24 Ways</a>, is ba=
+ck for 2019. Each year, 24 experts deliver a great article on a variety of =
+different subjects from design to code. In the first article this year, Jul=
+ie Grundy discusses an age-old problem for web designers: making better cus=
+tom select elements.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595670" href=3D"http://news.web=
+designerdepot.com/?xtl=3D2rlmajjwhikbbk0q67pqdsnkmrnbpeauvplb2pwekkozf89745=
+2kns3nflskan2kqipmf1qu2etdxdpmjq5teiv0nhnjy40083qyvdu5igd866i6guhmzhrozyh6g=
+qegmnb5sj8cf4esltx2fkdwd3fpjpcq1tpp49v76b6gpw2dohsrml59c&amp;eih=3Dc3td6cks=
+lxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"right" alt=3D"" bor=
+der=3D"0" height=3D"125" src=3D"https://www.webdesignerdepot.com/cdn-origin=
+/uploads/2019/12/006.png" style=3D"margin-top:4px;" width=3D"125"></a></div=
+>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595672" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3D2rlmajjwhikbbk0q67pqdsnkmrnbpeaikiwyw3t6=
+2kugjok3793rwez5mertrgz2uhmxjvy62t6itdr5rdin9qvnb16b2r6jytcy3gto0ka1uhzclz2=
+0dvf8j6jitg6xei534mx5rh9tvqj5vl0zk04ynom892od506razjrdxbec3chejsfu&amp;eih=
+=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;text-decoration:n=
+one;font-family:&quot;tablet-gothic-condensed&quot;,sans-serif;color:#201f1=
+f; font-size:25px; font-weight:bold; line-height:28px; margin:0px 0 10px; p=
+adding:0px;"><font color=3D"#201f1f" style=3D"text-decoration:none;">Design=
+er Gift Guide 2019</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">Is there a designer in your life that you=E2=80=99re struggling =
+to find a Christmas present for? Perhaps you=E2=80=99re constantly being as=
+ked what you=E2=80=99d like, and aren=E2=80=99t sure what to opt for. To he=
+lp you out, <a data-id=3D"3515595673" href=3D"http://news.webdesignerdepot.=
+com/?xtl=3D2rlmajjwhikbbk0q67pqdsnkmrnbpeb46zh3mkroykxktrmv8f3a7sj216icfyr4=
+wgd9tec02nvsjds2akdblzvtpy42eweqnaixhhkj30ys781v275pfq071kl9nvhtw6p1jl9od8t=
+lfpx6il57vsm8unw5oggs5pu1jzmcsyvnqbi41iyxk&amp;eih=3Dc3td6ckslxsdbuwwexax4y=
+hmwa2k15" style=3D"color:#DD4D42; text-decoration:none; font-weight:bold;" =
+target=3D"_blank">Dribbble presents</a> a roundup of some of the best gift =
+ideas for designers this holiday season.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595675" href=3D"http://news.web=
+designerdepot.com/?xtl=3Dodvinqxmyjp310m1bv3uftq8j73mm7ekuo7zls2ybxtrkhprt5=
+qu7g8rlw1vyqz0lo4bf6yhfzp4ytjmcpa7xusvcqz7q73cnm5g70ju4jtplgxuxg&amp;eih=3D=
+c3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"right" alt=
+=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesignerdepot.com/c=
+dn-origin/uploads/2019/12/007.png" style=3D"margin-top:4px;" width=3D"125">=
+</a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595676" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3Dodvinqxmyjp310m1bv3uftq8j73mm7g0759ykem6=
+ttlufjjy4cyfpgniri6zokpz7xptnp27t8f1ayspdjgsq4tpif8p4alues4irug795gspsal1q&=
+amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;text-decor=
+ation:none;font-family:&quot;tablet-gothic-condensed&quot;,sans-serif;color=
+:#201f1f; font-size:25px; font-weight:bold; line-height:28px; margin:0px 0 =
+10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-decoration:none;"=
+>GooFonts</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;"><a data-id=3D"3515595677" href=3D"http://news.webdesignerdepot.c=
+om/?xtl=3Dodvinqxmyjp310m1bv3uftq8j73mm7h1hknxk4tc9qtxb0teenh4vgroi8nd3u49r=
+gy8fvtv4g8kcclsfu0b6cu837fuh6hn9y3ka0cipq7ud2ertk&amp;eih=3Dc3td6ckslxsdbuw=
+wexax4yhmwa2k15" style=3D"color:#DD4D42; text-decoration:none; font-weight:=
+bold;" target=3D"_blank">GooFonts</a> is an incredibly useful site that cat=
+alogues over 950 Google fonts, and arranges them based on keywords, variant=
+s, and subsets. Select the variants (weight and type), pick any subsets you=
+ need such as Cyrillic support, then tap the keywords to find the matching =
+fonts.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595678" href=3D"http://news.web=
+designerdepot.com/?xtl=3Dodvinqxmyjp310m1bv3uftq8j73mm7i3wdpwjsbm1mlaw31lrj=
+44w6arh7mx0p3g6gbd1p95umsboni2nb5hr0l3zdscnb29favpc0pwm9ioydy992&amp;eih=3D=
+c3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"right" alt=
+=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesignerdepot.com/c=
+dn-origin/uploads/2019/12/008.png" style=3D"margin-top:4px;" width=3D"125">=
+</a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595679" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3Dodvinqxmyjp310m1bv3uftq8j73mm7j59wrvieif=
+f7tdr5y63uorc6dinvracigsr3kuvvat5hiyqsr5p9o47yljg61i26k2mgurkum9qu9r0pbbbg&=
+amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;text-decor=
+ation:none;font-family:&quot;tablet-gothic-condensed&quot;,sans-serif;color=
+:#201f1f; font-size:25px; font-weight:bold; line-height:28px; margin:0px 0 =
+10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-decoration:none;"=
+>How DNS Works</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;">Are you a web designer who doesn=E2=80=99t know how DNS works? <=
+a data-id=3D"3515595680" href=3D"http://news.webdesignerdepot.com/?xtl=3Dod=
+vinqxmyjp310m1bv3uftq8j73mm7k6kptui54px3lgm86od3wci6hodhwetsx2zp7m1c3eftovs=
+wk8qfup090e0wz1eafge0tu706kucytplf65u&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2=
+k15" style=3D"color:#DD4D42; text-decoration:none; font-weight:bold;" targe=
+t=3D"_blank">This cute guide</a> will explain exactly what happens behind t=
+he scenes when you type a web address into your browser. It=E2=80=99s a bri=
+lliant explanation, simplifying a complex process, and is a must-read for a=
+nyone working on the web.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- separator --><tr class=3D"sep-row"><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td bgcolor=3D"#eeeeee" height=3D"1" style=3D"max-heig=
+ht:1px; font-size:0;"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- top gap --><tr class=3D"sep-row"><td heig=
+ht=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><!-- entry content cell --><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody><tr><td class=3D"gap-cell" width=3D"30"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"post-cell" style=3D"color:=
+#333333; font-size:16px; line-height:1.4em;font-family:&quot;acumin-pro&quo=
+t;,sans-serif;" valign=3D"top">
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"img-wrap" style=3D"float:=
+right; margin-left:30px;"><a data-id=3D"3515595681" href=3D"http://news.web=
+designerdepot.com/?xtl=3Db6cs1frl4kzipj9s3g85fxbjrvtqo9g4w6pxtruaslc91crywx=
+fyvzp0d8t7mf7d3gveyaxxuhgce64n6c2dpecz1kntphmtg457splc51jdf8o3q19krq58&amp;=
+eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" target=3D"_blank"><img align=3D"right=
+" alt=3D"" border=3D"0" height=3D"125" src=3D"https://www.webdesignerdepot.=
+com/cdn-origin/uploads/2019/12/009.png" style=3D"margin-top:4px;" width=3D"=
+125"></a></div>
+=09=09=09=09=09=09=09=09=09=09=09=09<a data-id=3D"3515595682" href=3D"http:=
+//news.webdesignerdepot.com/?xtl=3Db6cs1frl4kzipj9s3g85fxbjrvtqo9i6j9y47ruk=
+8lf5znh875xnuls99pw8li25ftojk0lnhoemthb36hqk9wiz2j8ruyqlv6e474tshcxbkcucuvz=
+08djj&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"display:block;text=
+-decoration:none;font-family:&quot;tablet-gothic-condensed&quot;,sans-serif=
+;color:#201f1f; font-size:25px; font-weight:bold; line-height:28px; margin:=
+0px 0 10px; padding:0px;"><font color=3D"#201f1f" style=3D"text-decoration:=
+none;">Happy Hues</font> </a>
+
+=09=09=09=09=09=09=09=09=09=09=09=09<div class=3D"pcont-text" style=3D"marg=
+in-right:140px;">
+=09=09=09=09=09=09=09=09=09=09=09=09<p style=3D"margin:0px 0px 0px 0px; pad=
+ding:0px;"><a data-id=3D"3515595683" href=3D"http://news.webdesignerdepot.c=
+om/?xtl=3Db6cs1frl4kzipj9s3g85fxbjrvtqo9k9mogyjrv80li28jmffbp0unvtduzmakiwv=
+4639pp27fbg7x9h70d55p2z3i5pzpvt89r0jgl7yr9a48bpz20225bq&amp;eih=3Dc3td6cksl=
+xsdbuwwexax4yhmwa2k15" style=3D"color:#DD4D42; text-decoration:none; font-w=
+eight:bold;" target=3D"_blank">Happy Hues</a> is a helpful project by Macke=
+nzie Child, that not only gives you the chance to select different color pa=
+lettes, but also shows you how to apply them to a site. It=E2=80=99s a grea=
+t color-101 guide for anyone struggling to break free from minimalist Mater=
+ial Design palettes.</p>
+=09=09=09=09=09=09=09=09=09=09=09=09</div>
+=09=09=09=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"gap-cell" width=3D"30"></t=
+d>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><!-- bottom gap --><tr class=3D"mid-row"><td h=
+eight=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><tr class=3D"sep-row"><td height=3D"30"></td>
+=09=09=09=09=09=09=09=09</tr><tr><td>
+=09=09=09=09=09=09=09=09=09<table cellpadding=3D"10" cellspacing=3D"0" widt=
+h=3D"100%"><tbody><tr><td width=3D"10"></td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td align=3D"center" bgcolor=3D"#efefef=
+" style=3D"font-size:15px; border:1px solid #ddd; color:#000; font-weight:b=
+old; font-style:italic; font-family:'acumin-pro',sans-serif;">Want more coo=
+l news? <a data-id=3D"3515595684" href=3D"http://news.webdesignerdepot.com/=
+?xtl=3D111qlolmcmxe8nq53mwiaj3cz350b7oaeym6b8n9uwnirlhucnmm7crw0mb40kakkk6c=
+ackpj1krcsbqmgk7g1rhmf2kcbwr0dx612tly1zkg0c7u3c5vw4w48hvud6hmvq4qa6giy61yi8=
+oaeygatmxfa821rsbwel2ql8w4davv2tdceq9lkodc0nq916wfmauokyqk4u999&amp;eih=3Dc=
+3td6ckslxsdbuwwexax4yhmwa2k15&amp;email=3D15927480231@163.com" style=3D"col=
+or:#DD4D42; text-decoration:none; font-weight:bold; ">Click here</a> to aut=
+omatically subscribe to WebdesignerNews...</td>
+=09=09=09=09=09=09=09=09=09=09=09=09<td width=3D"10"></td>
+=09=09=09=09=09=09=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09=09=09=09=09=09</tr><tr class=3D"sep-row"><td height=3D"60"></td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf" class=3D"shd-row"><td =
+height=3D"18"></td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf" class=3D"footer-row"><=
+td align=3D"center" style=3D"color:#666; font-size:12px; font-weight:bold;f=
+ont-family:Arial, sans serif;">
+<a data-id=3D"3515595686" href=3D"http://news.webdesignerdepot.com/?xtl=3D1=
+jf11qxpkigtfwzwbiulvevte85u2r6kl9riml0wvx0m6thq0e6yohbw9csnxwqdxqkoqtk9xjew=
+hb3rg4xm7rpk3g7aljcpmsmq3vg7ckq8e2jgss2dm0ftflqa4i6lji&amp;eih=3Dc3td6ckslx=
+sdbuwwexax4yhmwa2k15" style=3D"color:#666;text-decoration:none;" target=3D"=
+_blank">Go to WebdesignerDepot.com</a>&nbsp; | &nbsp;<a data-id=3D"35155956=
+87" href=3D"http://news.webdesignerdepot.com/?xtl=3D127e5i3os9ubogreowu72hj=
+hn7jxbbkat60cvo9s4pfs9ae3z2g2y5fndolkh0sssfy79pfozir8hcgu4ommq22akldott40qq=
+yee0q3sp3f5yxzzipnxte51szzju3gqlvkeg56dun1f&amp;eih=3Dc3td6ckslxsdbuwwexax4=
+yhmwa2k15" style=3D"color:#666;text-decoration:none;" target=3D"_blank">Abo=
+ut</a> &nbsp;| &nbsp;<a data-id=3D"3515595688" href=3D"http://news.webdesig=
+nerdepot.com/?xtl=3D1cygoixqdu374c2caxta1y4ldxa1c149d5y8piw0la805atcky9nzk7=
+k39dnd22opxy3pyee30ydj4iik97ymnl34cotitzbkf64wws35wsvaeyvl3x64b4ge5du8bzy6m=
+lebsh47sztq1ycexv2u3y4hdnjpmddm3b91tquf9c3jot9bp&amp;eih=3Dc3td6ckslxsdbuww=
+exax4yhmwa2k15" style=3D"color:#666;text-decoration:none;" target=3D"_blank=
+">Disclaimer</a> &nbsp;|&nbsp; <a data-id=3D"3515595689" href=3D"mailto:adv=
+ertising@webdesignerdepot.com" style=3D"color:#666;text-decoration:none;" t=
+arget=3D"_blank">Advertising</a>&nbsp; | &nbsp;<a data-id=3D"3515595690" hr=
+ef=3D"http://news.webdesignerdepot.com/?xtl=3D15m3s9smx07dfmjdz0sznfwj3evf1=
+8lonw1ey8ivrer0abrvvftivnuyjd270jn1is8gxbd4aosxecr53m7911spe4qco6ur3vz2xrw9=
+nb2xwjpr7nd0ft5a7yrbzys1wxxw8cqf5vx0s8fojyakskzmu6b9bz&amp;eih=3Dc3td6ckslx=
+sdbuwwexax4yhmwa2k15" style=3D"color:#666;text-decoration:none;" target=3D"=
+_blank">Deals</a> &nbsp;| &nbsp;<a data-id=3D"3515595693" href=3D"mailto:in=
+fo@webdesignerdepot.com" style=3D"color:#666;text-decoration:none;" target=
+=3D"_blank">Contact</a>
+</td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf"><td height=3D"8"></td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf" class=3D"footer-row"><=
+td align=3D"center" style=3D"color:#666; font-size:12px;font-family:Arial, =
+sans serif;">Has this newsletter been forwarded to you? <a data-id=3D"35155=
+95694" href=3D"http://news.webdesignerdepot.com/?xtl=3Dqi7nwelton3443fz5zc7=
+pyn0my8ysoup48irnchyj31fq6stleba90r4f84soxp8h2jvpt5p352w89tn8cxp90201qpt17a=
+xaguxl9tf6pttbjwajdd9tket3pax3dxaqdkrrups9q1k1nsjpzjj&amp;eih=3Dc3td6ckslxs=
+dbuwwexax4yhmwa2k15" style=3D"color:#666; text-decoration:underline; font-w=
+eight:bold; text-decoration:none;" target=3D"_blank">Subscribe to the WDD n=
+ewsletter</a>
+</td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf"><td height=3D"8"></td>
+=09=09=09=09=09=09=09=09</tr><tr bgcolor=3D"#dfdfdf" class=3D"footer-row"><=
+td align=3D"center" style=3D"font-family:Arial, sans serif; font-size:12px;=
+ font-weight:bold; color:#666;">
+<a class=3D"fb-img-lnk" data-id=3D"3515595696" href=3D"http://news.webdesig=
+nerdepot.com/?xtl=3D1taurmp3qletg8ava8292142u162t41ddl7ifbkyptf22pojh4vys7h=
+1rlk0st25qntufz2xgq2v408zkht8eqcz3rxcwt4evwt0edr7whfjg56ht5jjdq1m0hb18enh33=
+q8drxvvx8l4hts&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"color:#66=
+6;text-decoration:none;" target=3D"_blank">Find us on Facebook</a> &nbsp; |=
+ &nbsp; <a class=3D"tw-img-lnk" data-id=3D"3515595697" href=3D"http://news.=
+webdesignerdepot.com/?xtl=3D2c1kxrurdd84mv1p1kdkparc7ciblh6z964i4stsz7gtl23=
+ow0s63gacb0apndimltjqueiyzxbgy29ef7iv8i54ptpzpvdt4asyhapquh66cmhsvp8oavy62c=
+brsaz2rpp9b&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"color:#666;t=
+ext-decoration:none;" target=3D"_blank">Follow us on Twitter</a> &nbsp; | &=
+nbsp; <a class=3D"rss-img-lnk" data-id=3D"3515595698" href=3D"http://news.w=
+ebdesignerdepot.com/?xtl=3D4sbrifgh8wfim64khp3860tpc2nuakcaaelrv51r2bvl1d8m=
+ub60yh2adne94ebh1srv3zbd3xohgn2775y9er5bx3dz2npabq39b4kdxnzxuztxoc18cen5puy=
+nd5jsl0umrr5mp6ou5vi446s7vu5bl2xum6iki9evdibp9i&amp;eih=3Dc3td6ckslxsdbuwwe=
+xax4yhmwa2k15" style=3D"color:#666;text-decoration:none;" target=3D"_blank"=
+>RSS Feed</a>
+</td>
+=09=09=09=09=09=09=09=09</tr></tbody></table><!-- end of content table --><=
+/td>
+=09=09=09=09=09</tr></tbody></table></td>
+=09=09=09<!-- main inner cell -->
+=09=09</tr><tr class=3D"shd-row"><td height=3D"30"></td>
+=09=09</tr></tbody></table><center>
+<br><br><br><br><br>
+&nbsp;
+<table border=3D"0" cellpadding=3D"20" cellspacing=3D"0" id=3D"canspamBarWr=
+apper" style=3D"background:#EEEEEE  !important; border-top:1px solid #DDDDD=
+D; clear:both;" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"pad=
+ding-bottom:0;" valign=3D"top">
+=09=09=09<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" id=3D"cans=
+pamBar" style=3D"max-width:600px;"><tbody><tr><td align=3D"left" style=3D"c=
+olor:#505050 !important;font-family:Verdana,Arial,Sans !important;font-size=
+:11px !important;font-weight:normal !important;font-style:normal !important=
+;text-decoration:none !important;vertical-align:top !important;text-align:l=
+eft !important;" valign=3D"top">
+<br>
+=09=09=09=09=09=09Sent to 15927480231@163.com<br><a data-id=3D"3515595699" =
+href=3D"http://news.webdesignerdepot.com/?xul=3Dh2gofupk5hdusx60cact0bvfos8=
+nszwbwi12hluzr86kbbsguaej4vg0i4ou9g4okx4qy5l09uhin8jur1hxhoq77pbuwh8r9zyfml=
+5cvpt58v1r&amp;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" style=3D"font-family:V=
+erdana,Arial,Sans !important;font-size:11px !important;font-weight:normal !=
+important;font-style:normal !important;text-decoration:none !important;colo=
+r:#336699 !important;">unsubscribe from this list</a><br>
+=09=09=09=09=09=09Freestyle Networks Inc. =C2=B7 3381 Cambie Street =C2=B7 =
+Suite 314 =C2=B7 Vancouver, BC V5Z 4R3 =C2=B7 Canada</td>
+=09=09=09=09=09=09<td align=3D"left" valign=3D"top"></td>
+=09=09=09=09=09</tr></tbody></table></td>
+=09=09</tr></tbody></table></center>
+
+<img src=3D"http://news.webdesignerdepot.com/?xol=3D34d5pt0ms128x7kq4343&am=
+p;eih=3Dc3td6ckslxsdbuwwexax4yhmwa2k15" alt=3D"" width=3D"1" height=3D"1">
+
+<img src=3D"http://trk.email.dynect.net/trk.php?a=3D/o2/0/gAbOqugG6RL57LdZ7=
+j7aiZyCR1WgojimQOekio%2FpifQLKQC%2Feiinc9u82DnrdmScBxPfqhGa6SWqnAWVZhkDxrk%=
+2FDrdHYaEk6TMW2ULlPBvGX%2FLSjKtvBQ%3D%3D/i.gif&amp;i=3D20191205123633.00000=
+0638cc9%40mail6-35-usnbn1&amp;x=3DMXwxMDc5OTc1Oll2WTNyUzk2WUpqYUt5R2ZtU3hjQ=
+VM5aUF2TWZZTzBpWEZNZllUajhyTSUyNTNEJTI1M0RqOzJ8MTA3OTk3NjpvSlNjb1R5aE1sNG1Z=
+d1ZtQWw1Ym5KcXZuYXhoWktEMnF6WmhvM0ViTUtXbVl3RDNBVUQyWXo5NlpGNWJMekhoQUQlM0Q=
+lM0Q7" alt=3D"" width=3D"2" height=3D"2"></body></html>
+--=_c2f53f17cca90da7c88d81477ee020ed--
