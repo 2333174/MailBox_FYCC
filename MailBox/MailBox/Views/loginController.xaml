@@ -41,7 +41,7 @@
                 materialDesign:HintAssist.Hint="Host" Grid.ColumnSpan="4" Margin="28,0,0,0" TextWrapping="Wrap" Height="22" VerticalAlignment="Bottom"/>-->
                 <materialDesign:PackIcon Kind="Account" Grid.Row="1" Margin="0,0,0,0" Height="22" Width="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#FF673AB7"/>
                 <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                materialDesign:HintAssist.Hint="Account" Margin="28,0,0,0" TextWrapping="Wrap" Height="36" VerticalAlignment="Bottom"/>
+                materialDesign:HintAssist.Hint="Account" Margin="28,0,0,0" TextWrapping="Wrap" Height="36" VerticalAlignment="Bottom" LostFocus="AccountEnter"/>
                 <materialDesign:PackIcon Kind="Key" Grid.Row="2" Margin="0,0,0,0" RenderTransformOrigin="-0.917,1.375" Height="22" Width="20" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="#FF673AB7"/>
                 <PasswordBox x:Name="FloatingPasswordBox" Grid.Row="2" Grid.ColumnSpan="4"
                     materialDesign:HintAssist.Hint="Password"

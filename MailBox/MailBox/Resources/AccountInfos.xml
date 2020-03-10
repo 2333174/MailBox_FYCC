@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AccountInfos>
   <AccountInfo>
-    <account>123</account>
-    <password>123</password>
-    <popHost>123</popHost>
-    <smtpHost>123</smtpHost>
-  </AccountInfo>
-  <AccountInfo>
-    <account>23231</account>
-    <password>1231</password>
-    <popHost>1231</popHost>
-    <smtpHost>12312</smtpHost>
-  </AccountInfo>
-  <AccountInfo>
     <account>1741603127@qq.com</account>
     <password>1234567</password>
     <popHost>pop.qq.com</popHost>
@@ -37,9 +25,9 @@
     <smtpHost>12345</smtpHost>
   </AccountInfo>
   <AccountInfo>
-    <account>123456</account>
-    <password>123124</password>
-    <popHost>124213</popHost>
-    <smtpHost>123124</smtpHost>
+    <account>alertdoll@163.com</account>
+    <password>ybgissocute2020</password>
+    <popHost>pop.163.com:110</popHost>
+    <smtpHost>smtp.163.com:25</smtpHost>
   </AccountInfo>
 </AccountInfos>

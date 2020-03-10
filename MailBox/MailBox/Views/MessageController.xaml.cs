@@ -16,21 +16,14 @@ using System.Windows.Shapes;
 namespace MailBox.Views
 {
     /// <summary>
-    /// loginController.xaml 的交互逻辑
+    /// MessageController.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginController : UserControl
+    public partial class MessageController : UserControl
     {
-        public LoginController()
+        public MessageController(string message)
         {
             InitializeComponent();
-        }
-
-        private void AccountEnter(object sender, RoutedEventArgs e)
-        {
-            if (this.NameTextBox.Text.Split('@').Length <= 1) return;
-            string suffix = this.NameTextBox.Text.Split('@')[1];
-            this.PopHostTextBox.Text = "pop." + suffix + ":110";
-            this.SmtpHostTextBox.Text = "smtp." + suffix + ":25";
+            this.massageTextBox.Text = message;
         }
     }
 }

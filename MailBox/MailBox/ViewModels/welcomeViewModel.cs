@@ -124,14 +124,28 @@ namespace MailBox.ViewModels
             LoginController loginController = new LoginController
             {
             };
-            var result = await DialogHost.Show(loginController, dialogClosingEventHandler); 
+            var result = await DialogHost.Show(loginController, "loginDialog", dialogClosingEventHandler); 
             if (Equals(true, result)){
                 Console.WriteLine("添加账户");
-                //如果验证成功，则添加账号
-                AddAccount(loginController.NameTextBox.Text,
+                string isRight = ValidateAccount.Validate(loginController.NameTextBox.Text,
                     loginController.FloatingPasswordBox.Password,
                     loginController.PopHostTextBox.Text,
                     loginController.SmtpHostTextBox.Text);
+                //如果验证成功，则添加账号
+                if (Equals(isRight, "验证成功"))
+                {
+                    Console.WriteLine("验证成功");
+                    AddAccount(loginController.NameTextBox.Text,
+                    loginController.FloatingPasswordBox.Password,
+                    loginController.PopHostTextBox.Text,
+                    loginController.SmtpHostTextBox.Text);
+                }
+                else
+                {
+                    MessageController messageController = new MessageController(isRight);
+                    await DialogHost.Show(messageController, "validDialog", dialogClosingEventHandler);
+                    Console.WriteLine(isRight);
+                }  
             }
         }
     }
