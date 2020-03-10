@@ -54,11 +54,12 @@ namespace MailBox.Services
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            int param = (Int32)parameter; // 0 indicate background_image, 1 indicates mail content
             int selectedIndex = (int)value;
             if (selectedIndex != -1)
-                return "Hidden";
+                return param == 0 ? "Hidden" : "Visible";
             else
-                return "Visible";///Resources/bg_mail.jpg
+                return param == 0 ? "Visible" : "Hidden";///Resources/bg_mail.jpg
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
