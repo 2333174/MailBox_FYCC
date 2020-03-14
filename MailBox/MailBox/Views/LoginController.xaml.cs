@@ -24,5 +24,13 @@ namespace MailBox.Views
         {
             InitializeComponent();
         }
+
+        private void AccountEnter(object sender, RoutedEventArgs e)
+        {
+            if (this.NameTextBox.Text.Split('@').Length <= 1) return;
+            string suffix = this.NameTextBox.Text.Split('@')[1];
+            this.PopHostTextBox.Text = "pop." + suffix + ":110";
+            this.SmtpHostTextBox.Text = "smtp." + suffix + ":25";
+        }
     }
 }

@@ -68,9 +68,7 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone
-                  Mode="PrimaryMid"
-                  DockPanel.Dock="Top"
-                  Padding="16">
+                  Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0">
                     <DockPanel>
                     <Button
                         Visibility="{Binding Visibility}"
@@ -172,11 +170,10 @@
                         </Button>
                     </StackPanel>
                     </DockPanel>
-                </materialDesign:ColorZone>
-                <Grid>
-                   
-                        <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
-
+                </materialDesign:ColorZone >
+                <!--Mail inbox View here-->
+                <Grid Panel.ZIndex="-1">
+                    <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

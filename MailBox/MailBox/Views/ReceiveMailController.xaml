@@ -4,11 +4,100 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MailBox.Views"
+             xmlns:convert="clr-namespace:MailBox.Services"
              mc:Ignorable="d" 
              xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Background="{DynamicResource MaterialDesignPaper}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    
+    <UserControl.Resources>
+        <!--Constants-->
+        <sys:Int32 x:Key="IntZero">0</sys:Int32>
+        <sys:Int32 x:Key="IntOne">1</sys:Int32>
         
+        <!--Converters-->
+        <convert:SenderToLogoConverter x:Key="s2l"/>
+        <convert:HtmlBodyEncodingConverter x:Key="html"/>
+        <convert:SelectToImageVisibilityConverter x:Key="s2iv"/>
+        
+        <!-- Templates -->
+        <DataTemplate x:Key="mailListItemViewTemplate" >
+            <Grid Margin="2">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding FirstSenderLetter, Converter={StaticResource s2l}}" Width="40" Height="40"/>
+                    <Grid Margin="5,0">
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Text="{Binding Sender}" FontSize="14" FontWeight="Bold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                        <TextBlock Grid.Row="1" Text="{Binding Subject}" Margin="0,5" FontSize="12" FontWeight="Black" TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Date,StringFormat='yyyy-MM--dd HH:mm '}" FontSize="10" Foreground="Gray" FontWeight="Light"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="mailDetailViewTemplate">
+            <!-- Can set background to specified image -->
+            <DockPanel Margin="20,15" >
+                <Grid DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="16" Grid.Row="0" FontWeight="Bold" />
+                    <StackPanel Orientation="Horizontal"  Grid.Row="1">
+                        <Image Width="60" Height="60" Source="{Binding FirstSenderLetter,Converter={StaticResource s2l}}"/>
+                        <StackPanel Margin="5,20" VerticalAlignment="Center" >
+                            <TextBlock Text="{Binding SenderMailAddress}" TextWrapping="Wrap" FontSize="14" FontWeight="Black"/>
+                            <TextBlock Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm'}" Style="{StaticResource MaterialDesignTextBlock}"
+                                       FontWeight="Light"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </Grid>
+                <!--Using Custom Mail Web browser to display mail html body -->
+                <local:HtmlWebBrowser HtmlText="{Binding HtmlBody, Converter={StaticResource html}}" DockPanel.Dock="Bottom"  Height="Auto" Width="Auto" Grid.Row="2"/>
+            </DockPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" MinWidth="250" MaxWidth="800"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
+                 ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"/>
+        
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Cursor="SizeWE"/>
+        
+        <Grid Grid.Column="2">
+            <!--<Grid.For>
+                <ImageBrush  ImageSource="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv}}"/>
+            </Grid.For>-->
+            <Image Source="/Resources/bg_mail.jpg" Stretch="Fill" 
+               Visibility="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv},
+                ConverterParameter={StaticResource IntZero}}" />
+            <UserControl ContentTemplate="{StaticResource ResourceKey=mailDetailViewTemplate}" 
+                         Panel.ZIndex="-1"
+                     Content="{Binding SelectedItem, ElementName=mailListBox}"  Margin="5,0,-5,0" 
+                         Visibility="{Binding SelectedIndex, ElementName=mailListBox,
+                Converter={StaticResource s2iv},ConverterParameter={StaticResource IntOne}}"/>
+        </Grid>
+      
+
     </Grid>
 </UserControl>
