@@ -1,6 +1,6 @@
 use std::net::TcpStream;
 use libc::c_char;
-use crate::utils::unwrap_str;
+use crate::utils::{unwrap_str, LoginInfo};
 use crate::utils::basic_utils::*;
 use crate::utils::mail_utils::*;
 
@@ -101,14 +101,20 @@ mod utils {
         String::from(s.to_str().unwrap())
     }
     
+    #[repr(C)]
+    pub struct LoginInfo {    
+        pub account: *const c_char,
+        pub passwd: *const c_char,
+        pub site: *const c_char,
+    }
 }
 
 #[no_mangle]
-pub extern "C" fn validate_account(account: *const c_char, passwd: *const c_char, site: *const c_char) -> bool {
+pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
     
-    let account_str = unwrap_str(account);
-    let passwd_str = unwrap_str(passwd);
-    let site_str = unwrap_str(site);
+    let account_str = unwrap_str(login_info.account);
+    let passwd_str = unwrap_str(login_info.passwd);
+    let site_str = unwrap_str(login_info.site);
     
     let mut responses: Vec<String> = Vec::new();
     
