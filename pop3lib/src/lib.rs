@@ -4,6 +4,7 @@ use crate::utils::basic_utils::*;
 use crate::utils::mail_utils::*;
 use std::ffi::{CStr, CString};
 use libc::c_char;
+use std::mem;
 
 static mut STRING_POINTER: *mut c_char = 0 as *mut c_char;
 
@@ -89,7 +90,7 @@ mod utils {
             resp
         }
         
-        pub fn authenticate(login_info: LoginInfo) -> (bool, TcpStream) {
+        pub fn authenticate(login_info: LoginInfo) -> (bool, String, TcpStream) {
             
             let account_str = unwrap_str(login_info.account);
             let passwd_str = unwrap_str(login_info.passwd);
@@ -105,12 +106,18 @@ mod utils {
             write_request(&mut stream, &format!("{} {}", "PASS", passwd_str));
             responses.push(get_response(&mut stream));
             
-            for response in responses {
+            for response in &responses {
                 if !judge_response(&response) {
-                    return (false, stream);
+                    return (false, String::from("-1"), stream);
                 }
             }
-            (true, stream)
+
+            let mut iter = responses.get(2).unwrap().split_whitespace();
+
+            let _ = iter.next();
+            let num_mails = iter.next().unwrap();
+
+            (true, String::from(num_mails), stream)
         }
         
         pub fn list_mails(socket: &mut TcpStream) -> String {
@@ -137,77 +144,128 @@ pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
 #[no_mangle]
 pub extern "C" fn pull_a_mail(login_info: LoginInfo, index: usize) -> *mut c_char {
     
-    let (result, mut stream) = authenticate(login_info);
+    let (result, _,  mut stream) = authenticate(login_info);
     
     if !result {
         return CString::new("400").unwrap().into_raw();
     }
     
     let mail_str = get_a_mail(&mut stream, index);
+
+    CString::new(mail_str).unwrap().into_raw()
     
-    let mail_cstr = CString::new(mail_str).unwrap();
-    
-    mail_cstr.into_raw()
+    // let mail_cstr = CString::new(mail_str).unwrap();
+
+    // mail_cstr.into_raw()
 }
-
-
-#[repr(C)]
-pub struct ResultStruct {    
-    pub status: i32,
-    pub mail_string: *mut c_char,
-}
-
-fn store_string_on_heap(string_to_store: &String) -> *mut c_char {
-    //create a new raw pointer
-    let pntr = CString::new(String::from(string_to_store)).unwrap().into_raw();
-    //store it in our static variable (REQUIRES UNSAFE)
-    unsafe {
-        STRING_POINTER = pntr;
-    }
-    //return the c_char
-    return pntr;
-}
-
-// static mut MAIL_STR: &'static str = "" as &'static str;
-static mut MY_STRING: String = String::new();
 
 #[no_mangle]
-pub extern fn get_simple_email(login_info: LoginInfo, index: usize) -> ResultStruct {
-    
-    let (result, mut stream) = authenticate(login_info);
-    
+pub extern "C" fn free_mail_str(s: *mut c_char) {
     unsafe {
+        if s.is_null() {
+            return;
+        }
+        CString::from_raw(s)
+    };
+}
 
-        MY_STRING = String::from("WTF");
 
-        ResultStruct {
-            status: 400,
-            mail_string: store_string_on_heap(&MY_STRING),
+// #[repr(C)]
+// pub struct ResultStruct {    
+//     pub status: i32,
+//     pub mail_string: *mut c_char,
+// }
+
+// fn store_string_on_heap(string_to_store: &String) -> *mut c_char {
+//     //create a new raw pointer
+//     let pntr = CString::new(String::from(string_to_store)).unwrap().into_raw();
+//     //store it in our static variable (REQUIRES UNSAFE)
+//     unsafe {
+//         STRING_POINTER = pntr;
+//     }
+//     //return the c_char
+//     return pntr;
+// }
+
+// // static mut MAIL_STR: &'static str = "" as &'static str;
+// static mut MY_STRING: String = String::new();
+
+// #[no_mangle]
+// pub extern fn get_simple_email(login_info: LoginInfo, index: usize) -> ResultStruct {
+    
+//     let (result, mut stream) = authenticate(login_info);
+    
+//     unsafe {
+
+//         MY_STRING.clear();
+//         MY_STRING.push_str(&get_a_mail(&mut stream, index));
+        
+//         ResultStruct {
+//             status: 200,
+//             mail_string: store_string_on_heap(&MY_STRING),
+//         }
+
+//         // if result {
+//         //     MY_STRING.clear();
+//         //     MY_STRING.push_str(&get_a_mail(&mut stream, index));
+            
+//         //     ResultStruct {
+//         //         status: 200,
+//         //         mail_string: store_string_on_heap(&MY_STRING),
+//         //     }
+//         // } else {
+//         //     MY_STRING.clear();
+            
+//         //     ResultStruct {
+//         //         status: 400,
+//         //         mail_string: store_string_on_heap(&MY_STRING),
+//         //     }
+//         // }
+//     }
+// }
+
+// #[no_mangle]
+// pub extern fn free_string() {
+//     unsafe {
+//         let _ = CString::from_raw(STRING_POINTER);
+//         STRING_POINTER = 0 as *mut c_char;
+//     }
+// }
+
+
+#[no_mangle]
+pub extern "C" fn rustffi_get_version(login_info: LoginInfo, index: usize) -> *const c_char {
+
+    let (result, _, mut stream) = authenticate(login_info);
+    
+    let mail_str = get_a_mail(&mut stream, index);
+
+    println!("{}", &mail_str);
+    let s = CString::new(mail_str).unwrap();
+    let p = s.as_ptr();
+    mem::forget(s);
+
+    p as *const _
+}
+
+#[no_mangle]
+pub extern "C" fn rustffi_get_version_free(s: *mut c_char) {
+    unsafe {
+        if s.is_null() {
+            return;
         }
 
-        // if result {
-        //     MY_STRING.clear();
-        //     MY_STRING.push_str(&get_a_mail(&mut stream, index));
-            
-        //     ResultStruct {
-        //         status: 200,
-        //         mail_string: store_string_on_heap(&MY_STRING),
-        //     }
-        // } else {
-        //     MY_STRING.clear();
-            
-        //     ResultStruct {
-        //         status: 400,
-        //         mail_string: store_string_on_heap(&MY_STRING),
-        //     }
-        // }
+        let c_str: &CStr = CStr::from_ptr(s);
+        let bytes_len: usize = c_str.to_bytes_with_nul().len();
+        let temp_vec: Vec<c_char> = Vec::from_raw_parts(s, bytes_len, bytes_len);
     }
 }
 
 #[no_mangle]
-pub extern fn free_string() {
-    unsafe {
-        let _ = CString::from_raw(STRING_POINTER);
-        STRING_POINTER = 0 as *mut c_char;
-    }
+pub extern "C" fn get_num_mails(login_info: LoginInfo) -> i32 {
+    let (result, num_mails_Str, mut stream) = authenticate(login_info);
+
+    let num_mails = num_mails_Str.parse::<i32>().unwrap();
+
+    num_mails
 }
