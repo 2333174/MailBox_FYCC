@@ -13,18 +13,6 @@
     <smtpHost>smtp.qq.com</smtpHost>
   </AccountInfo>
   <AccountInfo>
-    <account>test@test.com</account>
-    <password>123456</password>
-    <popHost>123456</popHost>
-    <smtpHost>123456</smtpHost>
-  </AccountInfo>
-  <AccountInfo>
-    <account>test1@test.com</account>
-    <password>123456</password>
-    <popHost>12345</popHost>
-    <smtpHost>12345</smtpHost>
-  </AccountInfo>
-  <AccountInfo>
     <account>alertdoll@163.com</account>
     <password>ybgissocute2020</password>
     <popHost>pop.163.com:110</popHost>

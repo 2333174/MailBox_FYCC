@@ -126,13 +126,32 @@ namespace MailBox.ViewModels
             };
             var result = await DialogHost.Show(loginController, "loginDialog", dialogClosingEventHandler); 
             if (Equals(true, result)){
+                for (int i = 0; i < AccountInfos.Count; i++)
+                {
+                    if (AccountInfos[i].Account == loginController.NameTextBox.Text)
+                    {
+                        MessageController messageController = new MessageController("此账号已添加，请勿重复添加");
+                        await DialogHost.Show(messageController, "validDialog", dialogClosingEventHandler);
+                        return;
+                    }
+                }
                 Console.WriteLine("添加账户");
-                string isRight = ValidateAccount.Validate(loginController.NameTextBox.Text,
-                    loginController.FloatingPasswordBox.Password,
-                    loginController.PopHostTextBox.Text,
-                    loginController.SmtpHostTextBox.Text);
+                MailUtil.LoginInfo info_smtp
+                = new MailUtil.LoginInfo()
+                {
+                    account = loginController.NameTextBox.Text,
+                    passwd = loginController.FloatingPasswordBox.Password,
+                    site = loginController.SmtpHostTextBox.Text
+                };
+                MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+                {
+                    account = loginController.NameTextBox.Text,
+                    passwd = loginController.FloatingPasswordBox.Password,
+                    site = loginController.PopHostTextBox.Text,
+                };
+                Boolean isRight = MailUtil.validate_account_smtp(info_smtp)&&MailUtil.validate_account_pop3(info_pop3);
                 //如果验证成功，则添加账号
-                if (Equals(isRight, "验证成功"))
+                if (isRight)
                 {
                     Console.WriteLine("验证成功");
                     AddAccount(loginController.NameTextBox.Text,
@@ -142,7 +161,7 @@ namespace MailBox.ViewModels
                 }
                 else
                 {
-                    MessageController messageController = new MessageController(isRight);
+                    MessageController messageController = new MessageController("账号信息错误");
                     await DialogHost.Show(messageController, "validDialog", dialogClosingEventHandler);
                     Console.WriteLine(isRight);
                 }  

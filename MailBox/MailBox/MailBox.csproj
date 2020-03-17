@@ -128,6 +128,7 @@
     <Compile Include="Models\MailFile.cs" />
     <Compile Include="Models\MailItem.cs" />
     <Compile Include="Services\Converters.cs" />
+    <Compile Include="Services\MailUtil.cs" />
     <Compile Include="Services\ValidateAccount.cs" />
     <Compile Include="Services\XMLOperation.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

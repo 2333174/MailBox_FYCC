@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MimeKit;
+using MailBox.Services;
+using MailBox.Views;
+using MaterialDesignThemes.Wpf;
 
 namespace MailBox.ViewModels
 {
@@ -64,17 +67,34 @@ namespace MailBox.ViewModels
 
 		private void SendMail(object paramter)
 		{
-			var message = new MimeMessage();
-			message.From.Add(new MailboxAddress(AccountInfo.Account.Split('@')[0], AccountInfo.Account));
-			message.To.Add(new MailboxAddress(ReceiveMail.Split('@')[0], ReceiveMail));
-			message.Subject = Subject;
-
-			message.Body = new TextPart("plain")
+			MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
 			{
-				Text = MailContent
-				
-							};
+				account = AccountInfo.Account,
+				passwd = AccountInfo.Password,
+				site = AccountInfo.SmtpHost
+			};
+
+			MailUtil.MailInfo mail_info = new MailUtil.MailInfo()
+			{
+				from = AccountInfo.Account,
+				to = ReceiveMail,
+				cc = AccountInfo.Account,
+				subject = Subject,
+				body = MailContent,
+			};
+			Int32 result = MailUtil.login_send_mail(info_smtp, mail_info);
+			if (result == 200)
+			{
+				ShowDialog("发送成功");
+				ClearInfo(null);
+			}
+			else
+			{
+				ShowDialog("发送失败");
+			}
+			Console.WriteLine(result);
 		}
+
 
 		public DelegateCommand ClearCommand { get; set; }
 
@@ -93,6 +113,13 @@ namespace MailBox.ViewModels
 			SendCommand.ExecuteAction = new Action<object>(SendMail);
 			ClearCommand = new DelegateCommand();
 			ClearCommand.ExecuteAction = new Action<object>(ClearInfo);
+		}
+
+		private async void ShowDialog(string message)
+		{
+			DialogClosingEventHandler dialogClosingEventHandler = null;
+			MessageController messageController = new MessageController(message);
+			await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
 		}
 	}
 }
