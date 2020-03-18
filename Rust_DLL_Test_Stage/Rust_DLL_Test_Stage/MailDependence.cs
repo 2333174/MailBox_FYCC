@@ -46,6 +46,9 @@ namespace Rust_DLL_Test_Stage
         [DllImport("smtplib.dll", EntryPoint = "login_send_mail")]
         public static extern Int32 login_send_mail(LoginInfo info, MailInfo email);
 
+        [DllImport("smtplib.dll", EntryPoint = "login_send_mail_extern")]
+        public static extern Int32 login_send_mail_extern(LoginInfo info, MailInfo email);
+
         [DllImport("pop3lib.dll", EntryPoint = "get_num_mails")]
         public static extern Int32 get_num_mails(LoginInfo info);
 
