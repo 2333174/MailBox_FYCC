@@ -1,14 +1,12 @@
 ﻿using MailBox.Models;
 using MailBox.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MimeKit;
 using MailBox.Services;
 using MailBox.Views;
 using MaterialDesignThemes.Wpf;
+using MimeKit;
+using Microsoft.Scripting.Hosting;
+using System.Diagnostics;
 
 namespace MailBox.ViewModels
 {
@@ -67,7 +65,20 @@ namespace MailBox.ViewModels
 
 		private void SendMail(object paramter)
 		{
-			MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
+
+            Process p = new Process();
+            p.StartInfo.FileName = "MimeWarpped.exe";//需要执行的文件路径
+            p.StartInfo.UseShellExecute = false; //必需
+            p.StartInfo.RedirectStandardOutput = true;//输出参数设定
+            p.StartInfo.RedirectStandardInput = true;//传入参数设定
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.Arguments = MailContent+" " + AccountInfo.Account+" "+ ReceiveMail+" "+ Subject;
+            p.Start();
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            p.Close();
+
+            MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
 			{
 				account = AccountInfo.Account,
 				passwd = AccountInfo.Password,
@@ -80,9 +91,9 @@ namespace MailBox.ViewModels
 				to = ReceiveMail,
 				cc = AccountInfo.Account,
 				subject = Subject,
-				body = MailContent,
+				body = output,
 			};
-			Int32 result = MailUtil.login_send_mail(info_smtp, mail_info);
+			Int32 result = MailUtil.login_send_mail_extern(info_smtp, mail_info);
 			if (result == 200)
 			{
 				ShowDialog("发送成功");
