@@ -144,6 +144,20 @@ mod utils {
             send_body(socket, &mail);
             // get_response(socket);
         }
+
+        pub fn send_mail_extern(socket: &mut TcpStream, mail: Mail) {
+            write_request(socket, &format!("MAIL FROM: <{}>", mail.from));
+            get_response(socket);
+            
+            write_request(socket, &format!("RCPT TO: <{}>", mail.to));
+            get_response(socket);
+            
+            write_request(socket, "DATA");
+            get_response(socket);
+            
+            send_body(socket, &mail);
+            // get_response(socket);
+        }
         
         fn send_head(socket: &mut TcpStream, mail: &Mail) {
             let now = Utc::now();
@@ -179,6 +193,26 @@ pub extern "C" fn login_send_mail(login_info: LoginInfo, mail_info: MailInfo) ->
     unwrap_str(mail_info.cc), unwrap_str(mail_info.subject), unwrap_str(mail_info.body));
 
     send_mail(&mut stream, mail);
+    get_response(&mut stream);
+
+    write_request(&mut stream, "QUIT");
+    get_response(&mut stream);
+
+    200
+}
+
+#[no_mangle]
+pub extern "C" fn login_send_mail_extern(login_info: LoginInfo, mail_info: MailInfo) -> i32 {
+    let (result, mut stream) = authenticate(&login_info);
+
+    if !result {
+        return 400;
+    }
+
+    let mail = Mail::new(unwrap_str(mail_info.from), unwrap_str(mail_info.to), 
+    unwrap_str(mail_info.cc), unwrap_str(mail_info.subject), unwrap_str(mail_info.body));
+
+    send_mail_extern(&mut stream, mail);
     get_response(&mut stream);
 
     write_request(&mut stream, "QUIT");
