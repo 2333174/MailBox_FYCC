@@ -7,6 +7,8 @@ using MaterialDesignThemes.Wpf;
 using MimeKit;
 using Microsoft.Scripting.Hosting;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 
 namespace MailBox.ViewModels
 {
@@ -62,21 +64,31 @@ namespace MailBox.ViewModels
 		}
 
 		public DelegateCommand SendCommand { get; set; }
-
 		private void SendMail(object paramter)
 		{
 
+            StringBuilder argv = new StringBuilder();
+            argv.Append(MailContent + " " + AccountInfo.Account + " " + ReceiveMail + " " + Subject);
+            // 文件路径的数组,路径分隔符是/，相对或绝对都可以
+            //string[] paths = { "xxx/1.txt", "xxx/2.jpg" };
+            //foreach (string path in paths) {
+            //    argv.Append(" " + path);
+            //}
+
+
             Process p = new Process();
-            p.StartInfo.FileName = "MimeWarpped.exe";//需要执行的文件路径
+            p.StartInfo.FileName = "MimeWrapped.exe";//需要执行的文件路径
             p.StartInfo.UseShellExecute = false; //必需
             p.StartInfo.RedirectStandardOutput = true;//输出参数设定
             p.StartInfo.RedirectStandardInput = true;//传入参数设定
             p.StartInfo.CreateNoWindow = true;
-            p.StartInfo.Arguments = MailContent+" " + AccountInfo.Account+" "+ ReceiveMail+" "+ Subject;
+            p.StartInfo.Arguments = argv.ToString();
+            
             p.Start();
             string output = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
             p.Close();
+
 
             MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
 			{
