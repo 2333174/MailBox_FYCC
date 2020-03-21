@@ -131,16 +131,7 @@ namespace Rust_DLL_Test_Stage
                 site = "pop.163.com:110"
             };
 
-            MailStr mail_str = new MailStr(info_pop3, 3);
-            Console.WriteLine(mail_str);
-
-            //MailUtil.ResultStruct rs = MailUtil.get_simple_email(info_pop3, 3);
-            //Console.WriteLine(Marshal.PtrToStringAnsi(rs.mail_string));
-
-            //string temp = MailUtil.rustffi_get_version(info_pop3, 3);
-            //string ver = (string)temp.Clone();
-            //MailUtil.rustffi_get_version_free(temp);
-            //Console.WriteLine(ver);
+            MailUtil.pull_save_mail(info_pop3, 3);
 
             Console.ReadKey();
         }
@@ -154,9 +145,9 @@ namespace Rust_DLL_Test_Stage
 
             //GetNumMails_Example();
 
-            //ReceiveMail_Example();
+            ReceiveMail_Example();
 
-            SendMail_Example_Extern();
+            //SendMail_Example_Extern();
         }
 
     }

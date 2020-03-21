@@ -5,6 +5,10 @@ use crate::utils::mail_utils::*;
 use std::ffi::{CStr, CString};
 use libc::c_char;
 use std::mem;
+use std::fs::File;
+use std::io;
+use std::io::prelude::*;
+use std::io::BufReader;
 
 static mut STRING_POINTER: *mut c_char = 0 as *mut c_char;
 
@@ -268,4 +272,23 @@ pub extern "C" fn get_num_mails(login_info: LoginInfo) -> i32 {
     let num_mails = num_mails_Str.parse::<i32>().unwrap();
 
     num_mails
+}
+
+#[no_mangle]
+pub extern "C" fn pull_save_mail(login_info: LoginInfo, index: usize) -> i32 {
+    let account_str = unwrap_str(login_info.account);
+
+    let (result, _,  mut stream) = authenticate(login_info);
+    
+    if !result {
+        return 400;
+    }
+    
+    let mail_str = get_a_mail(&mut stream, index);
+
+    let path: &str = &format!("{}-{}.mail.tmp", account_str, index);
+    let mut output: File = File::create(path).unwrap();
+    write!(output, "{}", mail_str).unwrap();
+    
+    200
 }
