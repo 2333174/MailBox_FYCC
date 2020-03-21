@@ -102,9 +102,10 @@ namespace MailBox.ViewModels
 				from = AccountInfo.Account,
 				to = ReceiveMail,
 				cc = AccountInfo.Account,
-				subject = Subject,
+				subject = "",
 				body = output,
 			};
+
 			Int32 result = MailUtil.login_send_mail_extern(info_smtp, mail_info);
 			if (result == 200)
 			{

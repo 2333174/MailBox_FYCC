@@ -13,9 +13,11 @@ namespace Rust_DLL_Test_Stage
 {
     class TestPlace
     {
+        //static String mailstr = "Content-Type: text/plain; charset=\"utf-8\"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n" +
+        //    "From: alertdoll@163.com\r\nTo: 935802216@qq.com\r\nSubject: =?utf-8?b?5ZOI5ZOI?=\r\n\r\n" +
+        //    "54ix5LiK55yL5Yiw5ZKv5oiR\r\n\r\n";
         static String mailstr = "Content-Type: text/plain; charset=\"utf-8\"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n" +
-            "From: alertdoll@163.com\r\nTo: 935802216@qq.com\r\nSubject: =?utf-8?b?5ZOI5ZOI?=\r\n\r\n" +
-            "54ix5LiK55yL5Yiw5ZKv5oiR\r\n\r\n";
+            "From: alertdoll@163.com\r\nTo: 935802216@qq.com\r\nSubject: =?utf-8?b?5ZOI5ZOI?=\r\n\r\nMTIz\r\n\r\n";
 
         #region SMTP/POP3 身份验证
         static void Validate_Example()
@@ -80,6 +82,9 @@ namespace Rust_DLL_Test_Stage
 
         static void SendMail_Example_Extern()
         {
+            String mailstr_local = "Content-Type: text/plain; charset=\"utf-8\"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n" +
+            "From: alertdoll@163.com\r\nTo: 935802216@qq.com\r\nSubject: =?utf-8?b?5ZOI5ZOI?=\r\n\r\nMTIz\r\n\r\n";
+
             MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
             {
                 account = "alertdoll@163.com",
@@ -93,7 +98,7 @@ namespace Rust_DLL_Test_Stage
                 to = "ale_li_pona@163.com",
                 cc = "alertdoll@163.com",
                 subject = "test",
-                body = mailstr,
+                body = mailstr_local,
             };
 
             Int32 result = MailUtil.login_send_mail_extern(info_smtp, mail_info);
@@ -145,9 +150,9 @@ namespace Rust_DLL_Test_Stage
 
             //GetNumMails_Example();
 
-            ReceiveMail_Example();
+            //ReceiveMail_Example();
 
-            //SendMail_Example_Extern();
+            SendMail_Example_Extern();
         }
 
     }
