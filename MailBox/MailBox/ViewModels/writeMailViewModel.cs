@@ -144,6 +144,7 @@ namespace MailBox.ViewModels
 			Subject = "";
 			MailContent = "";
 			ReceiveMail = "";
+			Files.Clear();
 		}
 
 		public DelegateCommand UploadFileCommand { get; set; }
