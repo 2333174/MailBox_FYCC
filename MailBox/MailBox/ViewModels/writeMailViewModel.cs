@@ -9,11 +9,25 @@ using Microsoft.Scripting.Hosting;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace MailBox.ViewModels
 {
     class WriteMailViewModel:NotificationObject
     {
+		private ObservableCollection<MailFile> files;
+
+		public ObservableCollection<MailFile> Files
+		{
+			get { return files; }
+			set
+			{
+				files = value;
+				this.RaisePropertyChanged("Paths");
+			}
+		}
+		 //上传文件路径
 		private string subject;
 
 		public string Subject
@@ -63,20 +77,22 @@ namespace MailBox.ViewModels
 			}
 		}
 
+
 		public DelegateCommand SendCommand { get; set; }
 		private void SendMail(object paramter)
 		{
 
             StringBuilder argv = new StringBuilder();
             argv.Append(MailContent + " " + AccountInfo.Account + " " + ReceiveMail + " " + Subject);
-            // 文件路径的数组,路径分隔符是/，相对或绝对都可以
-            //string[] paths = { "xxx/1.txt", "xxx/2.jpg" };
-            //foreach (string path in paths) {
-            //    argv.Append(" " + path);
-            //}
+			// 文件路径的数组,路径分隔符是/，相对或绝对都可以
+			//string[] paths = { "xxx/1.txt", "xxx/2.jpg" };
+			foreach (var file in files)
+			{
+				argv.Append(" " + file.MailFilePath);
+			}
 
 
-            Process p = new Process();
+			Process p = new Process();
             p.StartInfo.FileName = "MimeWrapped.exe";//需要执行的文件路径
             p.StartInfo.UseShellExecute = false; //必需
             p.StartInfo.RedirectStandardOutput = true;//输出参数设定
@@ -130,13 +146,33 @@ namespace MailBox.ViewModels
 			ReceiveMail = "";
 		}
 
+		public DelegateCommand UploadFileCommand { get; set; }
+
+		private void UploadFile(object paramter)
+		{
+			Console.WriteLine("选择文件");
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Title = "选择需要上传的文件";
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				string txtFile = openFileDialog.FileName;
+				string name = txtFile.Split('\\')[txtFile.Split('\\').Length - 1];
+				Console.WriteLine(name);
+				Files.Add(new MailFile(name,txtFile));
+				Console.WriteLine(txtFile);
+			}
+		}
+
 		public WriteMailViewModel(AccountInfo accountInfo)
 		{
 			AccountInfo = accountInfo;
+			Files = new ObservableCollection<MailFile>();
 			SendCommand = new DelegateCommand();
 			SendCommand.ExecuteAction = new Action<object>(SendMail);
 			ClearCommand = new DelegateCommand();
 			ClearCommand.ExecuteAction = new Action<object>(ClearInfo);
+			UploadFileCommand = new DelegateCommand();
+			UploadFileCommand.ExecuteAction = new Action<object>(UploadFile) ;
 		}
 
 		private async void ShowDialog(string message)

@@ -43,5 +43,15 @@ namespace MailBox.Views
                 }
             }
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var curItem = ((ListBoxItem)listBox.ContainerFromElement((Button)sender)).Content;
+            Console.WriteLine(curItem);
+            Console.WriteLine(listBox.SelectedIndex);
+            var vm = this.DataContext as WriteMailViewModel;
+            vm.Files.Remove((MailFile)curItem);
+            //vm.DeleteFileCommand.Execute(null);
+        }
     }
 }
