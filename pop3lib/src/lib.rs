@@ -29,8 +29,8 @@ mod utils {
             
             let _ = socket.read(&mut buf);
             let response = str::from_utf8(&buf).unwrap();
-            // println!("{}", response);
-            String::from(response)
+            println!("{}", response);
+            String::from(response).trim().to_string()
         }
         
         pub fn judge_response(response: &str) -> bool {
@@ -90,7 +90,7 @@ mod utils {
                 let resp_part = get_response(socket);
                 
                 resp = format!("{}{}", resp, resp_part);
-                
+
                 if is_final_end(&resp_part) {
                     break;
                 }
@@ -139,7 +139,20 @@ mod utils {
         pub fn get_a_mail(socket: &mut TcpStream, index: usize) -> String {
             println!("RETR {}", index);
             write_request(socket, &format!("RETR {}", index));
-            get_multiresponses(socket)
+            get_response(socket);
+            let mut mail_str = get_multiresponses(socket);
+            let iter = mail_str.split("\r\n");
+
+            let mut mail_str_processed = String::new();
+            let last_line: &str = &iter.last().unwrap();
+
+            for (index, line) in mail_str.split("\r\n").enumerate() {
+                if line != last_line {
+                    mail_str_processed = format!("{}{}\r\n", mail_str_processed, line);
+                }
+            }
+
+            mail_str_processed
         }
         
     }

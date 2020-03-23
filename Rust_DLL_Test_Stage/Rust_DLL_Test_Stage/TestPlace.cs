@@ -138,7 +138,7 @@ namespace Rust_DLL_Test_Stage
                 site = "pop.163.com:110"
             };
 
-            MailUtil.pull_save_mail(info_pop3, 4);
+            MailUtil.pull_save_mail(info_pop3, 5);
 
             Console.ReadKey();
         }
@@ -169,18 +169,18 @@ namespace Rust_DLL_Test_Stage
 
             //SendMail_Example();
 
-            GetNumMails_Example();
+            //GetNumMails_Example();
 
-            //ReceiveMail_Example();
+            ReceiveMail_Example();
 
-            try
-            {
-                Receive_All_Example();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("fail");
-            }
+            //try
+            //{
+            //    Receive_All_Example();
+            //}
+            //catch(Exception e)
+            //{
+            //    Console.WriteLine("fail");
+            //}
 
             //SendMail_Example_Extern();
         }
