@@ -148,13 +148,21 @@ namespace Rust_DLL_Test_Stage
             {
                 account = "alertdoll@163.com",
                 passwd = "ybgissocute2020",
-                site = "pop.163.cm:110"
+                site = "pop.163.com:110"
             };
-            int num = MailUtil.get_num_mails(info_pop3);
-            for(uint i = 1;i<=num;i++)
+            try
             {
 
-                MailUtil.pull_save_mail(info_pop3, i);
+                int num = MailUtil.get_num_mails(info_pop3);
+                for (uint i = 1; i <= num; i++)
+                {
+
+                    MailUtil.pull_save_mail(info_pop3, i);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("fail, error:" + e.Message);
             }
 
             Console.ReadKey();
@@ -172,8 +180,9 @@ namespace Rust_DLL_Test_Stage
             try
             {
 
-            Receive_All_Example();
-            }catch(Exception e)
+                Receive_All_Example();
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("fail");
             }
