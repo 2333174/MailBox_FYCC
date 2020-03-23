@@ -141,6 +141,25 @@ namespace Rust_DLL_Test_Stage
         }
         #endregion
 
+        #region POP3 receive mail
+        static void Receive_All_Example()
+        {
+            MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+            {
+                account = "alertdoll@163.com",
+                passwd = "ybgissocute2020",
+                site = "pop.163.cm:110"
+            };
+            int num = MailUtil.get_num_mails(info_pop3);
+            for(uint i = 1;i<=num;i++)
+            {
+
+                MailUtil.pull_save_mail(info_pop3, i);
+            }
+
+            Console.ReadKey();
+        }
+        #endregion
         public static void Main(string[] args)
         {
             //Validate_Example();
@@ -149,8 +168,15 @@ namespace Rust_DLL_Test_Stage
 
             //GetNumMails_Example();
 
-            ReceiveMail_Example();
+            //ReceiveMail_Example();
+            try
+            {
 
+            Receive_All_Example();
+            }catch(Exception e)
+            {
+                Console.WriteLine("fail");
+            }
             //SendMail_Example_Extern();
         }
 
