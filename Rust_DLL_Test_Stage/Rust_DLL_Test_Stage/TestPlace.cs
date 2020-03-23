@@ -147,9 +147,9 @@ namespace Rust_DLL_Test_Stage
 
             //SendMail_Example();
 
-            //GetNumMails_Example();
+            GetNumMails_Example();
 
-            ReceiveMail_Example();
+            //ReceiveMail_Example();
 
             //SendMail_Example_Extern();
         }
