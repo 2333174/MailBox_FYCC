@@ -154,6 +154,10 @@ pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
 pub extern "C" fn get_num_mails(login_info: LoginInfo) -> i32 {
     let (result, num_mails_Str, mut stream) = authenticate(login_info);
 
+    if !result {
+        return -1;
+    }
+
     let num_mails = num_mails_Str.parse::<i32>().unwrap();
 
     num_mails

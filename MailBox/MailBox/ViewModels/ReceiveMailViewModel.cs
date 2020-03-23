@@ -34,7 +34,7 @@ namespace MailBox.ViewModels
                 };
                 try
                 {
-                    int num_mails = MailUtil.get_num_mails(loginInfo);
+                    Int32 num_mails = MailUtil.get_num_mails(loginInfo);
                     if (num_mails == -1) return items;
                     for (uint i = 1; i <= num_mails; i++)
                     {
