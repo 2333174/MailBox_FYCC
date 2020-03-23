@@ -82,8 +82,7 @@ namespace Rust_DLL_Test_Stage
 
         static void SendMail_Example_Extern()
         {
-            String mailstr_local = "Content-Type: text/plain; charset=\"utf-8\"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: base64\r\n" +
-            "From: alertdoll@163.com\r\nTo: 935802216@qq.com\r\nSubject: =?utf-8?b?5ZOI5ZOI?=\r\n\r\nMTIz\r\n\r\n";
+            string text = System.IO.File.ReadAllText(@"D:\project\网络工程与编程实践\1.txt");
 
             MailUtil.LoginInfo info_smtp = new MailUtil.LoginInfo()
             {
@@ -98,7 +97,7 @@ namespace Rust_DLL_Test_Stage
                 to = "ale_li_pona@163.com",
                 cc = "alertdoll@163.com",
                 subject = "test",
-                body = mailstr_local,
+                body = text,
             };
 
             Int32 result = MailUtil.login_send_mail_extern(info_smtp, mail_info);
@@ -136,7 +135,7 @@ namespace Rust_DLL_Test_Stage
                 site = "pop.163.com:110"
             };
 
-            MailUtil.pull_save_mail(info_pop3, 3);
+            MailUtil.pull_save_mail(info_pop3, 4);
 
             Console.ReadKey();
         }

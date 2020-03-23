@@ -9,6 +9,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
+use std::fs;
 
 static mut STRING_POINTER: *mut c_char = 0 as *mut c_char;
 
@@ -21,6 +22,7 @@ mod utils {
         use std::io::{Read, Write};
         use std::ffi::{CStr, CString};
         use std::os::raw::c_char;
+        use std::fs;
         
         pub fn get_response(socket: &mut TcpStream) -> String{
             let mut buf: [u8; 1024] = [0; 1024];
@@ -55,6 +57,9 @@ mod utils {
             let _ = socket.write(&(message.as_bytes()));
         }
         
+        pub fn path_exists(path: &str) -> bool {
+            fs::metadata(path).is_ok()
+        }
     }
     
     pub mod mail_utils {
@@ -146,126 +151,6 @@ pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
 }
 
 #[no_mangle]
-pub extern "C" fn pull_a_mail(login_info: LoginInfo, index: usize) -> *mut c_char {
-    
-    let (result, _,  mut stream) = authenticate(login_info);
-    
-    if !result {
-        return CString::new("400").unwrap().into_raw();
-    }
-    
-    let mail_str = get_a_mail(&mut stream, index);
-
-    CString::new(mail_str).unwrap().into_raw()
-    
-    // let mail_cstr = CString::new(mail_str).unwrap();
-
-    // mail_cstr.into_raw()
-}
-
-#[no_mangle]
-pub extern "C" fn free_mail_str(s: *mut c_char) {
-    unsafe {
-        if s.is_null() {
-            return;
-        }
-        CString::from_raw(s)
-    };
-}
-
-
-// #[repr(C)]
-// pub struct ResultStruct {    
-//     pub status: i32,
-//     pub mail_string: *mut c_char,
-// }
-
-// fn store_string_on_heap(string_to_store: &String) -> *mut c_char {
-//     //create a new raw pointer
-//     let pntr = CString::new(String::from(string_to_store)).unwrap().into_raw();
-//     //store it in our static variable (REQUIRES UNSAFE)
-//     unsafe {
-//         STRING_POINTER = pntr;
-//     }
-//     //return the c_char
-//     return pntr;
-// }
-
-// // static mut MAIL_STR: &'static str = "" as &'static str;
-// static mut MY_STRING: String = String::new();
-
-// #[no_mangle]
-// pub extern fn get_simple_email(login_info: LoginInfo, index: usize) -> ResultStruct {
-    
-//     let (result, mut stream) = authenticate(login_info);
-    
-//     unsafe {
-
-//         MY_STRING.clear();
-//         MY_STRING.push_str(&get_a_mail(&mut stream, index));
-        
-//         ResultStruct {
-//             status: 200,
-//             mail_string: store_string_on_heap(&MY_STRING),
-//         }
-
-//         // if result {
-//         //     MY_STRING.clear();
-//         //     MY_STRING.push_str(&get_a_mail(&mut stream, index));
-            
-//         //     ResultStruct {
-//         //         status: 200,
-//         //         mail_string: store_string_on_heap(&MY_STRING),
-//         //     }
-//         // } else {
-//         //     MY_STRING.clear();
-            
-//         //     ResultStruct {
-//         //         status: 400,
-//         //         mail_string: store_string_on_heap(&MY_STRING),
-//         //     }
-//         // }
-//     }
-// }
-
-// #[no_mangle]
-// pub extern fn free_string() {
-//     unsafe {
-//         let _ = CString::from_raw(STRING_POINTER);
-//         STRING_POINTER = 0 as *mut c_char;
-//     }
-// }
-
-
-#[no_mangle]
-pub extern "C" fn rustffi_get_version(login_info: LoginInfo, index: usize) -> *const c_char {
-
-    let (result, _, mut stream) = authenticate(login_info);
-    
-    let mail_str = get_a_mail(&mut stream, index);
-
-    println!("{}", &mail_str);
-    let s = CString::new(mail_str).unwrap();
-    let p = s.as_ptr();
-    mem::forget(s);
-
-    p as *const _
-}
-
-#[no_mangle]
-pub extern "C" fn rustffi_get_version_free(s: *mut c_char) {
-    unsafe {
-        if s.is_null() {
-            return;
-        }
-
-        let c_str: &CStr = CStr::from_ptr(s);
-        let bytes_len: usize = c_str.to_bytes_with_nul().len();
-        let temp_vec: Vec<c_char> = Vec::from_raw_parts(s, bytes_len, bytes_len);
-    }
-}
-
-#[no_mangle]
 pub extern "C" fn get_num_mails(login_info: LoginInfo) -> i32 {
     let (result, num_mails_Str, mut stream) = authenticate(login_info);
 
@@ -284,9 +169,13 @@ pub extern "C" fn pull_save_mail(login_info: LoginInfo, index: usize) -> i32 {
         return 400;
     }
     
-    let mail_str = get_a_mail(&mut stream, index);
+    let mail_str = get_a_mail(&mut stream, index);    
 
-    let path: &str = &format!("{}-{}.mail.tmp", account_str, index);
+    if !path_exists(&account_str) {
+        fs::create_dir(&account_str).unwrap();
+    }
+
+    let path: &str = &format!("{}/{}-{}.mail.tmp", account_str, account_str, index);
     let mut output: File = File::create(path).unwrap();
     write!(output, "{}", mail_str).unwrap();
     

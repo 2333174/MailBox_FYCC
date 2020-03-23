@@ -52,76 +52,8 @@ namespace Rust_DLL_Test_Stage
         [DllImport("pop3lib.dll", EntryPoint = "get_num_mails")]
         public static extern Int32 get_num_mails(LoginInfo info);
 
-        [DllImport("pop3lib.dll", EntryPoint = "pull_a_mail", CallingConvention = CallingConvention.Cdecl)]
-        public static extern StringHandle pull_a_mail(LoginInfo info, UInt32 index);
-
-        [DllImport("pop3lib.dll", EntryPoint = "free_mail_str")]
-        public static extern void free_mail_str(IntPtr str_ptr);
-
-        [DllImport("pop3lib.dll", EntryPoint = "get_simple_email")]
-        public static extern ResultStruct get_simple_email(LoginInfo info, UInt32 index);
-
-        [DllImport("pop3lib.dll", EntryPoint = "rustffi_get_version", CallingConvention = CallingConvention.Cdecl)]
-        public static extern string rustffi_get_version(LoginInfo info, UInt32 index);
-
-        [DllImport("pop3lib.dll", EntryPoint = "rustffi_get_version_free", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void rustffi_get_version_free(string s);
-
         [DllImport("pop3lib.dll", EntryPoint = "pull_save_mail")]
         public static extern Int32 pull_save_mail(LoginInfo info, UInt32 index);
-    }
-    public class MailStr : IDisposable
-    {
-        private StringHandle mailStrHandle;
-        private string mailString;
-
-        public MailStr(MailUtil.LoginInfo login_info, UInt32 index)
-        {
-            mailStrHandle = MailUtil.pull_a_mail(login_info, index);
-        }
-
-        public override string ToString()
-        {
-            if (mailString == null)
-            {
-                mailString = mailStrHandle.AsString();
-            }
-            return mailString;
-        }
-
-        public void Dispose()
-        {
-            mailStrHandle.Dispose();
-        }
-    }
-
-    public class StringHandle : SafeHandle
-    {
-        public StringHandle() : base(IntPtr.Zero, true) { }
-
-        public override bool IsInvalid
-        {
-            get { return this.handle == IntPtr.Zero; }
-        }
-
-        public string AsString()
-        {
-            int len = 0;
-            while (Marshal.ReadByte(handle, len) != 0) { ++len; }
-            byte[] buffer = new byte[len];
-            Marshal.Copy(handle, buffer, 0, buffer.Length);
-            return Encoding.UTF8.GetString(buffer);
-        }
-
-        protected override bool ReleaseHandle()
-        {
-            if (!this.IsInvalid)
-            {
-                MailUtil.free_mail_str(handle);
-            }
-
-            return true;
-        }
     }
     #endregion
 }

@@ -17,7 +17,7 @@ mod utils {
             
             let _ = socket.read(&mut buf);
             let response = str::from_utf8(&buf).unwrap();
-            // println!("{}", response);
+            println!("{}", response);
             String::from(response)
         }
         
@@ -212,11 +212,19 @@ pub extern "C" fn login_send_mail_extern(login_info: LoginInfo, mail_info: MailI
     let mail = Mail::new(unwrap_str(mail_info.from), unwrap_str(mail_info.to), 
     unwrap_str(mail_info.cc), unwrap_str(mail_info.subject), unwrap_str(mail_info.body));
 
+    let mut responses: Vec<String> = Vec::new();
+
     send_mail_extern(&mut stream, mail);
-    get_response(&mut stream);
+    responses.push(get_response(&mut stream));
 
     write_request(&mut stream, "QUIT");
     get_response(&mut stream);
+
+    for response in responses {
+        if !judge_response(&response) {
+            return 401;
+        }
+    }
 
     200
 }
