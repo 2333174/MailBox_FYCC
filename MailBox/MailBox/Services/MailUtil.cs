@@ -66,6 +66,9 @@ namespace MailBox.Services
 
         [DllImport("pop3lib.dll", EntryPoint = "rustffi_get_version_free", CallingConvention = CallingConvention.Cdecl)]
         public static extern void rustffi_get_version_free(string s);
+
+        [DllImport("pop3lib.dll", EntryPoint = "pull_save_mail")]
+        public static extern Int32 pull_save_mail(LoginInfo info, UInt32 index);
     }
     public class MailStr : IDisposable
     {

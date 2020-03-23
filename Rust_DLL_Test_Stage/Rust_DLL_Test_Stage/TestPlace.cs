@@ -150,9 +150,9 @@ namespace Rust_DLL_Test_Stage
 
             //GetNumMails_Example();
 
-            //ReceiveMail_Example();
+            ReceiveMail_Example();
 
-            SendMail_Example_Extern();
+            //SendMail_Example_Extern();
         }
 
     }
