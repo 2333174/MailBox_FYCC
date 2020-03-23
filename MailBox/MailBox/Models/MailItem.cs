@@ -20,7 +20,7 @@ namespace MailBox.Models
 
         public MimePart MimePart { get; set; } // TODO: Attachment handle
         public string FilePath { get; set; }
-        public string FirstSenderLetter { get; set; }
+        public char FirstSenderLetter { get; set; }
 
         public MailItem() { }
         public MailItem(string subject, string sender, DateTime date, string htmlBody, string mailID)
@@ -47,7 +47,27 @@ namespace MailBox.Models
             if (SenderMailAddress != "Unknown")
                 Sender = SenderMailAddress.Substring(0, SenderMailAddress.IndexOf('<'));
 
-            FirstSenderLetter = Sender.Length != 0 ? Sender.Substring(0, 1).ToLower() : "a";
+            FirstSenderLetter = Sender.Length != 0 ? Sender.Substring(0, 1).ToLower()[0] : 'a';
+            char f = FirstSenderLetter;
+            if(f < 'a' || f > 'z')
+            {
+                // indicate chinese
+                if(f < 'a')
+                {
+                    while(f < 'a')
+                    {
+                        f  = (char)((int)f + 26);
+                    }
+                }
+                else
+                {
+                    while (f > 'z')
+                    {
+                        f = (char)((int)f - 26);
+                    }
+                }
+                FirstSenderLetter = f;
+            }
             Date = message.Date.DateTime;
             HtmlBody = message.HtmlBody?? message.TextBody;
             //MimePart = message.Attachments;

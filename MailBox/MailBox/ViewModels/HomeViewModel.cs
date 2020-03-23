@@ -101,7 +101,7 @@ namespace MailBox.ViewModels
 			Visibility = System.Windows.Visibility.Visible;
 			Content = new Frame
 			{
-				Content = new ReceiveMailController()
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
 		}
 

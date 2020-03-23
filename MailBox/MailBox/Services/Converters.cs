@@ -14,7 +14,7 @@ namespace MailBox.Services
         // forward convert
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string uriStr = String.Format(@"/Resources/Logos/{0}.png", (string)value);
+            string uriStr = String.Format(@"/Resources/Logos/{0}.png", (char)value);
             return new Uri(uriStr, UriKind.Relative);
         }
 

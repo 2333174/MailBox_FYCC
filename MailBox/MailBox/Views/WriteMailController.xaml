@@ -193,6 +193,7 @@
                     VerticalScrollBarVisibility="Auto"  Margin="18,10,18,34" Grid.Row="2" TextWrapping="Wrap" Text="{Binding MailContent}"/> 
                 </Grid>
             </ScrollViewer>
+            
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
