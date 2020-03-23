@@ -88,7 +88,7 @@ namespace MailBox.ViewModels
 			//string[] paths = { "xxx/1.txt", "xxx/2.jpg" };
 			foreach (var file in files)
 			{
-				argv.Append(" " + file.MailFilePath);
+				argv.Append(" \"" + file.MailFilePath.Replace("\\", "/")+"\"");
 			}
 
 
@@ -144,6 +144,7 @@ namespace MailBox.ViewModels
 			Subject = "";
 			MailContent = "";
 			ReceiveMail = "";
+			Files.Clear();
 		}
 
 		public DelegateCommand UploadFileCommand { get; set; }

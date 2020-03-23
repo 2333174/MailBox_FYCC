@@ -49,9 +49,11 @@ def getMimeWithFile(content,from_add,to_add,subject,pathList):
 def attachFile(msg,pathList):
     for each in pathList:
         fileName = each.split('/')[-1]
+        fileName = Header(fileName,'utf-8').encode()
         att1 = MIMEText(open(each, 'rb').read(), 'base64', 'utf-8')
         att1["Content-Type"] = 'application/octet-stream'
-        att1["Content-Disposition"] = 'attachment; filename="'+fileName+'"'
+        att1.add_header("Content-Disposition", 'attachment; filename="%s"'%fileName)
+
         msg.attach(att1)
 
 
@@ -70,5 +72,5 @@ else:
 # to_add = "935802216@qq.com"
 # subject ="123"
 # content="456"
-# pathList =['D:/吕若凡/github.txt','D:/吕若凡/大三下/简历/1.jpg']
+# pathList =['D:/吕若凡/大三下/GoLearning/Go语法细节/参数传递.md','D:/吕若凡/大三下/简历/1.jpg']
 # print(getMimeWithFile(content,from_add,to_add,subject,pathList))
