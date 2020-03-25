@@ -190,7 +190,8 @@
                     </ListBox>
                     <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                     AcceptsReturn="True" materialDesign:HintAssist.Hint="content ...."
-                    VerticalScrollBarVisibility="Auto"  Margin="18,10,18,34" Grid.Row="2" TextWrapping="Wrap" Text="{Binding MailContent}"/> 
+                    VerticalScrollBarVisibility="Auto"  Margin="18,10,18,34" Grid.Row="2" TextWrapping="Wrap" Text="{Binding MailContent}"/>
+                    <!--<RichTextBox/>-->
                 </Grid>
             </ScrollViewer>
             

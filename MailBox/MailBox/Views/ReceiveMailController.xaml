@@ -55,14 +55,35 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="16" Grid.Row="0" FontWeight="Bold" />
-                    <StackPanel Orientation="Horizontal"  Grid.Row="1">
-                        <Image Width="60" Height="60" Source="{Binding FirstSenderLetter,Converter={StaticResource s2l}}"/>
-                        <StackPanel Margin="5,20" VerticalAlignment="Center" >
-                            <TextBlock Text="{Binding SenderMailAddress}" TextWrapping="Wrap" FontSize="14" FontWeight="Black"/>
+                    <DockPanel  Grid.Row="1">
+                        <Image Width="60" Height="60" Source="{Binding FirstSenderLetter,Converter={StaticResource s2l}}" DockPanel.Dock="Left"/>
+                        <StackPanel Margin="5,20" VerticalAlignment="Center"  DockPanel.Dock="Left">
+                            <TextBlock Text="{Binding SenderMailAddress}" TextWrapping="Wrap" FontSize="14" FontWeight="Black" />
                             <TextBlock Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm'}" Style="{StaticResource MaterialDesignTextBlock}"
                                        FontWeight="Light"/>
                         </StackPanel>
-                    </StackPanel>
+                        <materialDesign:PopupBox  PlacementMode="BottomAndAlignRightEdges" PopupMode="Click"  Content="附件" 
+                                                  DockPanel.Dock="Right"  HorizontalAlignment="Right"  >
+                            <materialDesign:PopupBox.ToggleContent>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="File" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7"/>
+                                    <TextBlock Text="附件" FontSize="20px" FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7"/>
+                                </StackPanel>
+                            </materialDesign:PopupBox.ToggleContent>
+                            <!--<TextBlock Text="Hi popup" FontSize="10px"/>-->
+
+                            <ListBox ItemsSource="{Binding Attachment}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" FontSize="20px" FontWeight="Bold" Foreground="#FF673AB7"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBoxItem Content="first.cppqweqweqwe" FontSize="15px" FontWeight="Bold" Foreground="#FF673AB7"  />
+                                <ListBoxItem Content="Second.emlqweqwe qweq" FontSize="15px" FontWeight="Bold"  Foreground="#FF673AB7"/>
+                            </ListBox>
+                        </materialDesign:PopupBox>
+                    </DockPanel>
 
                 </Grid>
                 <!--Using Custom Mail Web browser to display mail html body -->

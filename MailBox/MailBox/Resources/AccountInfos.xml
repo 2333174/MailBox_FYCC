@@ -3,14 +3,14 @@
   <AccountInfo>
     <account>1741603127@qq.com</account>
     <password>1234567</password>
-    <popHost>pop.qq.com</popHost>
-    <smtpHost>smtp.qq.com</smtpHost>
+    <popHost>pop.qq.com:110</popHost>
+    <smtpHost>smtp.qq.com:25</smtpHost>
   </AccountInfo>
   <AccountInfo>
     <account>caixu.cx@qq.com</account>
     <password>123456</password>
-    <popHost>pop.qq.com</popHost>
-    <smtpHost>smtp.qq.com</smtpHost>
+    <popHost>pop.qq.com:110</popHost>
+    <smtpHost>smtp.qq.com:25</smtpHost>
   </AccountInfo>
   <AccountInfo>
     <account>alertdoll@163.com</account>

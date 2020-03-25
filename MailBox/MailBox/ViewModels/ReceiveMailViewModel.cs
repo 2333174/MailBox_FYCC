@@ -35,6 +35,7 @@ namespace MailBox.ViewModels
                 try
                 {
                     Int32 num_mails = MailUtil.get_num_mails(loginInfo);
+                    if (num_mails == -1) return items;
                     for (uint i = 1; i <= num_mails; i++)
                     {
                         MailUtil.pull_save_mail(loginInfo, i);
@@ -60,7 +61,9 @@ namespace MailBox.ViewModels
                     if (!m.EndsWith(".tmp")) continue;
                     string ab_path = Path.Combine(user_dir, m);
                     if (File.Exists(ab_path))
-                        items.Add(new MailItem(ab_path, 0));
+                        //items.Add(new MailItem(ab_path, 0));
+                        items.Add(new MailItem(ab_path));
+
                 }
             }
             return items;
