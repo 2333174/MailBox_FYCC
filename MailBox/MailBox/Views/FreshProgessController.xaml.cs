@@ -1,6 +1,4 @@
-﻿using MailBox.Models;
-using MailBox.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,15 +16,13 @@ using System.Windows.Shapes;
 namespace MailBox.Views
 {
     /// <summary>
-    /// ReceiveMailController.xaml 的交互逻辑
+    /// FreshProgessController.xaml 的交互逻辑
     /// </summary>
-    public partial class ReceiveMailController : UserControl
+    public partial class FreshProgessController : UserControl
     {
-        public ReceiveMailController(AccountInfo account, bool flush)
+        public FreshProgessController()
         {
             InitializeComponent();
-            DataContext = new ReceiveMailViewModel(account, flush);
         }
-        public ReceiveMailController() { }
     }
 }

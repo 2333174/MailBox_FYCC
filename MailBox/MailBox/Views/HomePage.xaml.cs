@@ -1,5 +1,6 @@
 ﻿using MailBox.Models;
 using MailBox.ViewModels;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -51,6 +52,11 @@ namespace MailBox.Views
             MenuToggleButton.IsChecked = false;
             var vm = this.DataContext as HomeViewModel;
             vm.ReceiveMailCommand.Execute(null);
+        }
+
+        private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            Console.WriteLine("SAMPLE 2: Closing dialog with parameter: " + (eventArgs.Parameter ?? ""));
         }
     }
 }

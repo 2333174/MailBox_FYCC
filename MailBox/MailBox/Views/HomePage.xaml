@@ -70,57 +70,74 @@
                 <materialDesign:ColorZone
                   Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0">
                     <DockPanel>
-                    <Button
+                        <Button
                         Visibility="{Binding Visibility}"
                         DockPanel.Dock="Right"
                       Style="{StaticResource MaterialDesignFloatingActionLightButton}"
                       Margin="0 0 0 0"
-                      Command="{Binding FreshComand}"
+                      Command="{Binding FreshCommand}"
+                            ToolTip="刷新"
                       materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsFresh}"
                       materialDesign:ButtonProgressAssist.Value="{Binding FreshProgress}" Width="40" Height="40">
-                        <!-- simple example of toggling/animating pack icon with a data trigger-->
-                        <materialDesign:PackIcon
+                            <!-- simple example of toggling/animating pack icon with a data trigger-->
+                            <materialDesign:PackIcon
                                         Height="20"
                                         Width="20" Foreground="#DDFFFFFF">
-                            <materialDesign:PackIcon.Style>
-                                <Style
+                                <materialDesign:PackIcon.Style>
+                                    <Style
                                                     TargetType="materialDesign:PackIcon"
                                                     BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                    <Setter
+                                        <Setter
                                                         Property="Kind"
                                                         Value="Refresh" />
-                                    <Style.Triggers>
-                                        <DataTrigger
+                                        <Style.Triggers>
+                                            <DataTrigger
                                                         Binding="{Binding IsSaveComplete}"
                                                         Value="True">
-                                            <Setter
+                                                <Setter
                                                         Property="Kind"
                                                         Value="Check" />
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation
+                                                <DataTrigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation
                                                         Storyboard.TargetProperty="Opacity"
                                                         From="0"
                                                         To="1"
                                                         Duration="0:0:0.8" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </materialDesign:PackIcon.Style>
-                        </materialDesign:PackIcon>
-                    </Button>
-                    <StackPanel
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </DataTrigger.EnterActions>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </materialDesign:PackIcon.Style>
+                            </materialDesign:PackIcon>
+                            
+                        </Button>
+                        <!--materialDesign:DialogHost.DialogClosingAttached=""-->
+                        <!--x:Static materialDesign:DialogHost.OpenDialogCommand-->
+                        <!--<Button Command="{Binding io}" 
+                                materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
+                                Width="128" Content="PASS word">
+                            <Button.CommandParameter>
+                                <StackPanel Margin="16">
+                                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="Sample2Cancel"
+                                            HorizontalAlignment="Center">CANCEL</Button>
+                                </StackPanel>
+                            </Button.CommandParameter>
+                        </Button>-->
+                        <StackPanel
                     Orientation="Horizontal">
-                        <ToggleButton
+                            <ToggleButton
                         x:Name="MenuToggleButton"
                         IsChecked="False"
                         Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding Title}"></TextBlock>
-                        <materialDesign:ColorZone
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding Title}"></TextBlock>
+                            <materialDesign:ColorZone
                             Visibility="{Binding Visibility}"
                             Mode="Standard"
                             Padding="8 4 8 4"
@@ -128,22 +145,22 @@
                             Panel.ZIndex="1"
                             Margin="16 0 0 0"
                             materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
                                     Width="Auto" />
-                                    <ColumnDefinition
+                                        <ColumnDefinition
                                     Width="*" />
-                                    <ColumnDefinition
+                                        <ColumnDefinition
                                     Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button                                
+                                    </Grid.ColumnDefinitions>
+                                    <Button                                
                                 Style="{DynamicResource MaterialDesignToolButton}">
-                                    <materialDesign:PackIcon
+                                        <materialDesign:PackIcon
                                   Kind="Magnify"
                                   Opacity=".56" />
-                                </Button>
-                                <TextBox
+                                    </Button>
+                                    <TextBox
                                 Grid.Column="1"
                                 Margin="8 0 0 0"
                                 materialDesign:HintAssist.Hint="搜索...."
@@ -151,24 +168,24 @@
                                 BorderThickness="0"
                                 MinWidth="200"
                                 VerticalAlignment="Center" />
-                                <Button
+                                    <Button
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Grid.Column="2">
-                                    <materialDesign:PackIcon
+                                        <materialDesign:PackIcon
                                   Kind="Microphone"
                                   Opacity=".56"
                                   Margin="8 0 0 0" />
-                                </Button>
-                            </Grid>
-                        </materialDesign:ColorZone>
-                        <Button
+                                    </Button>
+                                </Grid>
+                            </materialDesign:ColorZone>
+                            <Button
                         Visibility="{Binding Visibility}"
                         Style="{DynamicResource MaterialDesignToolForegroundButton}"
                         Margin="8 0 0 0"
                         Panel.ZIndex="0">
-                            <materialDesign:PackIcon Kind="Send" />
-                        </Button>
-                    </StackPanel>
+                                <materialDesign:PackIcon Kind="Send" />
+                            </Button>
+                        </StackPanel>
                     </DockPanel>
                 </materialDesign:ColorZone >
                 <!--Mail inbox View here-->

@@ -12,19 +12,25 @@ namespace MailBox.ViewModels
 {
     class ReceiveMailViewModel:NotificationObject
     {
-        public ReceiveMailViewModel(AccountInfo account)
+        public ReceiveMailViewModel(AccountInfo account, bool flush)
         {
-            MailItems = GetMailItems(account);
+            MailItems = GetMailItems(account, flush);
         }
-        private ObservableCollection<MailItem> GetMailItems(AccountInfo account)
+        // param flush: flush user mail directory
+        private ObservableCollection<MailItem> GetMailItems(AccountInfo account, bool flush)
         {
             ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
 
             // TODO: Get info mails from account info 
             string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
             string user_dir = Path.Combine(root_dir, account.Account);
-            if (!Directory.Exists(user_dir))
+
+            flush = false; // Temporary pass-------------------
+            if (!Directory.Exists(user_dir) || flush)
             {
+                if (Directory.Exists(user_dir))
+                    Directory.Delete(user_dir, true);
+
                 // start POP3 and receive mail
                 MailUtil.LoginInfo loginInfo = new MailUtil.LoginInfo
                 {
@@ -52,6 +58,7 @@ namespace MailBox.ViewModels
             if (mailFiles.Length == 0)
             {
                 // TODO handle
+                Console.WriteLine("Mail box is empty");
             }
             else
             {               

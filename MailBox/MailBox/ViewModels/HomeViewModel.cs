@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using MailBox.Commands;
 using System.Collections.ObjectModel;
 using MailBox.Models;
+using MaterialDesignThemes.Wpf;
 
 namespace MailBox.ViewModels
 {
@@ -95,16 +96,33 @@ namespace MailBox.ViewModels
 
 		public DelegateCommand ReceiveMailCommand { get; set; }
 
+		// switch mail user function
 		private void ReceiveMail(object parameter)
 		{
 			Title = "收件箱";
 			Visibility = System.Windows.Visibility.Visible;
 			Content = new Frame
 			{
-				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], false) // don't flush
 			};
 		}
 
+		public DelegateCommand FreshCommand { get; set; }
+		private void FreshMail(object parameter)
+		{
+			Visibility = System.Windows.Visibility.Visible;
+			Content = new Frame
+			{
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
+			};
+			ShowDialog("刷新成功");
+		}
+		private async void ShowDialog(string message)
+		{
+			DialogClosingEventHandler dialogClosingEventHandler = null;
+			MessageController messageController = new MessageController(message);
+			await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
+		}
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{
 			AccountInfos = accountInfos;
@@ -113,12 +131,14 @@ namespace MailBox.ViewModels
 			visibility = System.Windows.Visibility.Visible;
 			Content = new Frame
 			{
-				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
 			};
 			NewMailCommand = new DelegateCommand();
 			NewMailCommand.ExecuteAction = new Action<object>(NewMail);
 			ReceiveMailCommand = new DelegateCommand();
 			ReceiveMailCommand.ExecuteAction = new Action<object>(ReceiveMail);
+			FreshCommand = new DelegateCommand();
+			FreshCommand.ExecuteAction = new Action<object>(FreshMail);
 		}
 	}
 }
