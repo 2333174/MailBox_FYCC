@@ -68,6 +68,8 @@ mod utils {
         use libc::c_char;
         use std::ffi::CStr;
         use crate::utils::basic_utils::*;
+        use std::net;
+        use std::io;
         
         static CRLF: &str = "\r\n";
         
@@ -154,6 +156,13 @@ mod utils {
 
             mail_str_processed
         }
+
+        pub fn del_a_mail(socket: &mut TcpStream, index: usize) -> Result<i32, io::Error> {
+            write_request(socket, &format!("DELE {}", index));
+            get_response(socket);
+
+            Ok((200))
+        }
         
     }
 }
@@ -197,4 +206,22 @@ pub extern "C" fn pull_save_mail(login_info: LoginInfo, index: usize) -> i32 {
     write!(output, "{}", mail_str).unwrap();
     
     200
+}
+
+#[no_mangle]
+pub extern "C" fn del_mail(login_info: LoginInfo, index: usize) -> i32 {
+    let account_str = unwrap_str(login_info.account);
+
+    let (result, _,  mut stream) = authenticate(login_info);
+    
+    if !result {
+        return 400;
+    }
+
+    let result = match del_a_mail(&mut stream, index) {
+        Ok(_) => 200,
+        Err(_) => 402,
+    };
+
+    result
 }

@@ -169,7 +169,8 @@ namespace Rust_DLL_Test_Stage
         }
         #endregion
 
-        static void uTask()
+        #region POP3 delete mail
+        static void DeleteMail_Example()
         {
             MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
             {
@@ -178,146 +179,12 @@ namespace Rust_DLL_Test_Stage
                 site = "pop.163.com:110"
             };
 
-            //try
-            //{
+            var result = MailUtil.del_mail(info_pop3, 2);
+            Console.WriteLine(result);
 
-                int num = MailUtil.get_num_mails(info_pop3);
-                //info_pop3.account = "11";
-                Task[] tasks = new Task[num];
-            for (uint i = 1; i <= num; i++)
-            {
-                uint param = i;
-                var tokenSource = new CancellationTokenSource();
-                var token = tokenSource.Token;
-                //tasks[i - 1] = Task.Factory.StartNew(() =>
-                //{
-                //    try
-                //    {
-                //        int r = MailUtil.pull_save_mail(info_pop3, param);
-                //        if (r != -1)
-                //            Console.WriteLine("Receive mail-{0} success", param);
-                //        else
-                //            Console.WriteLine("Receive mail-{0} fail", param);
-
-                //        //Thread.Sleep(3000);
-                //    }
-                //    catch (TaskCanceledException ee)
-                //    {
-                //        Console.WriteLine("mail {0} has been canceled!, error: {1}", param, ee.Message);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Console.WriteLine("mail {0} has been canceled!, error: {1}", param, ex.Message);
-                //    }
-                //},token);
-                //tokenSource.CancelAfter(2000);
-                tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
-                {
-                    int r = MailUtil.pull_save_mail(info_pop3, param);
-                    if (r != -1)
-                        Console.WriteLine("Receive mail-{0} success", param);
-                    else
-                        Console.WriteLine("Receive mail-{0} fail", param);
-                }), TimeSpan.FromSeconds(3.0));
-
-
-            }
-            Task.WaitAll(tasks); // wait for 10 seconds
-            Console.WriteLine("tasks all completed");
             Console.ReadKey();
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("fail, error:" + e.Message);
-            //}
         }
-
-        static async Task WaitAsync(Task task, TimeSpan timeout)
-        {
-            using (var timeoutCancellationTokenSource = new CancellationTokenSource())
-            {
-                var delayTask = Task.Delay(timeout, timeoutCancellationTokenSource.Token);
-                if (await Task.WhenAny(task, delayTask) == task)
-                {
-                    timeoutCancellationTokenSource.Cancel();
-                    await task;
-                }
-                else
-                    //throw new TimeoutException("The operation has timed out.");
-                    Console.WriteLine("timeout happened.");
-            }
-        }
-
-        //public static async Task<TResult> WaitAsync<TResult>(this Task<TResult> task, TimeSpan timeout)
-        //{
-        //    using (var timeoutCancellationTokenSource = new CancellationTokenSource())
-        //    {
-        //        var delayTask = Task.Delay(timeout, timeoutCancellationTokenSource.Token);
-        //        if (await Task.WhenAny(task, delayTask) == task)
-        //        {
-        //            timeoutCancellationTokenSource.Cancel();
-        //            return await task;
-        //        }
-        //        throw new TimeoutException("The operation has timed out.");
-        //    }
-        //}
-        static async Task<string> WaitAsynchronouslyAsync()
-        {
-            await Task.Delay(3000);
-            Console.WriteLine("123123");
-            return "Finished";
-        }
-
-        // The following method runs synchronously, despite the use of async.
-        // You cannot move or resize the Form1 window while Thread.Sleep
-        // is running because the UI thread is blocked.
-        static async Task<string> WaitSynchronously()
-        {
-            // Add a using directive for System.Threading.
-            Thread.Sleep(3000);
-            Console.WriteLine("hahaha");
-            return "Finished";
-        }
-        static async void runASyncTest()
-        {
-            // Call the method that runs asynchronously.
-            //string result = await WaitAsynchronouslyAsync();
-            Console.WriteLine("next step");
-
-            //Call the method that runs synchronously.
-            string result = await WaitSynchronously();
-
-            Console.WriteLine("\n\n\n\n Result = {0}", result);
-        }
-
-        private static async Task<string> AsyncMethod()
-        {
-            var ResultFromTimeConsumingMethod = TimeConsumingMethod();
-            Console.WriteLine("huaqwel, current id is " + Thread.CurrentThread.ManagedThreadId);
-            string Result = await ResultFromTimeConsumingMethod + " + AsyncMethod. My Thread ID is :" + Thread.CurrentThread.ManagedThreadId;
-            Console.WriteLine(Result + "  current ID: " + Thread.CurrentThread.ManagedThreadId);
-            //返回值是Task的函数可以不用return
-
-            return Result;
-        }
-
-        //这个函数就是一个耗时函数，可能是IO操作，也可能是cpu密集型工作。
-        private static Task<string> TimeConsumingMethod()
-        {
-            var task = Task.Run(() => {
-                Console.WriteLine("Helo I am TimeConsumingMethod. My Thread ID is :" + Thread.CurrentThread.ManagedThreadId);
-                Thread.Sleep(5000);
-                Console.WriteLine("Helo I am TimeConsumingMethod after Sleep(5000). My Thread ID is :" + Thread.CurrentThread.ManagedThreadId);
-                return "Hello I am TimeConsumingMethod";
-            });
-
-            return task;
-        }
-        //static Task getMailToFile(int index)
-        //{
-
-        //}
+        #endregion
         public static void Main(string[] args)
         {
             //Validate_Example();
@@ -327,24 +194,20 @@ namespace Rust_DLL_Test_Stage
             //GetNumMails_Example();
 
             //ReceiveMail_Example();
-            try
-            {
-                //Console.WriteLine("iiqweqwe, my thread ID is {0}", Thread.CurrentThread.ManagedThreadId);
-                //var re  = AsyncMethod();
-                //Console.WriteLine("1324564766346, my thread ID is {0}", Thread.CurrentThread.ManagedThreadId);
-                //Console.WriteLine("Async result = {0}", re.Result);
-                //runASyncTest();
-                uTask();
-                //Receive_All_Example();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("fail, error: " + e.Message);
-            }
+            //try
+            //{
+            //    Receive_All_Example();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("fail");
+            //}
 
             //SendMail_Example_Extern();
-            Console.ReadKey();
+
+            GetNumMails_Example();
+            //DeleteMail_Example();
         }
-       
+
     }
 }
