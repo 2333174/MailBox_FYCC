@@ -168,6 +168,23 @@ namespace Rust_DLL_Test_Stage
             Console.ReadKey();
         }
         #endregion
+
+        #region POP3 delete mail
+        static void DeleteMail_Example()
+        {
+            MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+            {
+                account = "alertdoll@163.com",
+                passwd = "ybgissocute2020",
+                site = "pop.163.com:110"
+            };
+
+            var result = MailUtil.del_mail(info_pop3, 2);
+            Console.WriteLine(result);
+
+            Console.ReadKey();
+        }
+        #endregion
         public static void Main(string[] args)
         {
             //Validate_Example();
@@ -177,17 +194,19 @@ namespace Rust_DLL_Test_Stage
             //GetNumMails_Example();
 
             //ReceiveMail_Example();
-            try
-            {
-
-                Receive_All_Example();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("fail");
-            }
+            //try
+            //{
+            //    Receive_All_Example();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("fail");
+            //}
 
             //SendMail_Example_Extern();
+
+            GetNumMails_Example();
+            //DeleteMail_Example();
         }
 
     }
