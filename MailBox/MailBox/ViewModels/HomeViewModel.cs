@@ -117,11 +117,13 @@ namespace MailBox.ViewModels
 			};
 			ShowDialog("刷新成功");
 		}
-		private async void ShowDialog(string message)
+		private void ShowDialog(string message)
 		{
-			DialogClosingEventHandler dialogClosingEventHandler = null;
+			DialogOpenedEventHandler openedEventHandler = new DialogOpenedEventHandler(FreshMail);
+			DialogClosingEventHandler closingEventHandler = null;
 			MessageController messageController = new MessageController(message);
-			await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
+			//await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
+			DialogHostEx.ShowDialog(this, new FreshProgessController(), openedEventHandler, closingEventHandler);
 		}
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{

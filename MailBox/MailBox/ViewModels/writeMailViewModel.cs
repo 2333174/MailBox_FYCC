@@ -181,6 +181,7 @@ namespace MailBox.ViewModels
 			DialogClosingEventHandler dialogClosingEventHandler = null;
 			MessageController messageController = new MessageController(message);
 			await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
+			//await DialogHost.Show()
 		}
 	}
 }
