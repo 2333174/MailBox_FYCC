@@ -9,13 +9,14 @@ using MailBox.Commands;
 using System.Collections.ObjectModel;
 using MailBox.Models;
 using MaterialDesignThemes.Wpf;
+using System.Windows;
 
 namespace MailBox.ViewModels
 {
     class HomeViewModel:NotificationObject
     {
 		private string title;
-
+		public Window window;
 		public string Title
 		{
 			get { return title; }
@@ -110,20 +111,19 @@ namespace MailBox.ViewModels
 		public DelegateCommand FreshCommand { get; set; }
 		private void FreshMail(object parameter)
 		{
-			Visibility = System.Windows.Visibility.Visible;
-			Content = new Frame
-			{
-				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
-			};
-			ShowDialog("刷新成功");
+			//Visibility = System.Windows.Visibility.Visible;
+			//Content = new Frame
+			//{
+			//	Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
+			//};
+			ShowFreshDialog(parameter);
 		}
-		private void ShowDialog(string message)
+		private async void ShowFreshDialog(object parameter)
 		{
-			DialogOpenedEventHandler openedEventHandler = new DialogOpenedEventHandler(FreshMail);
+			DialogOpenedEventHandler openedEventHandler = null;
 			DialogClosingEventHandler closingEventHandler = null;
-			MessageController messageController = new MessageController(message);
-			//await DialogHost.Show(messageController, "MessageDialog", dialogClosingEventHandler);
-			DialogHostEx.ShowDialog(this, new FreshProgessController(), openedEventHandler, closingEventHandler);
+			Console.WriteLine("Parameter:", parameter);
+			await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler);
 		}
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{

@@ -10,67 +10,78 @@
       Title="HomePage">
 
     <Grid>
-        <materialDesign:DrawerHost
+        <materialDesign:DialogHost Identifier="freshDialogID" Name="freshDialog">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            CommandParameter="Sample2Cancel"
+                                            HorizontalAlignment="Center">CANCEL</Button>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            
+            <materialDesign:DrawerHost
           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
           BorderThickness="2"
           BorderBrush="{DynamicResource MaterialDesignDivider}">
-            <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="300">
-                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
+                <materialDesign:DrawerHost.LeftDrawerContent>
+                    <DockPanel MinWidth="300">
+                        <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                         DockPanel.Dock="Top"
                                         HorizontalAlignment="Right" Margin="16"
                                         IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                    <Grid Width="300" Height="auto">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50px"></RowDefinition>
-                            <RowDefinition Height="50px"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50px"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Grid.ColumnSpan="2"  PreviewMouseLeftButtonDown="newEmailClick" Cursor="Hand" >
+                        <Grid Width="300" Height="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50px"></RowDefinition>
+                                <RowDefinition Height="50px"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50px"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="Add" Grid.Row="0" Grid.Column="0" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
-                            <TextBlock
+                            <Grid Grid.Row="0" Grid.ColumnSpan="2"  PreviewMouseLeftButtonDown="newEmailClick" Cursor="Hand" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50px"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="Add" Grid.Row="0" Grid.Column="0" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
+                                <TextBlock
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Margin="0,12,0,12"
                                 Text="新邮件"
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7" >
-                            </TextBlock>
-                        </Grid>
+                                </TextBlock>
+                            </Grid>
 
-                        <materialDesign:PackIcon Grid.Row="1" Kind="AccountSupervisor" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
-                        <TextBlock
+                            <materialDesign:PackIcon Grid.Row="1" Kind="AccountSupervisor" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
+                            <TextBlock
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,12,0,12"
                                 HorizontalAlignment="Left"
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7">
                                 账户
-                        </TextBlock>
-                        <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
+                            </TextBlock>
+                            <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
                                      PreviewMouseLeftButtonUp="ChangeAccount"
                                      ItemsSource="{Binding AccountInfos}" SelectedIndex="{Binding AccountSelectedIndex}">
-                            <ListBox.ItemTemplate >
-                                <DataTemplate DataType="domain:AccountInfo">
-                                    <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
-                </DockPanel>
-            </materialDesign:DrawerHost.LeftDrawerContent>
-            <DockPanel>
-                <materialDesign:ColorZone
+                                <ListBox.ItemTemplate >
+                                    <DataTemplate DataType="domain:AccountInfo">
+                                        <TextBlock Text="{Binding Account}" Margin="0 0 0 0" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </DockPanel>
+                </materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel>
+                    <materialDesign:ColorZone
                   Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0">
-                    <DockPanel>
-                        <Button
+                        <DockPanel>
+                            <Button
                         Visibility="{Binding Visibility}"
                         DockPanel.Dock="Right"
                       Style="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -79,45 +90,45 @@
                             ToolTip="刷新"
                       materialDesign:ButtonProgressAssist.IsIndicatorVisible="{Binding IsFresh}"
                       materialDesign:ButtonProgressAssist.Value="{Binding FreshProgress}" Width="40" Height="40">
-                            <!-- simple example of toggling/animating pack icon with a data trigger-->
-                            <materialDesign:PackIcon
+                                <!-- simple example of toggling/animating pack icon with a data trigger-->
+                                <materialDesign:PackIcon
                                         Height="20"
                                         Width="20" Foreground="#DDFFFFFF">
-                                <materialDesign:PackIcon.Style>
-                                    <Style
+                                    <materialDesign:PackIcon.Style>
+                                        <Style
                                                     TargetType="materialDesign:PackIcon"
                                                     BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                        <Setter
+                                            <Setter
                                                         Property="Kind"
                                                         Value="Refresh" />
-                                        <Style.Triggers>
-                                            <DataTrigger
+                                            <Style.Triggers>
+                                                <DataTrigger
                                                         Binding="{Binding IsSaveComplete}"
                                                         Value="True">
-                                                <Setter
+                                                    <Setter
                                                         Property="Kind"
                                                         Value="Check" />
-                                                <DataTrigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard>
-                                                            <DoubleAnimation
+                                                    <DataTrigger.EnterActions>
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation
                                                         Storyboard.TargetProperty="Opacity"
                                                         From="0"
                                                         To="1"
                                                         Duration="0:0:0.8" />
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </DataTrigger.EnterActions>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </materialDesign:PackIcon.Style>
-                            </materialDesign:PackIcon>
-                            
-                        </Button>
-                        <!--materialDesign:DialogHost.DialogClosingAttached=""-->
-                        <!--x:Static materialDesign:DialogHost.OpenDialogCommand-->
-                        <!--<Button Command="{Binding io}" 
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </DataTrigger.EnterActions>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </materialDesign:PackIcon.Style>
+                                </materialDesign:PackIcon>
+
+                            </Button>
+                            <!--materialDesign:DialogHost.DialogClosingAttached=""-->
+                            <!--x:Static materialDesign:DialogHost.OpenDialogCommand-->
+                            <!--<Button Command="{Binding io}" 
                                 materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
                                 Width="128" Content="PASS word">
                             <Button.CommandParameter>
@@ -130,14 +141,14 @@
                                 </StackPanel>
                             </Button.CommandParameter>
                         </Button>-->
-                        <StackPanel
+                            <StackPanel
                     Orientation="Horizontal">
-                            <ToggleButton
+                                <ToggleButton
                         x:Name="MenuToggleButton"
                         IsChecked="False"
                         Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding Title}"></TextBlock>
-                            <materialDesign:ColorZone
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="10,0,0,0" Text="{Binding Title}"></TextBlock>
+                                <materialDesign:ColorZone
                             Visibility="{Binding Visibility}"
                             Mode="Standard"
                             Padding="8 4 8 4"
@@ -145,22 +156,22 @@
                             Panel.ZIndex="1"
                             Margin="16 0 0 0"
                             materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
                                     Width="Auto" />
-                                        <ColumnDefinition
+                                            <ColumnDefinition
                                     Width="*" />
-                                        <ColumnDefinition
+                                            <ColumnDefinition
                                     Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button                                
+                                        </Grid.ColumnDefinitions>
+                                        <Button                                
                                 Style="{DynamicResource MaterialDesignToolButton}">
-                                        <materialDesign:PackIcon
+                                            <materialDesign:PackIcon
                                   Kind="Magnify"
                                   Opacity=".56" />
-                                    </Button>
-                                    <TextBox
+                                        </Button>
+                                        <TextBox
                                 Grid.Column="1"
                                 Margin="8 0 0 0"
                                 materialDesign:HintAssist.Hint="搜索...."
@@ -168,31 +179,32 @@
                                 BorderThickness="0"
                                 MinWidth="200"
                                 VerticalAlignment="Center" />
-                                    <Button
+                                        <Button
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Grid.Column="2">
-                                        <materialDesign:PackIcon
+                                            <materialDesign:PackIcon
                                   Kind="Microphone"
                                   Opacity=".56"
                                   Margin="8 0 0 0" />
-                                    </Button>
-                                </Grid>
-                            </materialDesign:ColorZone>
-                            <Button
+                                        </Button>
+                                    </Grid>
+                                </materialDesign:ColorZone>
+                                <Button
                         Visibility="{Binding Visibility}"
                         Style="{DynamicResource MaterialDesignToolForegroundButton}"
                         Margin="8 0 0 0"
                         Panel.ZIndex="0">
-                                <materialDesign:PackIcon Kind="Send" />
-                            </Button>
-                        </StackPanel>
-                    </DockPanel>
-                </materialDesign:ColorZone >
-                <!--Mail inbox View here-->
-                <Grid Panel.ZIndex="-1">
-                    <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
-                </Grid>
-            </DockPanel>
-        </materialDesign:DrawerHost>
+                                    <materialDesign:PackIcon Kind="Send" />
+                                </Button>
+                            </StackPanel>
+                        </DockPanel>
+                    </materialDesign:ColorZone >
+                    <!--Mail inbox View here-->
+                    <Grid Panel.ZIndex="-1">
+                        <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
+                    </Grid>
+                </DockPanel>
+            </materialDesign:DrawerHost>
+        </materialDesign:DialogHost>
     </Grid>
 </Page>

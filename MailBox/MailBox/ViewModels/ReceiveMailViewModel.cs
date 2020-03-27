@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MailBox.ViewModels
@@ -38,20 +39,42 @@ namespace MailBox.ViewModels
                     passwd = account.Password,
                     site = account.PopHost
                 };
-                try
+                try // TODO move to outside the function
                 {
-                    Int32 num_mails = MailUtil.get_num_mails(loginInfo);
-                    if (num_mails == -1) return items;
-                    for (uint i = 1; i <= num_mails; i++)
+                    int num = MailUtil.get_num_mails(loginInfo);
+                    if (num == -1) return items;
+                    //info_pop3.account = "11";
+                    Task[] tasks = new Task[num];
+                    for (uint i = 1; i <= num; i++)
                     {
-                        MailUtil.pull_save_mail(loginInfo, i);
-                        Console.WriteLine("rec one mail");
+                        uint param = i;
+                        var tokenSource = new CancellationTokenSource();
+                        var token = tokenSource.Token;
+
+                        tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
+                        {
+                            int r = MailUtil.pull_save_mail(loginInfo, param);
+                            if (r != -1)
+                                Console.WriteLine("Receive mail-{0} success", param);
+                            else
+                                Console.WriteLine("Receive mail-{0} fail", param);
+                        }), TimeSpan.FromSeconds(4.0)); // run time up to 3 second
+
+                        //tasks[i - 1] = Task.Factory.StartNew(() =>
+                        //{
+                        //    int r = MailUtil.pull_save_mail(loginInfo, param);
+                        //    if (r != -1)
+                        //        Console.WriteLine("Receive mail-{0} success", param);
+                        //    else
+                        //        Console.WriteLine("Receive mail-{0} fail", param);
+                        //});
+
                     }
+                    Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 4 seconds
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Console.Write("Get Mail list failed, error:" + e.Message);
-                    return items;
+                    Console.WriteLine("Error : " + ex.Message);
                 }
             }
             string[] mailFiles = Directory.GetFiles(user_dir);
@@ -74,6 +97,21 @@ namespace MailBox.ViewModels
                 }
             }
             return items;
+        }
+        async Task WaitAsync(Task task, TimeSpan timeout)
+        {
+            using (var timeoutCancellationTokenSource = new CancellationTokenSource())
+            {
+                var delayTask = Task.Delay(timeout, timeoutCancellationTokenSource.Token);
+                if (await Task.WhenAny(task, delayTask) == task)
+                {
+                    timeoutCancellationTokenSource.Cancel();
+                    await task;
+                }
+                else
+                    throw new TimeoutException("The operation has timed out.");
+                //Console.WriteLine("timeout happened.");
+            }
         }
         public ReceiveMailViewModel() { }
         private ObservableCollection<MailItem> mailItems;

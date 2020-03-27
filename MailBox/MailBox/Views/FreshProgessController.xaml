@@ -7,9 +7,11 @@
              Background="{DynamicResource MaterialDesignPaper}"
              xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Margin="16">
-        <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0"/>
-        <TextBlock Text="正在刷新" Style="{StaticResource MaterialDesignButtonTextBlock}" HorizontalAlignment="Center" />
-    </StackPanel>
+             d:DesignHeight="200" d:DesignWidth="200">
+    <Grid>
+        <StackPanel Margin="16">
+            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0"/>
+            <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
 </UserControl>
