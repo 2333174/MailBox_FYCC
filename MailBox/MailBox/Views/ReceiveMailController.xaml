@@ -115,7 +115,7 @@
             <!--<Grid.For>
                 <ImageBrush  ImageSource="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv}}"/>
             </Grid.For>-->
-            <Image Source="/Resources/bg_mail.jpg" Stretch="Fill" 
+            <Image Source="/Resources/mail_bg.jpg" Stretch="Fill" 
                Visibility="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv},
                 ConverterParameter={StaticResource IntZero}}" />
             <UserControl ContentTemplate="{StaticResource ResourceKey=mailDetailViewTemplate}" 

@@ -259,9 +259,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\bg_mail.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="MSHTML">
       <Guid>{3050F1C5-98B5-11CF-BB82-00AA00BDCE0B}</Guid>
       <VersionMajor>4</VersionMajor>
@@ -304,6 +301,7 @@
     <Resource Include="Resources\Logos\z.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\mail_bg.jpg" />
     <Content Include="Resources\test_eml\io.html" />
     <Content Include="Resources\test_eml\Working.html" />
   </ItemGroup>

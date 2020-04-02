@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -42,6 +43,12 @@ namespace MailBox.Services
 
                 htmlText = regex.Replace(htmlText, replacement);
             }
+            // Mail content is plain text
+            if (htmlText.Length != 0 && htmlText[0] != '<')
+                htmlText = "<pre>" + htmlText + "</pre>";
+
+            File.WriteAllText(@"Plain.html", htmlText);
+
             return htmlText;
         }
 

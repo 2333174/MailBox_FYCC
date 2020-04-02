@@ -73,14 +73,13 @@ namespace MailBox.Models
                 FirstSenderLetter = f;
             }
             Date = message.Date;
-            HtmlBody = message.BodyHtmlText ?? message.BodyPlainText;
+            HtmlBody = message.BodyHtmlText == null || message.BodyHtmlText == "" ? message.BodyPlainText : message.BodyHtmlText;
             AttachmentCollection attachments = message.Attachments;
             Attachments = new List<Attachment>();
             foreach (Attachment att in attachments)
                 Attachments.Add(att);
 
             FilePath = file_path;
-
         }
 
         public static Stream GenerateStreamFromString(string s)
