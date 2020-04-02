@@ -11,7 +11,8 @@
     <Grid>
         <StackPanel Margin="16">
             <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0"/>
-            <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
         </StackPanel>
     </Grid>
 </UserControl>

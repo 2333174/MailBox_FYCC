@@ -10,6 +10,9 @@ using System.Collections.ObjectModel;
 using MailBox.Models;
 using MaterialDesignThemes.Wpf;
 using System.Windows;
+using System.IO;
+using MailBox.Services;
+using System.Threading;
 
 namespace MailBox.ViewModels
 {
@@ -104,26 +107,96 @@ namespace MailBox.ViewModels
 			Visibility = System.Windows.Visibility.Visible;
 			Content = new Frame
 			{
-				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], false) // don't flush
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex]) // don't flush
 			};
 		}
 
-		public DelegateCommand FreshCommand { get; set; }
-		private void FreshMail(object parameter)
+		private void ClearUserDir()
 		{
-			//Visibility = System.Windows.Visibility.Visible;
-			//Content = new Frame
-			//{
-			//	Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
-			//};
+			string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
+			string user_dir = Path.Combine(root_dir, AccountInfos[AccountSelectedIndex].Account);
+			if (Directory.Exists(user_dir))
+				Directory.Delete(user_dir, true);
+		}
+		private void Save_Mail()
+		{
+			AccountInfo a = AccountInfos[AccountSelectedIndex];
+			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+			{
+				account = a.Account,
+				passwd = a.Password,
+				site = a.PopHost
+			};
+			try
+			{
+
+			int num = MailUtil.get_num_mails(info_pop3);
+			//info_pop3.account = "11";
+			Task[] tasks = new Task[num];
+			for (uint i = 1; i <= num; i++)
+			{
+				uint param = i;
+				var tokenSource = new CancellationTokenSource();
+				var token = tokenSource.Token;
+				tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
+				{
+					int r = MailUtil.pull_save_mail(info_pop3, param);
+					if (r != -1)
+						Console.WriteLine("Receive mail-{0} success", param);
+					else
+						Console.WriteLine("Receive mail-{0} fail", param);
+				}), TimeSpan.FromSeconds(3.0));
+
+
+			}
+			Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 10 seconds
+			Console.WriteLine("tasks all completed");
+			}catch(TimeoutException te)
+			{
+				Console.WriteLine("Timeout happened, msg:" + te.Message);
+			}catch(Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+		}
+		async Task WaitAsync(Task task, TimeSpan timeout)
+		{
+			using (var timeoutCancellationTokenSource = new CancellationTokenSource())
+			{
+				var delayTask = Task.Delay(timeout, timeoutCancellationTokenSource.Token);
+				if (await Task.WhenAny(task, delayTask) == task)
+				{
+					timeoutCancellationTokenSource.Cancel();
+					await task;
+				}
+				else
+					throw new TimeoutException("The operation has timed out.");
+				//Console.WriteLine("timeout happened.");
+			}
+		}
+		public DelegateCommand FreshCommand { get; set; }
+		private async void FreshMail(object parameter)
+		{
+			ClearUserDir();
 			ShowFreshDialog(parameter);
+			await Task.Run(() =>
+			{
+				Save_Mail();
+			});
+			Visibility = System.Windows.Visibility.Visible;
+			Content = new Frame
+			{
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
+			};
+			DialogHost.CloseDialogCommand.Execute(null, null);
 		}
 		private async void ShowFreshDialog(object parameter)
 		{
 			DialogOpenedEventHandler openedEventHandler = null;
 			DialogClosingEventHandler closingEventHandler = null;
 			Console.WriteLine("Parameter:", parameter);
-			await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler);
+			object obj =  await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler);
+			Console.WriteLine("OBJ information " + obj);
 		}
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{
@@ -131,9 +204,14 @@ namespace MailBox.ViewModels
 			AccountSelectedIndex = selectIndex;
 			title = "收件箱";
 			visibility = System.Windows.Visibility.Visible;
+			ClearUserDir();
+			Task.Run(() =>
+			{
+				Save_Mail();
+			}).Wait();
 			Content = new Frame
 			{
-				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex], true)
+				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
 			NewMailCommand = new DelegateCommand();
 			NewMailCommand.ExecuteAction = new Action<object>(NewMail);

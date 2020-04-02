@@ -13,70 +13,22 @@ namespace MailBox.ViewModels
 {
     class ReceiveMailViewModel:NotificationObject
     {
-        public ReceiveMailViewModel(AccountInfo account, bool flush)
+        public ReceiveMailViewModel(ObservableCollection<MailItem> items)
         {
-            MailItems = GetMailItems(account, flush);
+            MailItems = items;
+        }
+        public ReceiveMailViewModel(AccountInfo account)
+        {
+            MailItems = GetMailItems(account);
         }
         // param flush: flush user mail directory
-        private ObservableCollection<MailItem> GetMailItems(AccountInfo account, bool flush)
+        private ObservableCollection<MailItem> GetMailItems(AccountInfo account)
         {
             ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
 
             // TODO: Get info mails from account info 
             string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
             string user_dir = Path.Combine(root_dir, account.Account);
-
-            flush = false; // Temporary pass-------------------
-            if (!Directory.Exists(user_dir) || flush)
-            {
-                if (Directory.Exists(user_dir))
-                    Directory.Delete(user_dir, true);
-
-                // start POP3 and receive mail
-                MailUtil.LoginInfo loginInfo = new MailUtil.LoginInfo
-                {
-                    account = account.Account,
-                    passwd = account.Password,
-                    site = account.PopHost
-                };
-                try // TODO move to outside the function
-                {
-                    int num = MailUtil.get_num_mails(loginInfo);
-                    if (num == -1) return items;
-                    //info_pop3.account = "11";
-                    Task[] tasks = new Task[num];
-                    for (uint i = 1; i <= num; i++)
-                    {
-                        uint param = i;
-                        var tokenSource = new CancellationTokenSource();
-                        var token = tokenSource.Token;
-
-                        tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
-                        {
-                            int r = MailUtil.pull_save_mail(loginInfo, param);
-                            if (r != -1)
-                                Console.WriteLine("Receive mail-{0} success", param);
-                            else
-                                Console.WriteLine("Receive mail-{0} fail", param);
-                        }), TimeSpan.FromSeconds(4.0)); // run time up to 3 second
-
-                        //tasks[i - 1] = Task.Factory.StartNew(() =>
-                        //{
-                        //    int r = MailUtil.pull_save_mail(loginInfo, param);
-                        //    if (r != -1)
-                        //        Console.WriteLine("Receive mail-{0} success", param);
-                        //    else
-                        //        Console.WriteLine("Receive mail-{0} fail", param);
-                        //});
-
-                    }
-                    Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 4 seconds
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error : " + ex.Message);
-                }
-            }
             string[] mailFiles = Directory.GetFiles(user_dir);
             if (mailFiles.Length == 0)
             {

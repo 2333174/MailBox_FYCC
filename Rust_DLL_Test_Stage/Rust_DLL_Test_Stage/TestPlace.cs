@@ -185,7 +185,7 @@ namespace Rust_DLL_Test_Stage
             Console.ReadKey();
         }
         #endregion
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             //Validate_Example();
 
