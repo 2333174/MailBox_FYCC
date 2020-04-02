@@ -50,6 +50,9 @@
     <Reference Include="EAGetMail, Version=5.1.0.5, Culture=neutral, PublicKeyToken=e10a0812eb29cf94, processorArchitecture=MSIL">
       <HintPath>..\packages\EAGetMail.5.1.0.5\lib\net461\EAGetMail.dll</HintPath>
     </Reference>
+    <Reference Include="MailBee.NET, Version=12.1.1.620, Culture=neutral, PublicKeyToken=cd85b70fb26f9fc1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailBee.NET.12.1.1\lib\net45\MailBee.NET.dll</HintPath>
+    </Reference>
     <Reference Include="MimeKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.2.5.2\lib\net47\MimeKit.dll</HintPath>
     </Reference>

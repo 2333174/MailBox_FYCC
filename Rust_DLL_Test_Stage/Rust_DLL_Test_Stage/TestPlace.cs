@@ -185,7 +185,7 @@ namespace Rust_DLL_Test_Stage
             Console.ReadKey();
         }
         #endregion
-        public static void Main1(string[] args)
+        public static void Main(string[] args)
         {
             //Validate_Example();
 
@@ -206,7 +206,7 @@ namespace Rust_DLL_Test_Stage
             //SendMail_Example_Extern();
 
             GetNumMails_Example();
-            //DeleteMail_Example();
+            DeleteMail_Example();
         }
 
     }

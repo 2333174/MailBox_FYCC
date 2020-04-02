@@ -184,7 +184,9 @@ namespace Rust_DLL_Test_Stage
                 //Console.WriteLine("1324564766346, my thread ID is {0}", Thread.CurrentThread.ManagedThreadId);
                 //Console.WriteLine("Async result = {0}", re.Result);
                 //runASyncTest();
-                ObservableCollection<MailItem> items =  uTask().Result;
+                //ObservableCollection<MailItem> items =  uTask().Result;
+                ObservableCollection<MailItem> items = Get_Mail();
+
                 //Receive_All_Example();
             }
             catch (Exception e)
@@ -220,8 +222,8 @@ namespace Rust_DLL_Test_Stage
                     if (!m.EndsWith(".tmp")) continue;
                     string ab_path = Path.Combine(user_dir, m);
                     if (File.Exists(ab_path))
-                        //items.Add(new MailItem(ab_path, 0));
-                        items.Add(new MailItem(ab_path));
+                        //items.Add(new MailItem(ab_path));
+                        items.Add(new MailItem(ab_path, true));
 
                 }
             }
@@ -244,28 +246,6 @@ namespace Rust_DLL_Test_Stage
                 uint param = i;
                 var tokenSource = new CancellationTokenSource();
                 var token = tokenSource.Token;
-                //tasks[i - 1] = Task.Factory.StartNew(() =>
-                //{
-                //    try
-                //    {
-                //        int r = MailUtil.pull_save_mail(info_pop3, param);
-                //        if (r != -1)
-                //            Console.WriteLine("Receive mail-{0} success", param);
-                //        else
-                //            Console.WriteLine("Receive mail-{0} fail", param);
-
-                //        //Thread.Sleep(3000);
-                //    }
-                //    catch (TaskCanceledException ee)
-                //    {
-                //        Console.WriteLine("mail {0} has been canceled!, error: {1}", param, ee.Message);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Console.WriteLine("mail {0} has been canceled!, error: {1}", param, ex.Message);
-                //    }
-                //},token);
-                //tokenSource.CancelAfter(2000);
                 tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
                 {
                     int r = MailUtil.pull_save_mail(info_pop3, param);
@@ -279,13 +259,6 @@ namespace Rust_DLL_Test_Stage
             }
             Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 10 seconds
             Console.WriteLine("tasks all completed");
-            Console.ReadKey();
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("fail, error:" + e.Message);
-            //}
         }
 
         static async Task WaitAsync(Task task, TimeSpan timeout)

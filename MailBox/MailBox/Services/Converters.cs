@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailBee.Mime;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -60,6 +61,23 @@ namespace MailBox.Services
                 return param == 0 ? "Hidden" : "Visible";
             else
                 return param == 0 ? "Visible" : "Hidden";///Resources/bg_mail.jpg
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AttachmentsVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            int count = ((List<Attachment>)value).Count;
+            if (count > 0)
+                return "Visible";
+            else
+                return "Hidden";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

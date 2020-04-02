@@ -85,8 +85,8 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="EAGetMail, Version=5.1.0.5, Culture=neutral, PublicKeyToken=e10a0812eb29cf94, processorArchitecture=MSIL">
-      <HintPath>..\packages\EAGetMail.5.1.0.5\lib\net461\EAGetMail.dll</HintPath>
+    <Reference Include="MailBee.NET, Version=12.1.1.620, Culture=neutral, PublicKeyToken=cd85b70fb26f9fc1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailBee.NET.12.1.1\lib\net45\MailBee.NET.dll</HintPath>
     </Reference>
     <Reference Include="MailKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\packages\MailKit.2.5.1\lib\net46\MailKit.dll</HintPath>
@@ -108,9 +108,6 @@
     </Reference>
     <Reference Include="MimeKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.2.5.1\lib\net46\MimeKit.dll</HintPath>
-    </Reference>
-    <Reference Include="ShowMeTheXAML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShowMeTheXAML.1.0.12\lib\net45\ShowMeTheXAML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

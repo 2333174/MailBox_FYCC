@@ -195,8 +195,7 @@ namespace MailBox.ViewModels
 			DialogOpenedEventHandler openedEventHandler = null;
 			DialogClosingEventHandler closingEventHandler = null;
 			Console.WriteLine("Parameter:", parameter);
-			object obj =  await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler);
-			Console.WriteLine("OBJ information " + obj);
+			await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler); //TODO add CancellationToken
 		}
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{
@@ -204,11 +203,13 @@ namespace MailBox.ViewModels
 			AccountSelectedIndex = selectIndex;
 			title = "收件箱";
 			visibility = System.Windows.Visibility.Visible;
-			ClearUserDir();
-			Task.Run(() =>
-			{
-				Save_Mail();
-			}).Wait();
+
+			if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, AccountInfos[AccountSelectedIndex].Account)))
+				Task.Run(() =>
+				{
+					Save_Mail();
+				}).Wait();
+
 			Content = new Frame
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
