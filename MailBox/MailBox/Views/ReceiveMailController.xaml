@@ -82,23 +82,17 @@
                                                 <Button Content="{Binding Filename}" FontSize="15px" FontWeight="Bold" Foreground="#FF673AB7"
                                                                      Style="{StaticResource MaterialDesignFlatButton}"
                                                                     Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}" />
-                                                    <!--<Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,8,8" >
-                                                        <StackPanel Margin="6">
-                                                            <Button Content="{Binding Filename}" FontSize="15px" FontWeight="Bold" Foreground="#FF673AB7"
-                                                                     Style="{StaticResource MaterialDesignFlatButton}"
-                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}" />
-                                                        </StackPanel>
-                                                    </Border>-->
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </Border>
                             </Grid>
                         </materialDesign:PopupBox>
+                        <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" Content="删除邮件" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
                     </DockPanel>
                 </Grid>
                 <!--Using Custom Mail Web browser to display mail html body -->
-                <local:HtmlWebBrowser HtmlText="{Binding HtmlBody, Converter={StaticResource html}}" DockPanel.Dock="Bottom"  Height="Auto" Width="Auto" Grid.Row="2"/>
+                <local:HtmlWebBrowser HtmlText="{Binding HtmlBody,Converter={StaticResource html}}" DockPanel.Dock="Bottom"  Height="Auto" Width="Auto" Grid.Row="2"/>
             </DockPanel>
         </DataTemplate>
     </UserControl.Resources>
@@ -112,7 +106,8 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
-                 ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"/>
+                 ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
+                 SelectedItem="{Binding CurrentMail}"/>
         
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Cursor="SizeWE"/>
         

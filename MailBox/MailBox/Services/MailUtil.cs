@@ -54,6 +54,9 @@ namespace MailBox.Services
 
         [DllImport("pop3lib.dll", EntryPoint = "pull_save_mail")]
         public static extern Int32 pull_save_mail(LoginInfo info, UInt32 index);
+
+        [DllImport("pop3lib.dll", EntryPoint = "del_mail")]
+        public static extern Int32 del_mail(LoginInfo info, UInt32 index);
     }
     #endregion
 }

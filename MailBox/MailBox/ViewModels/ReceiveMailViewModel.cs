@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,13 +23,22 @@ namespace MailBox.ViewModels
         }
         public ReceiveMailViewModel(AccountInfo account)
         {
+            this.account = account;
             MailItems = GetMailItems(account);
             SaveAttachCommand = new DelegateCommand();
             SaveAttachCommand.ExecuteAction = new Action<object>(SaveAttach);
+            DeleteMailCommand = new DelegateCommand();
+            DeleteMailCommand.ExecuteAction = new Action<object>(DeleteMail);
         }
         public ReceiveMailViewModel() { }
+        private AccountInfo account;
+        private ObservableCollection<MailItem> mailItems;
+        private Attachment selectedAttachment;
+        private MailItem currentMail;
+        private int selectedIndex;
+        public DelegateCommand SaveAttachCommand { get; set; }
+        public DelegateCommand DeleteMailCommand { get; set; }
 
-        // param flush: flush user mail directory
         private ObservableCollection<MailItem> GetMailItems(AccountInfo account)
         {
             ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
@@ -57,10 +67,6 @@ namespace MailBox.ViewModels
             }
             return items;
         }
-        private ObservableCollection<MailItem> mailItems;
-        private Attachment selectedAttachment;
-        private int selectedIndex;
-        public DelegateCommand SaveAttachCommand { get; set; }
 
         public ObservableCollection<MailItem> MailItems
         {
@@ -98,6 +104,18 @@ namespace MailBox.ViewModels
                 RaisePropertyChanged("SelectedIndex");
             }
         }
+        public MailItem CurrentMail
+        {
+            get
+            {
+                return currentMail;
+            }
+            set
+            {
+                currentMail = value;
+                RaisePropertyChanged("CurrentMail");
+            }
+        }
 
         private void SaveAttach(object param)
         {
@@ -117,6 +135,36 @@ namespace MailBox.ViewModels
                     Console.WriteLine("No element selected");
                 }
 
+            }
+        }
+        private void DeleteMail(object param)
+        {
+            if (CurrentMail == null)
+                return;
+            string filepath = CurrentMail.FilePath;
+            MailUtil.LoginInfo info = new MailUtil.LoginInfo
+            {
+                account = account.Account,
+                passwd = account.Password,
+                site = account.PopHost
+            };
+            try
+            {
+                Regex regex = new Regex(@"\w+@\w+.com-(\d+).mail.tmp");
+                string indexstr = regex.Match(filepath).Groups[1].Value;
+                uint index = UInt32.Parse(indexstr);
+                Console.WriteLine("Delete mail whose index = " + index);
+                MailUtil.del_mail(info, index);
+                // delete corresponding mail tmp file
+                if (File.Exists(filepath))
+                    File.Delete(filepath);
+
+                // Flush binding item list
+                MailItems = GetMailItems(account);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
