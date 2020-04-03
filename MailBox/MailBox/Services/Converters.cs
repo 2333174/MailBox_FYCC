@@ -45,7 +45,7 @@ namespace MailBox.Services
             }
             // Mail content is plain text
             if (htmlText.Length != 0 && htmlText[0] != '<')
-                htmlText = "<pre>" + htmlText + "</pre>";
+                htmlText = "<html><head><meta charset='UTF-8'></head><pre>" + htmlText + "</pre></html>";
 
             File.WriteAllText(@"Plain.html", htmlText);
 
