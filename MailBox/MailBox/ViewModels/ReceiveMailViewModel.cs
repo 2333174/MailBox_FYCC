@@ -46,6 +46,10 @@ namespace MailBox.ViewModels
             // TODO: Get info mails from account info 
             string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
             string user_dir = Path.Combine(root_dir, account.Account);
+            if(!Directory.Exists(user_dir))
+            {
+                Directory.CreateDirectory(user_dir);
+            }
             string[] mailFiles = Directory.GetFiles(user_dir);
             if (mailFiles.Length == 0)
             {

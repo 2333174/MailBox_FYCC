@@ -1,17 +1,10 @@
-use std::net::TcpStream;
-use crate::utils::mail_utils::{unwrap_str, LoginInfo};
-use crate::utils::basic_utils::*;
-use crate::utils::mail_utils::*;
-use std::ffi::{CStr, CString};
-use libc::c_char;
-use std::mem;
-use std::fs::File;
-use std::io;
 use std::io::prelude::*;
-use std::io::BufReader;
+use std::fs::File;
 use std::fs;
+use crate::utils::basic_utils::path_exists;
+use crate ::utils::mail_utils::LoginInfo;
+use crate::utils::mail_utils::{unwrap_str, authenticate, get_a_mail, del_a_mail};
 
-static mut STRING_POINTER: *mut c_char = 0 as *mut c_char;
 
 mod utils {
     
@@ -20,8 +13,6 @@ mod utils {
         use std::net::TcpStream;
         use std::str;
         use std::io::{Read, Write};
-        use std::ffi::{CStr, CString};
-        use std::os::raw::c_char;
         use std::fs;
         
         pub fn get_response(socket: &mut TcpStream) -> String{
@@ -47,10 +38,10 @@ mod utils {
             re.is_match(s)
         }
         
-        pub fn has_char_crlf(s: &str) -> bool {
-            let re = Regex::new(r"[\r\n]").unwrap();
-            re.is_match(s)
-        }
+        // pub fn has_char_crlf(s: &str) -> bool {
+        //     let re = Regex::new(r"[\r\n]").unwrap();
+        //     re.is_match(s)
+        // }
         
         pub fn write_request(socket: &mut TcpStream, message: &str) {
             let message = format!("{}{}", message, "\r\n");
@@ -68,10 +59,7 @@ mod utils {
         use libc::c_char;
         use std::ffi::CStr;
         use crate::utils::basic_utils::*;
-        use std::net;
         use std::io;
-        
-        static CRLF: &str = "\r\n";
         
         #[repr(C)]
         pub struct LoginInfo {    
@@ -131,24 +119,17 @@ mod utils {
             (true, String::from(num_mails), stream)
         }
         
-        pub fn list_mails(socket: &mut TcpStream) -> String {
-            write_request(socket, "LIST");
-            
-            // println!("{}", get_multiresponses(socket));
-            get_multiresponses(socket) 
-        }
-        
         pub fn get_a_mail(socket: &mut TcpStream, index: usize) -> String {
             println!("RETR {}", index);
             write_request(socket, &format!("RETR {}", index));
             get_response(socket);
-            let mut mail_str = get_multiresponses(socket);
+            let mail_str = get_multiresponses(socket);
             let iter = mail_str.split("\r\n");
 
             let mut mail_str_processed = String::new();
             let last_line: &str = &iter.last().unwrap();
 
-            for (index, line) in mail_str.split("\r\n").enumerate() {
+            for (_, line) in mail_str.split("\r\n").enumerate() {
                 if line != last_line {
                     mail_str_processed = format!("{}{}\r\n", mail_str_processed, line);
                 }
@@ -161,7 +142,7 @@ mod utils {
             write_request(socket, &format!("DELE {}", index));
             get_response(socket);
 
-            Ok((200))
+            Ok(200)
         }
         
     }
@@ -174,13 +155,13 @@ pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
 
 #[no_mangle]
 pub extern "C" fn get_num_mails(login_info: LoginInfo) -> i32 {
-    let (result, num_mails_Str, mut stream) = authenticate(login_info);
+    let (result, num_mails_str, mut _stream) = authenticate(login_info);
 
     if !result {
         return -1;
     }
 
-    let num_mails = num_mails_Str.parse::<i32>().unwrap();
+    let num_mails = num_mails_str.parse::<i32>().unwrap();
 
     num_mails
 }
@@ -210,7 +191,6 @@ pub extern "C" fn pull_save_mail(login_info: LoginInfo, index: usize) -> i32 {
 
 #[no_mangle]
 pub extern "C" fn del_mail(login_info: LoginInfo, index: usize) -> i32 {
-    let account_str = unwrap_str(login_info.account);
 
     let (result, _,  mut stream) = authenticate(login_info);
     

@@ -1,7 +1,6 @@
-use std::net::TcpStream;
-use std::str;
-use crate::utils::basic_utils::{write_request, get_response, write_request_b64, judge_response};
-use crate::utils::mail_utils::*;
+use crate::utils::basic_utils::{write_request, get_response, judge_response, unwrap_str};
+use crate::utils::mail_utils::{LoginInfo, MailInfo, Mail};
+use crate::utils::mail_utils::{authenticate, send_mail, send_mail_extern};
 
 
 mod utils {
@@ -11,6 +10,8 @@ mod utils {
         use std::net::TcpStream;
         use std::io::{Read, Write};
         use base64::encode;
+        use std::ffi::CStr;
+        use libc::c_char;
         
         pub fn get_response(socket: &mut TcpStream) -> String{
             let mut buf: [u8; 1024] = [0; 1024];
@@ -43,13 +44,17 @@ mod utils {
             let _ = socket.write(&(message.as_bytes()));
             let _ = socket.write("\r\n".as_bytes());
         }
+
+        pub fn unwrap_str(s: *const c_char) -> String {
+            let s = unsafe { CStr::from_ptr(s) };
+            String::from(s.to_str().unwrap())
+        }
     }
     
     pub mod mail_utils {
         use std::net::TcpStream;
         use std::io::Write;
         use libc::c_char;
-        use std::ffi::CStr;
         use chrono::prelude::*;
         use crate::utils::basic_utils::*;
         
@@ -88,11 +93,6 @@ mod utils {
                     body: body
                 }
             }
-        }
-
-        pub fn unwrap_str(s: *const c_char) -> String {
-            let s = unsafe { CStr::from_ptr(s) };
-            String::from(s.to_str().unwrap())
         }
 
         pub fn authenticate(login_info: &LoginInfo) -> (bool, TcpStream) {
