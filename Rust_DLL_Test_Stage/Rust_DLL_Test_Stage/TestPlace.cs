@@ -22,10 +22,13 @@ namespace Rust_DLL_Test_Stage
         #region SMTP/POP3 身份验证
         static void Validate_Example()
         {
-            MailUtil.LoginInfo info_smtp 
-                = new MailUtil.LoginInfo() { account = "alertdoll@163.com",
-                passwd = "ybgissocute2020",
-                site = "smtp.163.com:25" };
+            MailUtil.LoginInfo info_smtp
+                = new MailUtil.LoginInfo()
+                {
+                    account = "alertdoll@163.com",
+                    passwd = "ybgissocute2020",
+                    site = "smtp.163.com:25"
+                };
             if (MailUtil.validate_account_smtp(info_smtp))
             {
                 Console.WriteLine("Succ");
@@ -38,10 +41,11 @@ namespace Rust_DLL_Test_Stage
             MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
             {
                 account = "alertdoll@163.com",
-                passwd = "ybgissocute2020",
+                passwd = "ybgissocute2020a",
                 site = "pop.163.com:110"
             };
-            if (MailUtil.validate_account_pop3(info_pop3))
+            Boolean result = MailUtil.validate_account_pop3(info_pop3);
+            if (result)
             {
                 Console.WriteLine("Succ");
             }
@@ -135,13 +139,15 @@ namespace Rust_DLL_Test_Stage
                 site = "pop.163.com:110"
             };
 
-            MailUtil.pull_save_mail(info_pop3, 5);
+            var result = MailUtil.pull_save_mail(info_pop3, 1);
+
+            Console.WriteLine(result);
 
             Console.ReadKey();
         }
         #endregion
 
-        #region POP3 receive mail
+        #region POP3 receive all mails
         static void Receive_All_Example()
         {
             MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
@@ -185,9 +191,26 @@ namespace Rust_DLL_Test_Stage
             Console.ReadKey();
         }
         #endregion
+
+        #region POP3 get uid
+        static void GetMailUID_Example()
+        {
+            MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+            {
+                account = "alertdoll@163.com",
+                passwd = "ybgissocute2020",
+                site = "pop.163.com:110"
+            };
+
+            var uid = MailUtil.pull_uid_mail(info_pop3, 1);
+
+            Console.WriteLine(uid);
+            Console.ReadLine();
+        }
+        #endregion
         public static void Main(string[] args)
         {
-            //Validate_Example();
+            Validate_Example();
 
             //SendMail_Example();
 
@@ -205,9 +228,10 @@ namespace Rust_DLL_Test_Stage
 
             //SendMail_Example_Extern();
 
-            Validate_Example();
             //GetNumMails_Example();
             //DeleteMail_Example();
+
+            //GetMailUID_Example();
         }
 
     }
