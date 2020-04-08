@@ -124,6 +124,16 @@ namespace MailBox.ViewModels
 			};
 		}
 
+		//public DelegateCommand LogoutCommand { get; set; }
+
+		//private void Logout(object parameter)
+		//{
+		//	Content = new Frame
+		//	{
+		//		Content = new WelcomeController(this)
+		//	};
+		//}
+
 		public DelegateCommand ReceiveMailCommand { get; set; }
 
 		// switch mail user function

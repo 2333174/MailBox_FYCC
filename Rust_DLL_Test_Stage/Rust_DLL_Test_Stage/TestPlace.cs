@@ -193,24 +193,24 @@ namespace Rust_DLL_Test_Stage
         #endregion
 
         #region POP3 get uid
-        static void GetMailUID_Example()
-        {
-            MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
-            {
-                account = "alertdoll@163.com",
-                passwd = "ybgissocute2020",
-                site = "pop.163.com:110"
-            };
+        //static void GetMailUID_Example()
+        //{
+        //    MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+        //    {
+        //        account = "alertdoll@163.com",
+        //        passwd = "ybgissocute2020",
+        //        site = "pop.163.com:110"
+        //    };
 
-            var uid = MailUtil.pull_uid_mail(info_pop3, 1);
+        //    var uid = MailUtil.pull_uid_mail(info_pop3, 1);
 
-            Console.WriteLine(uid);
-            Console.ReadLine();
-        }
+        //    Console.WriteLine(uid);
+        //    Console.ReadLine();
+        //}
         #endregion
         public static void Main(string[] args)
         {
-            Validate_Example();
+            //Validate_Example();
 
             //SendMail_Example();
 
@@ -230,8 +230,6 @@ namespace Rust_DLL_Test_Stage
 
             //GetNumMails_Example();
             //DeleteMail_Example();
-
-            //GetMailUID_Example();
         }
 
     }

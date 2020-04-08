@@ -24,10 +24,12 @@ namespace MailBox.Views
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
+        private ContentControl contentControl;
+        public HomePage(ObservableCollection<AccountInfo> accountInfos, int selectIndex,ContentControl contentControl)
         {
             InitializeComponent();
             this.DataContext = new HomeViewModel(accountInfos, selectIndex);
+            this.contentControl = contentControl;
         }
 
         private void CloseMenu(object sender, MouseButtonEventArgs e)
@@ -57,6 +59,14 @@ namespace MailBox.Views
         private void Sample2_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             Console.WriteLine("SAMPLE 2: Closing dialog with parameter: " + (eventArgs.Parameter ?? ""));
+        }
+
+        private void LogoutClick(object sender, MouseButtonEventArgs e)
+        {
+            Content = new Frame
+            {
+                Content = new WelcomeController(this.contentControl)
+            };
         }
     }
 }

@@ -3,7 +3,7 @@ use std::fs::File;
 use std::fs;
 use crate::utils::basic_utils::path_exists;
 use crate ::utils::mail_utils::LoginInfo;
-use crate::utils::mail_utils::{unwrap_str, authenticate, get_a_mail, del_a_mail, get_uid_mail};
+use crate::utils::mail_utils::{unwrap_str, authenticate, get_a_mail, del_a_mail};
 
 
 mod utils {
@@ -146,10 +146,10 @@ mod utils {
             Ok(200)
         }
         
-        pub fn get_uid_mail(socket: &mut TcpStream, index: usize) -> String {
-            write_request(socket, &format!("UIDL {}", index));
-            get_response(socket)
-        }
+        // pub fn get_uid_mail(socket: &mut TcpStream, index: usize) -> String {
+        //     write_request(socket, &format!("UIDL {}", index));
+        //     get_response(socket)
+        // }
     }
 }
 
@@ -213,17 +213,4 @@ pub extern "C" fn del_mail(login_info: LoginInfo, index: usize) -> i32 {
     };
 
     result
-}
-
-#[no_mangle]
-pub extern "C" fn pull_uid_mail(login_info: LoginInfo, index: usize) -> i32 {
-    let (result, _,  mut stream) = authenticate(login_info);
-    
-    if !result {
-        return -1;
-    }
-
-    let uid = get_uid_mail(&mut stream, index);
-
-    uid.parse::<i32>().unwrap()
 }

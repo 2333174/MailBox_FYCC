@@ -103,7 +103,7 @@ namespace MailBox.ViewModels
             Console.WriteLine("进入邮箱");
             contentControl.Content = new Frame
             {
-                Content = new HomePage(AccountInfos,AccountSelectedIndex)
+                Content = new HomePage(AccountInfos,AccountSelectedIndex,contentControl)
             };
         }
 
@@ -149,7 +149,7 @@ namespace MailBox.ViewModels
                     passwd = loginController.FloatingPasswordBox.Password,
                     site = loginController.PopHostTextBox.Text,
                 };
-                Boolean isRight = MailUtil.validate_account_smtp(info_smtp) && MailUtil.validate_account_pop3(info_pop3);
+                Boolean isRight = MailUtil.validate_account_smtp(info_smtp) && (!MailUtil.validate_account_pop3(info_pop3));
                 //如果验证成功，则添加账号
                 if (isRight)
                 {
