@@ -166,7 +166,7 @@ namespace MailBox.ViewModels
 				Console.WriteLine("Account Invalid !");
 
 				// TODO: CaiXu Edit Here: delete account item and remove that in XML file also, balabalabala
-
+				XMLOperation.DeleteAccouts(a);
 				return;
 			}
 			Content = new Frame

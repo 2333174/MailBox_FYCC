@@ -16,12 +16,12 @@
           BorderThickness="2"
           BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel MinWidth="300">
+                    <DockPanel MinWidth="250">
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                         DockPanel.Dock="Top"
                                         HorizontalAlignment="Right" Margin="16"
                                         IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                        <Grid Width="300" Height="auto">
+                        <Grid Width="250" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50px"></RowDefinition>
                                 <RowDefinition Height="50px"></RowDefinition>
