@@ -183,7 +183,9 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="0"
                                 MinWidth="200"
-                                VerticalAlignment="Center" />
+                                VerticalAlignment="Center" 
+                                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                            />
                                         <Button
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Grid.Column="2">
@@ -197,6 +199,7 @@
                                 <Button
                         Visibility="{Binding Visibility}"
                         Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                        Command="{Binding SearchCommand}"
                         Margin="8 0 0 0"
                         Panel.ZIndex="0">
                                     <materialDesign:PackIcon Kind="Send" />

@@ -19,14 +19,11 @@ namespace MailBox.ViewModels
 {
     class ReceiveMailViewModel : NotificationObject
     {
-        public ReceiveMailViewModel(ObservableCollection<MailItem> items)
-        {
-            MailItems = items;
-        }
         public ReceiveMailViewModel(AccountInfo account)
         {
             this.account = account;
-            MailItems = GetMailItems(account);
+            mailItems = GetMailItems(account); // backup all mails
+            DisplayMailItems = mailItems;
             SaveAttachCommand = new DelegateCommand();
             SaveAttachCommand.ExecuteAction = new Action<object>(SaveAttach);
             DeleteMailCommand = new DelegateCommand();
@@ -35,6 +32,8 @@ namespace MailBox.ViewModels
         public ReceiveMailViewModel() { }
         private AccountInfo account;
         private ObservableCollection<MailItem> mailItems;
+        private ObservableCollection<MailItem> displayMailItems;
+
         private Attachment selectedAttachment;
         private MailItem currentMail;
         private int selectedIndex;
@@ -76,18 +75,19 @@ namespace MailBox.ViewModels
             return items;
         }
 
-        public ObservableCollection<MailItem> MailItems
+        public ObservableCollection<MailItem> DisplayMailItems
         {
             get
             {
-                return mailItems;
+                return displayMailItems;
             }
             set
             {
-                mailItems = value;
-                RaisePropertyChanged("MailItems");
+                displayMailItems = value;
+                RaisePropertyChanged("DisplayMailItems");
             }
         }
+        
         public Attachment SelectedAttachment
         {
             get
@@ -212,7 +212,7 @@ namespace MailBox.ViewModels
                     }
                 }
                 // Flush binding item list
-                MailItems = GetMailItems(account);
+                DisplayMailItems = GetMailItems(account);
 
                 // show snackbar
                 TipMessage = "删除成功";
@@ -231,59 +231,20 @@ namespace MailBox.ViewModels
             }
         }
 
-        private async void DeleteMail(object param)
+        public void SearchMail(string searchKey)
         {
-            if (CurrentMail == null)
-                return;
-
-            string filepath = CurrentMail.FilePath;
-            MailUtil.LoginInfo info = new MailUtil.LoginInfo
+            if (String.IsNullOrEmpty(searchKey))
+                DisplayMailItems = mailItems;
+            else
             {
-                account = account.Account,
-                passwd = account.Password,
-                site = account.PopHost
-            };
-            try
-            {
-                Regex regex = new Regex(@"\w+@\w+.com-(\d+).mail.tmp");
-                string indexstr = regex.Match(filepath).Groups[1].Value;
-                uint index = UInt32.Parse(indexstr);
-                Console.WriteLine("Delete mail whose index = " + index);
-
-                MailUtil.del_mail(info, index);
-                // delete corresponding mail tmp file
-                if (File.Exists(filepath))
-                    File.Delete(filepath);
-
-                // index reduce 1 if mail's original index greater than deleted one's
-                string dir = Path.Combine(Directory.GetCurrentDirectory(), account.Account);
-                foreach (string f in Directory.GetFiles(dir))
+                // search all elements which contains key
+                ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
+                foreach(MailItem item in mailItems)
                 {
-                    Group g = regex.Match(f).Groups[1];
-                    uint i = UInt32.Parse(g.Value);
-                    if (i > index)
-                    {
-                        string newFile = String.Concat(f.Substring(0, g.Index), i - 1, f.Substring(g.Index + g.Length));
-                        File.Move(Path.Combine(dir, f), Path.Combine(dir, newFile));
-                    }
+                    if(item.Sender.Contains(searchKey) || item.Subject.Contains(searchKey) || item.Date.ToString("yyyy-MM-dd HH:mm").Contains(searchKey))
+                        items.Add(item);
                 }
-                // Flush binding item list
-                MailItems = GetMailItems(account);
-
-                // show snackbar
-                TipMessage = "删除成功";
-                IsSnackActive = true;
-                await Task.Delay(3000);
-                IsSnackActive = false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                // show snackbar
-                TipMessage = "删除失败";
-                IsSnackActive = true;
-                await Task.Delay(3000);
-                IsSnackActive = false;
+                DisplayMailItems = items;
             }
         }
     }

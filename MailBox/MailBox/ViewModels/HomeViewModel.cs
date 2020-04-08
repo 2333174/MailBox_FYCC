@@ -177,6 +177,31 @@ namespace MailBox.ViewModels
 			};
 		}
 
+		private string searchText;
+		public string SearchText
+		{
+			get
+			{
+				return searchText;
+			}
+			set
+			{
+				searchText = value;
+				SearchMail(value);
+			}
+		}
+		private ReceiveMailViewModel rvm;
+		public DelegateCommand SearchCommand { get; set; }
+		private void SearchMail(object parameter)
+		{
+			if(rvm == null)
+            {
+                Frame f = (Frame)Content;
+                rvm = (f.Content as ReceiveMailController).DataContext as ReceiveMailViewModel;
+            }
+            rvm.SearchMail(SearchText);
+		}
+
 		private void ClearUserDir()
 		{
 			string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
@@ -278,6 +303,15 @@ namespace MailBox.ViewModels
 			title = "收件箱";
 			visibility = System.Windows.Visibility.Visible;
 
+			NewMailCommand = new DelegateCommand();
+			NewMailCommand.ExecuteAction = new Action<object>(NewMail);
+			ReceiveMailCommand = new DelegateCommand();
+			ReceiveMailCommand.ExecuteAction = new Action<object>(ReceiveMail);
+			FreshCommand = new DelegateCommand();
+			FreshCommand.ExecuteAction = new Action<object>(FreshMail);
+			SearchCommand = new DelegateCommand();
+			SearchCommand.ExecuteAction = new Action<object>(SearchMail);
+
 			if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, AccountInfos[AccountSelectedIndex].Account)))
 				Task.Run(() =>
 				{
@@ -288,12 +322,6 @@ namespace MailBox.ViewModels
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
-			NewMailCommand = new DelegateCommand();
-			NewMailCommand.ExecuteAction = new Action<object>(NewMail);
-			ReceiveMailCommand = new DelegateCommand();
-			ReceiveMailCommand.ExecuteAction = new Action<object>(ReceiveMail);
-			FreshCommand = new DelegateCommand();
-			FreshCommand.ExecuteAction = new Action<object>(FreshMail);
 		}
 	}
 }

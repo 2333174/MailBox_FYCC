@@ -39,7 +39,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0" Text="{Binding Sender}" FontSize="14" FontWeight="Bold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
                         <TextBlock Grid.Row="1" Text="{Binding Subject}" Margin="0,5" FontSize="12" FontWeight="Black" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Grid.Row="2" Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm '}" FontSize="10" Foreground="Gray" FontWeight="Light"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm'}" FontSize="10" Foreground="Gray" FontWeight="Light"/>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -109,7 +109,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
+            <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding DisplayMailItems}"
                      ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
                      SelectedItem="{Binding CurrentMail}"/>
             <materialDesign:Snackbar IsActive="{Binding IsSnackActive}" >
