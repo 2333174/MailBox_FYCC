@@ -145,11 +145,12 @@ namespace MailBox.ViewModels
 			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
 			{
 				account = a.Account,
-				passwd = a.Password + "11qw12",
+				passwd = a.Password,
 				site = a.PopHost
 			};
 			bool re = !MailUtil.validate_account_pop3(info_pop3);
 
+			// for debug compare
 			MailUtil.LoginInfo info_pop3_2 = new MailUtil.LoginInfo()
 			{
 				account = "alertdoll@163.com",
@@ -157,6 +158,7 @@ namespace MailBox.ViewModels
 				site = "pop.163.com:110"
 			};
 			bool rere = !MailUtil.validate_account_pop3(info_pop3_2);
+
 			// account is invaliad
 			if (!re)
 			{
