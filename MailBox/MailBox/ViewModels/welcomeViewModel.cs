@@ -103,7 +103,7 @@ namespace MailBox.ViewModels
             Console.WriteLine("进入邮箱");
             contentControl.Content = new Frame
             {
-                Content = new HomePage(AccountInfos,AccountSelectedIndex)
+                Content = new HomePage(AccountInfos,AccountSelectedIndex,contentControl)
             };
         }
 
