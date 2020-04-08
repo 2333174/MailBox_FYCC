@@ -57,6 +57,9 @@ namespace Rust_DLL_Test_Stage
 
         [DllImport("pop3lib.dll", EntryPoint = "del_mail")]
         public static extern Int32 del_mail(LoginInfo info, UInt32 index);
+
+        [DllImport("pop3lib.dll", EntryPoint = "pull_uid_mail")]
+        public static extern Int32 pull_uid_mail(LoginInfo info, UInt32 index);
     }
     #endregion
 }
