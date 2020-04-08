@@ -30,6 +30,7 @@ mod utils {
                 _ => false
             };
             
+            // println!("{}:{}", &response[..3], result);
             result
         }
         
@@ -145,12 +146,20 @@ mod utils {
             Ok(200)
         }
         
+        // pub fn get_uid_mail(socket: &mut TcpStream, index: usize) -> String {
+        //     write_request(socket, &format!("UIDL {}", index));
+        //     get_response(socket)
+        // }
     }
 }
 
 #[no_mangle]
 pub extern "C" fn validate_account(login_info: LoginInfo) -> bool {
-    authenticate(login_info).0
+    let (result, n, _) = authenticate(login_info);
+
+    println!("{}, {}", result, n);
+
+    return !result;
 }
 
 #[no_mangle]
