@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MailBox.Views.FreshProgessController"
+﻿<UserControl x:Class="MailBox.Views.ShowInvalidController"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,12 +7,13 @@
              Background="{DynamicResource MaterialDesignPaper}"
              xmlns:materialDesign ="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200">
+             d:DesignHeight="250" d:DesignWidth="300">
     <Grid>
-        <StackPanel Margin="16">
-            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0"/>
-            <Button Content="取消" Style="{StaticResource MaterialDesignFlatButton}"  HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="对不起，您的账号已失效，请返回欢迎界面重新添加" Foreground="#FF673AB7" 
+                       FontWeight="Bold" Margin="0,0,0,15" />
+            <Button Style="{StaticResource MaterialDesignFlatButton}" Content="确认" 
+                   Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

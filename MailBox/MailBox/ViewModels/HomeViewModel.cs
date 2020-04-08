@@ -19,7 +19,6 @@ namespace MailBox.ViewModels
     class HomeViewModel:NotificationObject
     {
 		private string title;
-		public Window window;
 		public string Title
 		{
 			get { return title; }
@@ -105,6 +104,31 @@ namespace MailBox.ViewModels
 		{
 			Title = "收件箱";
 			Visibility = System.Windows.Visibility.Visible;
+			AccountInfo a = AccountInfos[AccountSelectedIndex];
+			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+			{
+				account = a.Account,
+				passwd = a.Password + "11qw12",
+				site = a.PopHost
+			};
+			bool re = !MailUtil.validate_account_pop3(info_pop3);
+
+			MailUtil.LoginInfo info_pop3_2 = new MailUtil.LoginInfo()
+			{
+				account = "alertdoll@163.com",
+				passwd = "ybgissocute2020",
+				site = "pop.163.com:110"
+			};
+			bool rere = !MailUtil.validate_account_pop3(info_pop3_2);
+			// account is invaliad
+			if (!MailUtil.validate_account_pop3(info_pop3))
+			{
+				// show tip and remove invalid account item
+				DialogHost.Show(new ShowInvalidController(), null, null);
+				//DialogHost.CloseDialogCommand.Execute(null, null);
+				Console.WriteLine("Account Invalid !");
+				return;
+			}
 			Content = new Frame
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex]) // don't flush
@@ -122,41 +146,40 @@ namespace MailBox.ViewModels
 		{
 			AccountInfo a = AccountInfos[AccountSelectedIndex];
 			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
-			{
-				account = a.Account,
-				passwd = a.Password,
-				site = a.PopHost
-			};
-			try
-			{
-
-			int num = MailUtil.get_num_mails(info_pop3);
-			//info_pop3.account = "11";
-			Task[] tasks = new Task[num];
-			for (uint i = 1; i <= num; i++)
-			{
-				uint param = i;
-				var tokenSource = new CancellationTokenSource();
-				var token = tokenSource.Token;
-				tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
-				{
-					int r = MailUtil.pull_save_mail(info_pop3, param);
-					if (r != -1)
-						Console.WriteLine("Receive mail-{0} success", param);
-					else
-						Console.WriteLine("Receive mail-{0} fail", param);
-				}), TimeSpan.FromSeconds(3.0));
-
-
-			}
-			Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 10 seconds
-			Console.WriteLine("tasks all completed");
-			}catch(TimeoutException te)
-			{
-				Console.WriteLine("Timeout happened, msg:" + te.Message);
-			}catch(Exception ex)
-			{
-				Console.WriteLine(ex.Message);
+            {
+                account = a.Account,
+                passwd = a.Password,
+                site = a.PopHost
+            };
+            try
+            {
+                int num = MailUtil.get_num_mails(info_pop3);
+                //info_pop3.account = "11";
+                Task[] tasks = new Task[num];
+                for (uint i = 1; i <= num; i++)
+                {
+                    uint param = i;
+                    var tokenSource = new CancellationTokenSource();
+                    var token = tokenSource.Token;
+                    tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
+                    {
+                        int r = MailUtil.pull_save_mail(info_pop3, param);
+                        if (r != -1)
+                            Console.WriteLine("Receive mail-{0} success", param);
+                        else
+                            Console.WriteLine("Receive mail-{0} fail", param);
+                    }), TimeSpan.FromSeconds(3.0));
+                }
+                Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 4 seconds
+                Console.WriteLine("tasks all completed");
+            }
+            catch (TimeoutException te)
+            {
+                Console.WriteLine("Timeout happened, msg:" + te.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
 			}
 		}
 		async Task WaitAsync(Task task, TimeSpan timeout)
@@ -195,8 +218,9 @@ namespace MailBox.ViewModels
 			DialogOpenedEventHandler openedEventHandler = null;
 			DialogClosingEventHandler closingEventHandler = null;
 			Console.WriteLine("Parameter:", parameter);
-			await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler); //TODO add CancellationToken
+			await DialogHost.Show(new FreshController(), openedEventHandler, closingEventHandler); //TODO add CancellationToken
 		}
+
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{
 			AccountInfos = accountInfos;

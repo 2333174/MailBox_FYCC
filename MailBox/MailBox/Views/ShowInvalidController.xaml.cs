@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MailBox.Views
 {
     /// <summary>
-    /// FreshProgessController.xaml 的交互逻辑
+    /// ShowInvalid.xaml 的交互逻辑
     /// </summary>
-    public partial class FreshProgessController : UserControl
+    public partial class ShowInvalidController : UserControl
     {
-        public FreshProgessController()
+        public ShowInvalidController()
         {
             InitializeComponent();
         }

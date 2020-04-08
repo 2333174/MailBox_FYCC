@@ -205,8 +205,9 @@ namespace Rust_DLL_Test_Stage
 
             //SendMail_Example_Extern();
 
-            GetNumMails_Example();
-            DeleteMail_Example();
+            Validate_Example();
+            //GetNumMails_Example();
+            //DeleteMail_Example();
         }
 
     }

@@ -46,7 +46,7 @@ namespace MailBox.ViewModels
             // TODO: Get info mails from account info 
             string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
             string user_dir = Path.Combine(root_dir, account.Account);
-            if(!Directory.Exists(user_dir))
+            if(!Directory.Exists(user_dir)) // when mail inbox is empty
             {
                 Directory.CreateDirectory(user_dir);
             }
