@@ -11,16 +11,6 @@
 
     <Grid>
         <materialDesign:DialogHost Identifier="freshDialogID" Name="freshDialog">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                            CommandParameter="Sample2Cancel"
-                                            HorizontalAlignment="Center">CANCEL</Button>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-            
             <materialDesign:DrawerHost
           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
           BorderThickness="2"
@@ -79,7 +69,7 @@
                 </materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel>
                     <materialDesign:ColorZone
-                  Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0">
+                  Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0" Grid.Row="0">
                         <DockPanel>
                             <Button
                         Visibility="{Binding Visibility}"
@@ -199,9 +189,13 @@
                             </StackPanel>
                         </DockPanel>
                     </materialDesign:ColorZone >
+                    
                     <!--Mail inbox View here-->
-                    <Grid Panel.ZIndex="-1">
+                    <Grid Panel.ZIndex="-1" DockPanel.Dock="Top" Grid.Row="1">
                         <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
+                        <materialDesign:Snackbar IsActive="{Binding IsSnackActive}" Grid.Row="2">
+                            <materialDesign:SnackbarMessage Content="{Binding TipMessage}" HorizontalAlignment="Center"/>
+                        </materialDesign:Snackbar>
                     </Grid>
                 </DockPanel>
             </materialDesign:DrawerHost>

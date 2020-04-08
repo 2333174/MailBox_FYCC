@@ -2,6 +2,8 @@
 using MailBox.Commands;
 using MailBox.Models;
 using MailBox.Services;
+using MailBox.Views;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +30,7 @@ namespace MailBox.ViewModels
             SaveAttachCommand = new DelegateCommand();
             SaveAttachCommand.ExecuteAction = new Action<object>(SaveAttach);
             DeleteMailCommand = new DelegateCommand();
-            DeleteMailCommand.ExecuteAction = new Action<object>(DeleteMail);
+            DeleteMailCommand.ExecuteAction = new Action<object>(ShowDeleteDialog);
         }
         public ReceiveMailViewModel() { }
         private AccountInfo account;
@@ -36,6 +38,8 @@ namespace MailBox.ViewModels
         private Attachment selectedAttachment;
         private MailItem currentMail;
         private int selectedIndex;
+        private bool isSnackActive;
+        private string tipMessage;
         public DelegateCommand SaveAttachCommand { get; set; }
         public DelegateCommand DeleteMailCommand { get; set; }
 
@@ -120,6 +124,30 @@ namespace MailBox.ViewModels
                 RaisePropertyChanged("CurrentMail");
             }
         }
+        public bool IsSnackActive
+        {
+            get
+            {
+                return isSnackActive;
+            }
+            set
+            {
+                isSnackActive = value;
+                RaisePropertyChanged("IsSnackActive");
+            }
+        }
+        public string TipMessage
+        {
+            get
+            {
+                return tipMessage;
+            }
+            set
+            {
+                tipMessage = value;
+                RaisePropertyChanged("TipMessage");
+            }
+        }
 
         private void SaveAttach(object param)
         {
@@ -141,10 +169,17 @@ namespace MailBox.ViewModels
 
             }
         }
-        private void DeleteMail(object param)
+        private async void ShowDeleteDialog(object param)
         {
-            if (CurrentMail == null)
+            // show confirm dialog
+            await DialogHost.Show(new ConfirmDeleteController(), new DialogClosingEventHandler(DeleteMail));
+            Console.WriteLine("Dialog end");
+        }
+        private async void DeleteMail(object param, DialogClosingEventArgs args)
+        {
+            if (!((bool)args.Parameter) || CurrentMail == null)
                 return;
+
             string filepath = CurrentMail.FilePath;
             MailUtil.LoginInfo info = new MailUtil.LoginInfo
             {
@@ -158,17 +193,97 @@ namespace MailBox.ViewModels
                 string indexstr = regex.Match(filepath).Groups[1].Value;
                 uint index = UInt32.Parse(indexstr);
                 Console.WriteLine("Delete mail whose index = " + index);
+
                 MailUtil.del_mail(info, index);
                 // delete corresponding mail tmp file
                 if (File.Exists(filepath))
                     File.Delete(filepath);
 
+                // index reduce 1 if mail's original index greater than deleted one's
+                string dir = Path.Combine(Directory.GetCurrentDirectory(), account.Account);
+                foreach (string f in Directory.GetFiles(dir))
+                {
+                    Group g = regex.Match(f).Groups[1];
+                    uint i = UInt32.Parse(g.Value);
+                    if (i > index)
+                    {
+                        string newFile = String.Concat(f.Substring(0, g.Index), i - 1, f.Substring(g.Index + g.Length));
+                        File.Move(Path.Combine(dir, f), Path.Combine(dir, newFile));
+                    }
+                }
                 // Flush binding item list
                 MailItems = GetMailItems(account);
+
+                // show snackbar
+                TipMessage = "删除成功";
+                IsSnackActive = true;
+                await Task.Delay(3000);
+                IsSnackActive = false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                // show snackbar
+                TipMessage = "删除失败";
+                IsSnackActive = true;
+                await Task.Delay(3000);
+                IsSnackActive = false;
+            }
+        }
+
+        private async void DeleteMail(object param)
+        {
+            if (CurrentMail == null)
+                return;
+
+            string filepath = CurrentMail.FilePath;
+            MailUtil.LoginInfo info = new MailUtil.LoginInfo
+            {
+                account = account.Account,
+                passwd = account.Password,
+                site = account.PopHost
+            };
+            try
+            {
+                Regex regex = new Regex(@"\w+@\w+.com-(\d+).mail.tmp");
+                string indexstr = regex.Match(filepath).Groups[1].Value;
+                uint index = UInt32.Parse(indexstr);
+                Console.WriteLine("Delete mail whose index = " + index);
+
+                MailUtil.del_mail(info, index);
+                // delete corresponding mail tmp file
+                if (File.Exists(filepath))
+                    File.Delete(filepath);
+
+                // index reduce 1 if mail's original index greater than deleted one's
+                string dir = Path.Combine(Directory.GetCurrentDirectory(), account.Account);
+                foreach (string f in Directory.GetFiles(dir))
+                {
+                    Group g = regex.Match(f).Groups[1];
+                    uint i = UInt32.Parse(g.Value);
+                    if (i > index)
+                    {
+                        string newFile = String.Concat(f.Substring(0, g.Index), i - 1, f.Substring(g.Index + g.Length));
+                        File.Move(Path.Combine(dir, f), Path.Combine(dir, newFile));
+                    }
+                }
+                // Flush binding item list
+                MailItems = GetMailItems(account);
+
+                // show snackbar
+                TipMessage = "删除成功";
+                IsSnackActive = true;
+                await Task.Delay(3000);
+                IsSnackActive = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // show snackbar
+                TipMessage = "删除失败";
+                IsSnackActive = true;
+                await Task.Delay(3000);
+                IsSnackActive = false;
             }
         }
     }

@@ -146,6 +146,9 @@
     <Compile Include="ViewModels\ReceiveMailViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="ViewModels\WriteMailViewModel.cs" />
+    <Compile Include="Views\ConfirmDeleteController.xaml.cs">
+      <DependentUpon>ConfirmDeleteController.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FreshController.xaml.cs">
       <DependentUpon>FreshController.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ConfirmDeleteController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FreshController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

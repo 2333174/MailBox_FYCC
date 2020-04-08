@@ -9,9 +9,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
             <TextBlock Text="对不起，您的账号已失效，请返回欢迎界面重新添加" Foreground="#FF673AB7" 
-                       FontWeight="Bold" Margin="0,0,0,15" />
+                       FontWeight="Bold" Margin="0,20,0,25" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
             <Button Style="{StaticResource MaterialDesignFlatButton}" Content="确认" 
                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
         </StackPanel>

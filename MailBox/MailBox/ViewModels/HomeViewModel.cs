@@ -53,6 +53,33 @@ namespace MailBox.ViewModels
 			}
 		}
 
+		private bool isSnackActive;
+		private string tipMessage;
+		public bool IsSnackActive
+		{
+			get
+			{
+				return isSnackActive;
+			}
+			set
+			{
+				isSnackActive = value;
+				RaisePropertyChanged("IsSnackActive");
+			}
+		}
+		public string TipMessage
+		{
+			get
+			{
+				return tipMessage;
+			}
+			set
+			{
+				tipMessage = value;
+				RaisePropertyChanged("TipMessage");
+			}
+		}
+
 		/**
          * 账号信息结合
          */
@@ -121,12 +148,15 @@ namespace MailBox.ViewModels
 			};
 			bool rere = !MailUtil.validate_account_pop3(info_pop3_2);
 			// account is invaliad
-			if (!MailUtil.validate_account_pop3(info_pop3))
+			if (!re)
 			{
 				// show tip and remove invalid account item
 				DialogHost.Show(new ShowInvalidController(), null, null);
 				//DialogHost.CloseDialogCommand.Execute(null, null);
 				Console.WriteLine("Account Invalid !");
+
+				// TODO: CaiXu Edit Here: delete account item and remove that in XML file also, balabalabala
+
 				return;
 			}
 			Content = new Frame
@@ -211,7 +241,15 @@ namespace MailBox.ViewModels
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
+			
 			DialogHost.CloseDialogCommand.Execute(null, null);
+
+			// show snackbar
+			TipMessage = "刷新结束";
+			IsSnackActive = true;
+			await Task.Delay(3000);
+			IsSnackActive = false;
+
 		}
 		private async void ShowFreshDialog(object parameter)
 		{

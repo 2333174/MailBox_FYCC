@@ -40,7 +40,7 @@ namespace MailBox.Models
             MailMessage message = new MailMessage();
             message.LoadMessage(file_path);
             Subject = message.Subject;
-            SenderMailAddress = message.From != null ? message.From.ToString() : "Unknown";
+            SenderMailAddress = message.From != null || message.From.DisplayName.Length == 0? message.From.ToString() : "Unknown";
             SenderMailAddress = SenderMailAddress.Replace("\"", "");
             if (SenderMailAddress != "Unknown")
             {

@@ -11,12 +11,12 @@
              Background="{DynamicResource MaterialDesignPaper}"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    
+
     <UserControl.Resources>
         <!--Constants-->
         <sys:Int32 x:Key="IntZero">0</sys:Int32>
         <sys:Int32 x:Key="IntOne">1</sys:Int32>
-        
+
         <!--Converters-->
         <convert:SenderToLogoConverter x:Key="s2l"/>
         <convert:HtmlBodyEncodingConverter x:Key="html"/>
@@ -88,7 +88,8 @@
                                 </Border>
                             </Grid>
                         </materialDesign:PopupBox>
-                        <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" Content="删除邮件" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+                        <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" 
+                                Content="删除邮件" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
                     </DockPanel>
                 </Grid>
                 <!--Using Custom Mail Web browser to display mail html body -->
@@ -96,6 +97,7 @@
             </DockPanel>
         </DataTemplate>
     </UserControl.Resources>
+
     <Grid Margin="5" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" MinWidth="250" MaxWidth="800"/>
@@ -105,16 +107,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
-                 ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
-                 SelectedItem="{Binding CurrentMail}"/>
-        
+
+        <StackPanel>
+            <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
+                     ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
+                     SelectedItem="{Binding CurrentMail}"/>
+            <materialDesign:Snackbar IsActive="{Binding IsSnackActive}" >
+                <materialDesign:SnackbarMessage Content="{Binding TipMessage}" HorizontalAlignment="Center"/>
+            </materialDesign:Snackbar>
+        </StackPanel>
+
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Cursor="SizeWE"/>
-        
+
         <Grid Grid.Column="2">
-            <!--<Grid.For>
-                <ImageBrush  ImageSource="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv}}"/>
-            </Grid.For>-->
             <Image Source="/Resources/mail_bg.jpg" Stretch="Fill" 
                Visibility="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv},
                 ConverterParameter={StaticResource IntZero}}" />
@@ -124,7 +129,5 @@
                          Visibility="{Binding SelectedIndex, ElementName=mailListBox,
                 Converter={StaticResource s2iv},ConverterParameter={StaticResource IntOne}}"/>
         </Grid>
-      
-
     </Grid>
 </UserControl>
