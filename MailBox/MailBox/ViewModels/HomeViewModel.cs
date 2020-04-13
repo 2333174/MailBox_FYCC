@@ -167,8 +167,9 @@ namespace MailBox.ViewModels
 				//DialogHost.CloseDialogCommand.Execute(null, null);
 				Console.WriteLine("Account Invalid !");
 
-				// TODO: CaiXu Edit Here: delete account item and remove that in XML file also, balabalabala
+				//  delete account item and remove that in XML file also
 				XMLOperation.DeleteAccouts(a);
+				AccountInfos.RemoveAt(AccountSelectedIndex);
 				return;
 			}
 			Content = new Frame
@@ -235,9 +236,9 @@ namespace MailBox.ViewModels
                             Console.WriteLine("Receive mail-{0} success", param);
                         else
                             Console.WriteLine("Receive mail-{0} fail", param);
-                    }), TimeSpan.FromSeconds(3.0));
+                    }), TimeSpan.FromSeconds(4.5));
                 }
-                Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 4 seconds
+                Task.WaitAll(tasks, TimeSpan.FromSeconds(5.0)); // wait for 5 seconds
                 Console.WriteLine("tasks all completed");
             }
             catch (TimeoutException te)
@@ -278,7 +279,6 @@ namespace MailBox.ViewModels
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
-			
 			DialogHost.CloseDialogCommand.Execute(null, null);
 
 			// show snackbar

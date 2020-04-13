@@ -14,25 +14,15 @@ namespace MailBox.Models
     class MailItem
     {
         public string Subject { get; set; }
-        public string Sender { get; set; }
         public string SenderMailAddress { get; set; }
-        public DateTime Date { get; set; }
-        public string MailID { get; set; } // used to oepn specific eml file
-        public List<Attachment> Attachments { get; set; }
-        public string HtmlBody { get; set; } // extract from MimeMessage
-
-        public string FilePath { get; set; }
+        public string Sender { get; set; }
         public char FirstSenderLetter { get; set; }
+        public DateTime Date { get; set; }
+        public string HtmlBody { get; set; } 
+        public List<Attachment> Attachments { get; set; }
+        public string FilePath { get; set; }
 
         public MailItem() { }
-        public MailItem(string subject, string sender, DateTime date, string htmlBody, string mailID)
-        {
-            Subject = subject;
-            Sender = sender;
-            Date = date;
-            HtmlBody = htmlBody;
-            MailID = mailID;
-        }
 
         public MailItem(string file_path)
         {
@@ -80,16 +70,6 @@ namespace MailBox.Models
                 Attachments.Add(att);
 
             FilePath = file_path;
-        }
-
-        public static Stream GenerateStreamFromString(string s)
-        {
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
         }
     }
 }

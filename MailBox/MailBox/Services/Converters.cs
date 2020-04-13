@@ -34,20 +34,20 @@ namespace MailBox.Services
             string pattern = @"content\s*=\s*""[\w/\s]+;\s*charset\s*=\s*([\w\s-]*)""";
             Regex regex = new Regex(pattern);
             string htmlText = (string)value;
-            //string html_test = "<html><head><meta http-equiv=3D\"Content - Type\" content=\"text / html; charset = gbk\"></head></html>";
             MatchCollection mc = regex.Matches(htmlText);
             foreach (Match m in mc)
             {
                 string encoding = m.Groups[1].Value;
                 string replacement = m.Groups[0].Value.Replace(encoding, "utf-8");
-
                 htmlText = regex.Replace(htmlText, replacement);
             }
+            //string html_test = "<html><head><meta http-equiv=3D\"Content - Type\" content=\"text / html; charset = gbk\"></head></html>";
+
             // Mail content is plain text
             if (htmlText.Length != 0 && htmlText[0] != '<')
                 htmlText = "<html><head><meta charset='UTF-8'></head><pre>" + htmlText + "</pre></html>";
 
-            File.WriteAllText(@"Plain.html", htmlText);
+            //File.WriteAllText(@"ShowTemp.html", htmlText);
 
             return htmlText;
         }

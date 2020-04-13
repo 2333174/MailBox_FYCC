@@ -41,40 +41,6 @@ namespace MailBox.ViewModels
         private string tipMessage;
         public DelegateCommand SaveAttachCommand { get; set; }
         public DelegateCommand DeleteMailCommand { get; set; }
-
-        private ObservableCollection<MailItem> GetMailItems(AccountInfo account)
-        {
-            ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
-
-            // TODO: Get info mails from account info 
-            string root_dir = Environment.CurrentDirectory; // temporary using /bin/Debug
-            string user_dir = Path.Combine(root_dir, account.Account);
-            if(!Directory.Exists(user_dir)) // when mail inbox is empty
-            {
-                Directory.CreateDirectory(user_dir);
-            }
-            string[] mailFiles = Directory.GetFiles(user_dir);
-            if (mailFiles.Length == 0)
-            {
-                // TODO handle
-                Console.WriteLine("Mail box is empty");
-            }
-            else
-            {
-                //string[] email_paths = { "Issue-163.eml", "github_1-ms.eml", "EML Test-to-163.eml", "Multipart-163.eml" };
-                foreach (string m in mailFiles)
-                {
-                    if (!m.EndsWith(".tmp")) continue;
-                    string ab_path = Path.Combine(user_dir, m);
-                    if (File.Exists(ab_path))
-                        //items.Add(new MailItem(ab_path, 0));
-                        items.Add(new MailItem(ab_path));
-
-                }
-            }
-            return items;
-        }
-
         public ObservableCollection<MailItem> DisplayMailItems
         {
             get
@@ -87,7 +53,7 @@ namespace MailBox.ViewModels
                 RaisePropertyChanged("DisplayMailItems");
             }
         }
-        
+
         public Attachment SelectedAttachment
         {
             get
@@ -149,17 +115,47 @@ namespace MailBox.ViewModels
             }
         }
 
+        private ObservableCollection<MailItem> GetMailItems(AccountInfo account)
+        {
+            ObservableCollection<MailItem> items = new ObservableCollection<MailItem>();
+
+            string root_dir = Environment.CurrentDirectory; // using /bin/Debug
+            string user_dir = Path.Combine(root_dir, account.Account);
+            if(!Directory.Exists(user_dir)) // when mail inbox is empty
+            {
+                Directory.CreateDirectory(user_dir);
+            }
+            string[] mailFiles = Directory.GetFiles(user_dir);
+            if (mailFiles.Length == 0)
+            {
+                Console.WriteLine("Mail box is empty");
+            }
+            else
+            {
+                //string[] email_paths = { "Issue-163.eml", "github_1-ms.eml", "EML Test-to-163.eml", "Multipart-163.eml" };
+                foreach (string m in mailFiles)
+                {
+                    if (!m.EndsWith(".tmp")) continue;
+                    string ab_path = Path.Combine(user_dir, m);
+                    if (File.Exists(ab_path))
+                        items.Add(new MailItem(ab_path));
+                }
+            }
+            return items;
+        }
+
         private void SaveAttach(object param)
         {
             Console.WriteLine("attachment select");
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "选择附件保存的文件位置";
-            if (SelectedAttachment != null)
+            Attachment attachment = param as Attachment;
+            if (attachment != null)
             {
-                saveFileDialog.FileName = SelectedAttachment.Filename; // init
+                saveFileDialog.FileName = attachment.Filename; // init
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    SelectedAttachment.SaveAsync(saveFileDialog.FileName, true);
+                    attachment.SaveAsync(saveFileDialog.FileName, true);
                     Console.WriteLine("Attachment save succeed");
                 }
                 else

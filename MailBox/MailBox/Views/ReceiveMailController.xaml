@@ -55,7 +55,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="16" Grid.Row="0" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="18" Grid.Row="0" FontWeight="Bold" />
                     <DockPanel  Grid.Row="1">
                         <Image Width="60" Height="60" Source="{Binding FirstSenderLetter,Converter={StaticResource s2l}}" DockPanel.Dock="Left"/>
                         <StackPanel Margin="5,20" VerticalAlignment="Center"  DockPanel.Dock="Left">
@@ -81,7 +81,8 @@
                                             <DataTemplate>
                                                 <Button Content="{Binding Filename}" FontSize="15px" FontWeight="Bold" Foreground="#FF673AB7"
                                                                      Style="{StaticResource MaterialDesignFlatButton}"
-                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}" />
+                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}"
+                                                                    CommandParameter="{Binding}"/>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
@@ -89,7 +90,7 @@
                             </Grid>
                         </materialDesign:PopupBox>
                         <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" 
-                                Content="删除邮件" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+                                Content="删除" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
                     </DockPanel>
                 </Grid>
                 <!--Using Custom Mail Web browser to display mail html body -->

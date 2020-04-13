@@ -49,12 +49,5 @@ namespace MailBox.Views
                 mailBrowser.NavigateToString(HtmlText);
             }
         }
-
-        private void mailBrowser_LoadCompleted(object sender, NavigationEventArgs e)
-        {
-            //WebBrowser wb = (WebBrowser)sender;
-            //string script = "document.documentElement.style.overflow ='hidden'";
-            //wb.InvokeScript("execScript", new Object[] { script, "JavaScript" });
-        }
     }
 }
