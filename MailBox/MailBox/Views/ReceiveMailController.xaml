@@ -11,12 +11,12 @@
              Background="{DynamicResource MaterialDesignPaper}"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    
+
     <UserControl.Resources>
         <!--Constants-->
         <sys:Int32 x:Key="IntZero">0</sys:Int32>
         <sys:Int32 x:Key="IntOne">1</sys:Int32>
-        
+
         <!--Converters-->
         <convert:SenderToLogoConverter x:Key="s2l"/>
         <convert:HtmlBodyEncodingConverter x:Key="html"/>
@@ -39,7 +39,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Row="0" Text="{Binding Sender}" FontSize="14" FontWeight="Bold" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
                         <TextBlock Grid.Row="1" Text="{Binding Subject}" Margin="0,5" FontSize="12" FontWeight="Black" TextTrimming="CharacterEllipsis"/>
-                        <TextBlock Grid.Row="2" Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm '}" FontSize="10" Foreground="Gray" FontWeight="Light"/>
+                        <TextBlock Grid.Row="2" Text="{Binding Date,StringFormat='yyyy-MM-dd HH:mm'}" FontSize="10" Foreground="Gray" FontWeight="Light"/>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -55,7 +55,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="16" Grid.Row="0" FontWeight="Bold" />
+                    <TextBlock Text="{Binding Subject}" TextWrapping="Wrap"  FontSize="18" Grid.Row="0" FontWeight="Bold" />
                     <DockPanel  Grid.Row="1">
                         <Image Width="60" Height="60" Source="{Binding FirstSenderLetter,Converter={StaticResource s2l}}" DockPanel.Dock="Left"/>
                         <StackPanel Margin="5,20" VerticalAlignment="Center"  DockPanel.Dock="Left">
@@ -81,14 +81,16 @@
                                             <DataTemplate>
                                                 <Button Content="{Binding Filename}" FontSize="15px" FontWeight="Bold" Foreground="#FF673AB7"
                                                                      Style="{StaticResource MaterialDesignFlatButton}"
-                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}" />
+                                                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}}, Path=DataContext.SaveAttachCommand}"
+                                                                    CommandParameter="{Binding}"/>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
                                 </Border>
                             </Grid>
                         </materialDesign:PopupBox>
-                        <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" Content="删除邮件" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+                        <Button Command="{Binding  RelativeSource={RelativeSource AncestorType={x:Type local:ReceiveMailController}},Path=DataContext.DeleteMailCommand}" 
+                                Content="删除" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Right" HorizontalAlignment="Right"/>
                     </DockPanel>
                 </Grid>
                 <!--Using Custom Mail Web browser to display mail html body -->
@@ -96,6 +98,7 @@
             </DockPanel>
         </DataTemplate>
     </UserControl.Resources>
+
     <Grid Margin="5" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250" MinWidth="250" MaxWidth="800"/>
@@ -105,16 +108,19 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding MailItems}"
-                 ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
-                 SelectedItem="{Binding CurrentMail}"/>
-        
+
+        <StackPanel>
+            <ListBox x:Name="mailListBox" Width="Auto" Margin="5,0" Grid.Column="0" ItemsSource="{Binding DisplayMailItems}"
+                     ItemTemplate="{StaticResource ResourceKey=mailListItemViewTemplate}"
+                     SelectedItem="{Binding CurrentMail}"/>
+            <materialDesign:Snackbar IsActive="{Binding IsSnackActive}" >
+                <materialDesign:SnackbarMessage Content="{Binding TipMessage}" HorizontalAlignment="Center"/>
+            </materialDesign:Snackbar>
+        </StackPanel>
+
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Cursor="SizeWE"/>
-        
+
         <Grid Grid.Column="2">
-            <!--<Grid.For>
-                <ImageBrush  ImageSource="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv}}"/>
-            </Grid.For>-->
             <Image Source="/Resources/mail_bg.jpg" Stretch="Fill" 
                Visibility="{Binding SelectedIndex, ElementName=mailListBox, Converter={StaticResource s2iv},
                 ConverterParameter={StaticResource IntZero}}" />
@@ -124,7 +130,5 @@
                          Visibility="{Binding SelectedIndex, ElementName=mailListBox,
                 Converter={StaticResource s2iv},ConverterParameter={StaticResource IntOne}}"/>
         </Grid>
-      
-
     </Grid>
 </UserControl>

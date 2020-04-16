@@ -11,31 +11,22 @@
 
     <Grid>
         <materialDesign:DialogHost Identifier="freshDialogID" Name="freshDialog">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True" 
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                            CommandParameter="Sample2Cancel"
-                                            HorizontalAlignment="Center">CANCEL</Button>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-            
             <materialDesign:DrawerHost
           IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}"
           BorderThickness="2"
           BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel MinWidth="300">
+                    <DockPanel MinWidth="250">
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                         DockPanel.Dock="Top"
                                         HorizontalAlignment="Right" Margin="16"
                                         IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
-                        <Grid Width="300" Height="auto">
+                        <Grid Width="250" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50px"></RowDefinition>
                                 <RowDefinition Height="50px"></RowDefinition>
                                 <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="50px"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50px"></ColumnDefinition>
@@ -65,6 +56,20 @@
                                 FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7">
                                 账户
                             </TextBlock>
+                            <Grid Grid.Row="3" Grid.ColumnSpan="2"  PreviewMouseLeftButtonDown="LogoutClick" Cursor="Hand" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50px"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon Kind="Logout" Grid.Row="0" Grid.Column="0" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="#FF673AB7" />
+                                <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="0,12,0,12"
+                                Text="退出登录"
+                                FontWeight="Bold" VerticalAlignment="Center" Foreground="#FF673AB7" >
+                                </TextBlock>
+                            </Grid>
                             <ListBox Grid.Row="2" Grid.Column="1" x:Name="AccountItemsListBox"                       
                                      PreviewMouseLeftButtonUp="ChangeAccount"
                                      ItemsSource="{Binding AccountInfos}" SelectedIndex="{Binding AccountSelectedIndex}">
@@ -79,7 +84,7 @@
                 </materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel>
                     <materialDesign:ColorZone
-                  Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0">
+                  Mode="PrimaryMid" DockPanel.Dock="Top" Padding="16" Panel.ZIndex="0" Grid.Row="0">
                         <DockPanel>
                             <Button
                         Visibility="{Binding Visibility}"
@@ -178,7 +183,9 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 BorderThickness="0"
                                 MinWidth="200"
-                                VerticalAlignment="Center" />
+                                VerticalAlignment="Center" 
+                                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                            />
                                         <Button
                                 Style="{DynamicResource MaterialDesignToolButton}"
                                 Grid.Column="2">
@@ -192,6 +199,7 @@
                                 <Button
                         Visibility="{Binding Visibility}"
                         Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                        Command="{Binding SearchCommand}"
                         Margin="8 0 0 0"
                         Panel.ZIndex="0">
                                     <materialDesign:PackIcon Kind="Send" />
@@ -199,9 +207,13 @@
                             </StackPanel>
                         </DockPanel>
                     </materialDesign:ColorZone >
+                    
                     <!--Mail inbox View here-->
-                    <Grid Panel.ZIndex="-1">
+                    <Grid Panel.ZIndex="-1" DockPanel.Dock="Top" Grid.Row="1">
                         <ContentControl x:Name="homeMain" Content="{Binding Content}" MinWidth="1000" />
+                        <materialDesign:Snackbar IsActive="{Binding IsSnackActive}" Grid.Row="2">
+                            <materialDesign:SnackbarMessage Content="{Binding TipMessage}" HorizontalAlignment="Center"/>
+                        </materialDesign:Snackbar>
                     </Grid>
                 </DockPanel>
             </materialDesign:DrawerHost>

@@ -50,6 +50,11 @@ namespace MailBox.Services
             xmlDoc.Load(@"../../Resources/AccountInfos.xml"); //从指定的位置加载xml文档
             //获取根节点
             XmlNode xmlRoot = xmlDoc.SelectSingleNode("AccountInfos"); //DocumentElement获取文档的根
+            foreach (XmlNode node in xmlRoot.ChildNodes)
+            {
+                if (accountInfo.Account == node["account"].InnerText)
+                    return;
+            }
             XmlElement AccountInfo = xmlDoc.CreateElement("AccountInfo");//CreateElement（节点名称）
             //创建子节点ID
             XmlElement account = xmlDoc.CreateElement("account");
@@ -68,6 +73,7 @@ namespace MailBox.Services
             xmlRoot.AppendChild(AccountInfo);
             xmlDoc.Save(@"../../Resources/AccountInfos.xml");
         }
+
 
         /**
          * 从XML文件中加载账户信息
@@ -93,6 +99,32 @@ namespace MailBox.Services
                 Console.WriteLine(node["account"].InnerText + "\t" + node["password"].InnerText + "\t" + node["popHost"].InnerText + "\t" + node["smtpHost"].InnerText);
             }
             return accountInfos;
+        }
+
+        /**
+         * 从XML文件中删除账号
+         */
+        public static bool DeleteAccouts(AccountInfo accountInfo)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            //加载xml文件
+            xmlDoc.Load(@"../../Resources/AccountInfos.xml"); //从指定的位置加载xml文档
+            //获取根节点
+            XmlNode xmlRoot = xmlDoc.SelectSingleNode("AccountInfos"); //DocumentElement获取文档的根
+            XmlNode deleteNode=null;
+            //遍历节点
+            foreach (XmlNode node in xmlRoot.ChildNodes)
+            {
+                if (accountInfo.Account==node["account"].InnerText)
+                {
+                    deleteNode = node;
+                    break;
+                }
+                
+            }
+            xmlRoot.RemoveChild(deleteNode);
+            xmlDoc.Save(@"../../Resources/AccountInfos.xml");
+            return true;
         }
     }
 }

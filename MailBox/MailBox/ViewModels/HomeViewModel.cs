@@ -19,7 +19,6 @@ namespace MailBox.ViewModels
     class HomeViewModel:NotificationObject
     {
 		private string title;
-		public Window window;
 		public string Title
 		{
 			get { return title; }
@@ -51,6 +50,33 @@ namespace MailBox.ViewModels
 			{
 				content = value;
 				this.RaisePropertyChanged("Content");
+			}
+		}
+
+		private bool isSnackActive;
+		private string tipMessage;
+		public bool IsSnackActive
+		{
+			get
+			{
+				return isSnackActive;
+			}
+			set
+			{
+				isSnackActive = value;
+				RaisePropertyChanged("IsSnackActive");
+			}
+		}
+		public string TipMessage
+		{
+			get
+			{
+				return tipMessage;
+			}
+			set
+			{
+				tipMessage = value;
+				RaisePropertyChanged("TipMessage");
 			}
 		}
 
@@ -98,6 +124,16 @@ namespace MailBox.ViewModels
 			};
 		}
 
+		//public DelegateCommand LogoutCommand { get; set; }
+
+		//private void Logout(object parameter)
+		//{
+		//	Content = new Frame
+		//	{
+		//		Content = new WelcomeController(this)
+		//	};
+		//}
+
 		public DelegateCommand ReceiveMailCommand { get; set; }
 
 		// switch mail user function
@@ -105,10 +141,66 @@ namespace MailBox.ViewModels
 		{
 			Title = "收件箱";
 			Visibility = System.Windows.Visibility.Visible;
+			AccountInfo a = AccountInfos[AccountSelectedIndex];
+			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
+			{
+				account = a.Account,
+				passwd = a.Password,
+				site = a.PopHost
+			};
+			bool re = !MailUtil.validate_account_pop3(info_pop3);
+
+			// for debug compare
+			MailUtil.LoginInfo info_pop3_2 = new MailUtil.LoginInfo()
+			{
+				account = "alertdoll@163.com",
+				passwd = "ybgissocute2020",
+				site = "pop.163.com:110"
+			};
+			bool rere = !MailUtil.validate_account_pop3(info_pop3_2);
+
+			// account is invaliad
+			if (!re)
+			{
+				// show tip and remove invalid account item
+				DialogHost.Show(new ShowInvalidController(), null, null);
+				//DialogHost.CloseDialogCommand.Execute(null, null);
+				Console.WriteLine("Account Invalid !");
+
+				//  delete account item and remove that in XML file also
+				XMLOperation.DeleteAccouts(a);
+				AccountInfos.RemoveAt(AccountSelectedIndex);
+				return;
+			}
 			Content = new Frame
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex]) // don't flush
 			};
+		}
+
+		private string searchText;
+		public string SearchText
+		{
+			get
+			{
+				return searchText;
+			}
+			set
+			{
+				searchText = value;
+				SearchMail(value);
+			}
+		}
+		private ReceiveMailViewModel rvm;
+		public DelegateCommand SearchCommand { get; set; }
+		private void SearchMail(object parameter)
+		{
+			if(rvm == null)
+            {
+                Frame f = (Frame)Content;
+                rvm = (f.Content as ReceiveMailController).DataContext as ReceiveMailViewModel;
+            }
+            rvm.SearchMail(SearchText);
 		}
 
 		private void ClearUserDir()
@@ -122,41 +214,40 @@ namespace MailBox.ViewModels
 		{
 			AccountInfo a = AccountInfos[AccountSelectedIndex];
 			MailUtil.LoginInfo info_pop3 = new MailUtil.LoginInfo()
-			{
-				account = a.Account,
-				passwd = a.Password,
-				site = a.PopHost
-			};
-			try
-			{
-
-			int num = MailUtil.get_num_mails(info_pop3);
-			//info_pop3.account = "11";
-			Task[] tasks = new Task[num];
-			for (uint i = 1; i <= num; i++)
-			{
-				uint param = i;
-				var tokenSource = new CancellationTokenSource();
-				var token = tokenSource.Token;
-				tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
-				{
-					int r = MailUtil.pull_save_mail(info_pop3, param);
-					if (r != -1)
-						Console.WriteLine("Receive mail-{0} success", param);
-					else
-						Console.WriteLine("Receive mail-{0} fail", param);
-				}), TimeSpan.FromSeconds(3.0));
-
-
-			}
-			Task.WaitAll(tasks, TimeSpan.FromSeconds(4.0)); // wait for 10 seconds
-			Console.WriteLine("tasks all completed");
-			}catch(TimeoutException te)
-			{
-				Console.WriteLine("Timeout happened, msg:" + te.Message);
-			}catch(Exception ex)
-			{
-				Console.WriteLine(ex.Message);
+            {
+                account = a.Account,
+                passwd = a.Password,
+                site = a.PopHost
+            };
+            try
+            {
+                int num = MailUtil.get_num_mails(info_pop3);
+                //info_pop3.account = "11";
+                Task[] tasks = new Task[num];
+                for (uint i = 1; i <= num; i++)
+                {
+                    uint param = i;
+                    var tokenSource = new CancellationTokenSource();
+                    var token = tokenSource.Token;
+                    tasks[i - 1] = WaitAsync(Task.Factory.StartNew(() =>
+                    {
+                        int r = MailUtil.pull_save_mail(info_pop3, param);
+                        if (r != -1)
+                            Console.WriteLine("Receive mail-{0} success", param);
+                        else
+                            Console.WriteLine("Receive mail-{0} fail", param);
+                    }), TimeSpan.FromSeconds(4.5));
+                }
+                Task.WaitAll(tasks, TimeSpan.FromSeconds(5.0)); // wait for 5 seconds
+                Console.WriteLine("tasks all completed");
+            }
+            catch (TimeoutException te)
+            {
+                Console.WriteLine("Timeout happened, msg:" + te.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
 			}
 		}
 		async Task WaitAsync(Task task, TimeSpan timeout)
@@ -189,20 +280,37 @@ namespace MailBox.ViewModels
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
 			DialogHost.CloseDialogCommand.Execute(null, null);
+
+			// show snackbar
+			TipMessage = "刷新结束";
+			IsSnackActive = true;
+			await Task.Delay(3000);
+			IsSnackActive = false;
+
 		}
 		private async void ShowFreshDialog(object parameter)
 		{
 			DialogOpenedEventHandler openedEventHandler = null;
 			DialogClosingEventHandler closingEventHandler = null;
 			Console.WriteLine("Parameter:", parameter);
-			await DialogHost.Show(new FreshProgessController(), openedEventHandler, closingEventHandler); //TODO add CancellationToken
+			await DialogHost.Show(new FreshController(), openedEventHandler, closingEventHandler); //TODO add CancellationToken
 		}
+
 		public HomeViewModel(ObservableCollection<AccountInfo> accountInfos, int selectIndex)
 		{
 			AccountInfos = accountInfos;
 			AccountSelectedIndex = selectIndex;
 			title = "收件箱";
 			visibility = System.Windows.Visibility.Visible;
+
+			NewMailCommand = new DelegateCommand();
+			NewMailCommand.ExecuteAction = new Action<object>(NewMail);
+			ReceiveMailCommand = new DelegateCommand();
+			ReceiveMailCommand.ExecuteAction = new Action<object>(ReceiveMail);
+			FreshCommand = new DelegateCommand();
+			FreshCommand.ExecuteAction = new Action<object>(FreshMail);
+			SearchCommand = new DelegateCommand();
+			SearchCommand.ExecuteAction = new Action<object>(SearchMail);
 
 			if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, AccountInfos[AccountSelectedIndex].Account)))
 				Task.Run(() =>
@@ -214,12 +322,6 @@ namespace MailBox.ViewModels
 			{
 				Content = new ReceiveMailController(AccountInfos[AccountSelectedIndex])
 			};
-			NewMailCommand = new DelegateCommand();
-			NewMailCommand.ExecuteAction = new Action<object>(NewMail);
-			ReceiveMailCommand = new DelegateCommand();
-			ReceiveMailCommand.ExecuteAction = new Action<object>(ReceiveMail);
-			FreshCommand = new DelegateCommand();
-			FreshCommand.ExecuteAction = new Action<object>(FreshMail);
 		}
 	}
 }

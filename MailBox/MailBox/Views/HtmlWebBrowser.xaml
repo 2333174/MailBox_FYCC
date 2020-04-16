@@ -9,6 +9,6 @@
     <WebBrowser Name="mailBrowser" 
                 ScrollViewer.CanContentScroll="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Visible" 
-                ScrollViewer.VerticalScrollBarVisibility="Visible" LoadCompleted="mailBrowser_LoadCompleted"
+                ScrollViewer.VerticalScrollBarVisibility="Visible" 
                 Width="Auto" Height="Auto"/>
 </UserControl>
