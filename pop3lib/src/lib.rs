@@ -1,9 +1,9 @@
 use std::io::prelude::*;
 use std::fs::File;
 use std::fs;
-use crate::utils::basic_utils::path_exists;
+use crate::utils::basic_utils::{path_exists, unwrap_str};
 use crate ::utils::mail_utils::LoginInfo;
-use crate::utils::mail_utils::{unwrap_str, authenticate, get_a_mail, del_a_mail};
+use crate::utils::mail_utils::{authenticate, get_a_mail, del_a_mail};
 
 
 mod utils {
@@ -14,6 +14,8 @@ mod utils {
         use std::str;
         use std::io::{Read, Write};
         use std::fs;
+        use libc::c_char;
+        use std::ffi::CStr;
         
         pub fn get_response(socket: &mut TcpStream) -> String{
             let mut buf: [u8; 1024] = [0; 1024];
@@ -52,13 +54,17 @@ mod utils {
         pub fn path_exists(path: &str) -> bool {
             fs::metadata(path).is_ok()
         }
+
+        pub fn unwrap_str(s: *const c_char) -> String {
+            let s = unsafe { CStr::from_ptr(s) };
+            String::from(s.to_str().unwrap())
+        }
     }
     
     pub mod mail_utils {
         use std::net::TcpStream;
         use std::str;
         use libc::c_char;
-        use std::ffi::CStr;
         use crate::utils::basic_utils::*;
         use std::io;
         
@@ -67,27 +73,6 @@ mod utils {
             pub account: *const c_char,
             pub passwd: *const c_char,
             pub site: *const c_char,
-        }
-        
-        pub fn unwrap_str(s: *const c_char) -> String {
-            let s = unsafe { CStr::from_ptr(s) };
-            String::from(s.to_str().unwrap())
-        }
-        
-        pub fn get_multiresponses(socket: &mut TcpStream) -> String {
-            let mut resp = String::new();
-            
-            loop {
-                let resp_part = get_response(socket);
-                
-                resp = format!("{}{}", resp, resp_part);
-
-                if is_final_end(&resp_part) {
-                    break;
-                }
-            }
-            
-            resp
         }
         
         pub fn authenticate(login_info: LoginInfo) -> (bool, String, TcpStream) {
@@ -124,7 +109,19 @@ mod utils {
             println!("RETR {}", index);
             write_request(socket, &format!("RETR {}", index));
             get_response(socket);
-            let mail_str = get_multiresponses(socket);
+
+            let mut mail_str = String::new();
+            
+            loop {
+                let resp_part = get_response(socket);
+                
+                mail_str = format!("{}{}", mail_str, resp_part);
+
+                if is_final_end(&resp_part) {
+                    break;
+                }
+            }
+
             let iter = mail_str.split("\r\n");
 
             let mut mail_str_processed = String::new();

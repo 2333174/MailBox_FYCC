@@ -40,7 +40,6 @@ mod utils {
         
         pub fn write_request_b64(socket: &mut TcpStream, message: &str) {
             let message = encode(message.as_bytes());
-            // println!("{}", message);
             let _ = socket.write(&(message.as_bytes()));
             let _ = socket.write("\r\n".as_bytes());
         }
