@@ -126,7 +126,7 @@
                 ConverterParameter={StaticResource IntZero}}" />
             <UserControl ContentTemplate="{StaticResource ResourceKey=mailDetailViewTemplate}" 
                          Panel.ZIndex="-1"
-                     Content="{Binding SelectedItem, ElementName=mailListBox}"  Margin="5,0,-5,0" 
+                     Content="{Binding CurrentMail}"  Margin="5,0,-5,0" 
                          Visibility="{Binding SelectedIndex, ElementName=mailListBox,
                 Converter={StaticResource s2iv},ConverterParameter={StaticResource IntOne}}"/>
         </Grid>

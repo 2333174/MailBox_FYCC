@@ -64,6 +64,7 @@ namespace MailBox.Models
             }
             Date = message.Date;
             HtmlBody = message.BodyHtmlText == null || message.BodyHtmlText == "" ? message.BodyPlainText : message.BodyHtmlText;
+            if (HtmlBody.Length == 0) HtmlBody = " ";
             AttachmentCollection attachments = message.Attachments;
             Attachments = new List<Attachment>();
             foreach (Attachment att in attachments)
